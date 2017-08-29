@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Hello World!</h2>
+<h3>Basics</h3>
+<p>I used <a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app-mac/start-mvc">this page</a> as a starting point for this app. 
+	Reading it will help with understanding the layout of controllers, views, and the file structure. 
+    <a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?tabs=aspnetcore2x">This is the Windows version.</a></p>
+
+<hr>
+
+<h3>NavBar addition</h3>
+<p>
+    To add this page to the navbar, I added line 36 in _Layout.cshtml.
+	<!-- Notice that there is no <br> here, the page just re-adjusts the width based on the screen.
+	    This doesn't always happen, so be careful when not using the width attribute.-->
+    Compare it to the three lines above it. Notice the values of 'asp-controller' and 'asp-action' for each tab, and how it relates to the file structure.
+    <br><br>
+    You'll notice that there's two Index.cshtml file in the file tree, one in /Views/HelloWorld, and one in /Views/Home. This distinction is important.
+</p>
+
+<hr>
+
+<h3>With and Without Views</h3>
+<p>
+    This page has a view (cshtml) file. <a href="http://localhost:5001/HelloWorld/NoView">This page</a> does not - it only has a controller. 
+    More can be read <a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app-mac/adding-controller">in this part.</a>
+</p>
+
+<hr>
+
+<h3>Other stuff</h3>
+<p>
+	<!-- I used <br> here. It's sloppy. The width attribute should be used, instead. -->
+	Here's some stuff to see how things get put together. Find the source code for this page in Visual Studio, and check out the logic.
+    <br>
+	This is some basic javascript combined with inline logic. Note the "onclick" part. We will likely use this a lot. This is a basic example of changing
+	<br>
+	html values on the fly. It can be used for elements other than text.
+</p>
+
+    <!-- Taken from https://stackoverflow.com/questions/29803850/javascript-change-paragraph-text-on-each-button-click -->
+    <script type="text/javascript">
+        function changeText(value) {
+            document.getElementById('pText').innerHTML = "You pressed " + value;
+            if(value == "Button 1") {
+                document.getElementById('pText').setAttribute('style', 'color: green');
+            } else if(value == "Button 2") {
+                document.getElementById('pText').setAttribute('style', 'color: red');
+            } else if(value == "Button 3") {
+                document.getElementById('pText').setAttribute('style', 'color: blue');
+	        }
+        }
+    </script>
+    <input type="button" value="Button 1" id="b1" style="color:green" onclick="changeText(this.value);"/>
+    <input type="button" value="Button 2" id="b2" style="color:red" onclick="changeText(this.value);"/>
+    <input type="button" value="Button 3" id="b3" style="color:blue" onclick="changeText(this.value);"/>
+    <br><br>
+    <p id="pText">Click on a Button</p>
+
