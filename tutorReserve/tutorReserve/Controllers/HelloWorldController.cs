@@ -30,5 +30,10 @@ namespace MvcMovie.Controllers
 		{
 			return "This page has no view file.";
 		}
+
+        // GET: /HelloWorld/coker
+        public IActionResult Coker() {
+            return View();
+        }
 	}
 }
