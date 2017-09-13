@@ -6,6 +6,19 @@
     box-sizing: border-box;
 }
 
+/* Tutor info pane */
+
+#tutorInfo {
+	border: 5px black solid;
+	height: 100%;
+	width: calc(100% - 300px);
+	position: absolute;
+	float:right;
+	margin-left:300px;
+	z-index: 3;
+	background: gray;
+}
+
 html, body, .container, .scroller {
 	height: 100%;
 }
