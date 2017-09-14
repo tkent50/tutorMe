@@ -21,20 +21,22 @@
 
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="css/starRating/starability-all.css"/>
-  <link rel="shortcut icon" href="../favicon.ico">
-  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-  <link rel="stylesheet" type="text/css" href="css/demo.css" />
-  <link rel="stylesheet" type="text/css" href="css/icons.css" />
-  <link rel="stylesheet" type="text/css" href="css/component.css" />
-  <script src="js/modernizr.custom.js"></script>
-  <script src="js/addTutor.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/starRating/starability-all.css"/>
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <script src="js/modernizr.custom.js"></script>
+    <script src="js/addTutor.js"></script>
 
 
+    <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="js/daypilot-all.min.js?v=217" type="text/javascript"></script>
 
-  <title>Find a Tutor!</title>
+    <title>Find a Tutor!</title>
 </head>
 <body onload="onPageLoad()">
 
@@ -51,8 +53,8 @@
             <p style="position: relative; font-size: 20; float: left; left:30">465-867-5309</p>
         </div>
 
-        <hr style="position: relative; top:-40; left:-60; width: 110%" >
-        
+        <hr style="position: relative; top:-40; left:-30; width: 100%" >
+
         <div style="position: relative; top: -40">
             <p style="position: relative; font-size: 20; float: left">$$$ / hr</p>
 
@@ -60,115 +62,157 @@
                 <!-- Change starability-basic to different class to see animations. -->
                 <fieldset class="starability-slot">
 
-                  <input type="radio" id="rate1" name="rating" value="1" />
-                  <label for="rate1">1 star.</label>
+                    <input type="radio" id="rate1" name="rating" value="1" />
+                    <label for="rate1">1 star.</label>
 
-                  <input type="radio" id="rate2" name="rating" value="2" />
-                  <label for="rate2">2 stars.</label>
+                    <input type="radio" id="rate2" name="rating" value="2" />
+                    <label for="rate2">2 stars.</label>
 
-                  <input type="radio" id="rate3" name="rating" value="3" />
-                  <label for="rate3">3 stars.</label>
+                    <input type="radio" id="rate3" name="rating" value="3" />
+                    <label for="rate3">3 stars.</label>
 
-                  <input type="radio" id="rate4" name="rating" value="4" />
-                  <label for="rate4">4 stars.</label>
+                    <input type="radio" id="rate4" name="rating" value="4" />
+                    <label for="rate4">4 stars.</label>
 
-                  <input type="radio" id="rate5" name="rating" value="5" />
-                  <label for="rate5">5 stars.</label>
-              </fieldset>
-          </form>
-      </div>
+                    <input type="radio" id="rate5" name="rating" value="5" />
+                    <label for="rate5">5 stars.</label>
+                </fieldset>
+            </form>
+        </div>
 
-  </div>
+        <div id="dp" style="width:auto; top:100; right:50; height:50%; padding-left: 0px"></div>
 
-  <!-- div for main page -->
-  <div class="container">
-    <!-- Push Wrapper -->
-    <div class="mp-pusher" id="mp-pusher">
-        <!-- mp-menu -->
-        <nav id="mp-menu" class="mp-menu">
-            <div id="classList" class="mp-level">
-                <h2>Classes</h2>
-                <ul>
-                    <li class="icon icon-arrow-left">
-                        <a href="#">Class A</a>
-                        <div class="mp-level">
-                            <h2 id="classATitle">Class A</h2>
-                            <a class="mp-back" onclick="closeTutorInfo()">back</a>
-                            <ul id="tutorAList">
-                                <li><a onclick="showTutor()">Tutor 1</a></li>
-                                <li><a href="#">Tutor 2</a></li>
-                            </ul>
-                            <input type="text" id="newTutorName">
-                            <input type="button" id="addButton" value="Add Tutor" onclick="addTutor()"/>
-                        </div>
+        <script type="text/javascript">
 
-                    </li>
-                    <li class="icon icon-arrow-left">
-                        <a href="#">Class B</a>
-                        <div class="mp-level">
-                            <h2>Class B</h2>
-                            <a class="mp-back" href="#">back</a>
-                            <ul>
-                                <li><a href="#">Tutor 3</a></li>
-                                <li><a href="#">Tutor 4</a></li>
-                                <li><a href="#">Tutor 5</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="icon icon-arrow-left">
-                        <a href="#">Class C</a>
-                        <div class="mp-level">
-                            <h2 >Class C</h2>
-                            <a class="mp-back" href="#">back</a>
-                            <ul>
-                                <li><a href="#">Tutor 6</a></li>
-                                <li><a href="#">Tutor 7</a></li>
-                                <li><a href="#">Tutor 8</a></li>
-                                <li><a href="#">Tutor 9</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a class="icon icon-display" href="../wwwroot/login.html">Login Page</a></li>
-                    <li><a href="https://getbootstrap.com/">Install Bootstrap</a></li>
-                    <li><a href="https://tympanus.net/Blueprints/SlidePushMenus/">Another option</a></li>
-                </ul>
-            </div>
-        </nav>
-        <!-- /mp-menu -->
+        var dp = new DayPilot.Calendar("dp");
 
-        <div class="scroller">
+        // view
+        dp.startDate = "2013-03-25";  // or just dp.startDate = "2013-03-25";
+        dp.viewType = "Week";
 
-            <!-- this is for emulating position fixed of the nav -->
-            <div class="scroller-inner">
-                <!-- Top Navigation -->
-                <header class="codrops-header">
-                    <h1>Welcome to TutorMe! <span>Select 'View Classes' to begin</span></h1>
-                </header>
-                <div class="content clearfix">
-                    <div class="block block-40 clearfix">
-                        <p><a href="#" id="trigger" class="menu-trigger">View Classes</a></p>
-                    </div>
-                    <div class="block block-60">
-                        <p><strong>To Start:</strong> Select 'View Classes'</p>
-                        <p>Simple implementation. Can add multiple classes, tutors, etc.</p> 
-                        <p>Eventually the inital menu will be permanent.</p>
-                    </div>
+        // event creating
+        dp.onTimeRangeSelected = function (args) {
+            var name = prompt("New event name:", "Event");
+            if (!name) return;
+            var e = new DayPilot.Event({
+                start: args.start,
+                end: args.end,
+                id: DayPilot.guid(),
+                text: name
+            });
+            dp.events.add(e);
+            dp.clearSelection();
+        };
+
+        dp.onEventClick = function(args) {
+            alert("clicked: " + args.e.id());
+        };
+
+        dp.headerDateFormat = "dddd";
+        dp.init();
+
+        var e = new DayPilot.Event({
+            start: new DayPilot.Date("2013-03-25T12:00:00"),
+            end: new DayPilot.Date("2013-03-25T12:00:00").addHours(3).addMinutes(15),
+            id: "1",
+            text: "Special event"
+        });
+        dp.events.add(e);
+
+
+        </script>
+
+    </div>
+
+    <!-- div for main page -->
+    <div class="container">
+        <!-- Push Wrapper -->
+        <div class="mp-pusher" id="mp-pusher">
+            <!-- mp-menu -->
+            <nav id="mp-menu" class="mp-menu">
+                <div id="classList" class="mp-level">
+                    <h2>Classes</h2>
+                    <ul>
+                        <li class="icon icon-arrow-left">
+                            <a href="#">Class A</a>
+                            <div class="mp-level">
+                                <h2 id="classATitle">Class A</h2>
+                                <a class="mp-back" onclick="closeTutorInfo()">back</a>
+                                <ul id="tutorAList">
+                                    <li><a onclick="showTutor()">Tutor 1</a></li>
+                                    <li><a href="#">Tutor 2</a></li>
+                                </ul>
+                                <input type="text" id="newTutorName">
+                                <input type="button" id="addButton" value="Add Tutor" onclick="addTutor()"/>
+                            </div>
+
+                        </li>
+                        <li class="icon icon-arrow-left">
+                            <a href="#">Class B</a>
+                            <div class="mp-level">
+                                <h2>Class B</h2>
+                                <a class="mp-back" href="#">back</a>
+                                <ul>
+                                    <li><a href="#">Tutor 3</a></li>
+                                    <li><a href="#">Tutor 4</a></li>
+                                    <li><a href="#">Tutor 5</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="icon icon-arrow-left">
+                            <a href="#">Class C</a>
+                            <div class="mp-level">
+                                <h2 >Class C</h2>
+                                <a class="mp-back" href="#">back</a>
+                                <ul>
+                                    <li><a href="#">Tutor 6</a></li>
+                                    <li><a href="#">Tutor 7</a></li>
+                                    <li><a href="#">Tutor 8</a></li>
+                                    <li><a href="#">Tutor 9</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a class="icon icon-display" href="../wwwroot/login.html">Login Page</a></li>
+                        <li><a href="https://getbootstrap.com/">Install Bootstrap</a></li>
+                        <li><a href="https://tympanus.net/Blueprints/SlidePushMenus/">Another option</a></li>
+                    </ul>
                 </div>
-            </div><!-- /scroller-inner -->
+            </nav>
+            <!-- /mp-menu -->
 
-        </div><!-- /scroller -->
+            <div class="scroller">
 
-    </div><!-- /pusher -->
+                <!-- this is for emulating position fixed of the nav -->
+                <div class="scroller-inner">
+                    <!-- Top Navigation -->
+                    <header class="codrops-header">
+                        <h1>Welcome to TutorMe! <span>Select 'View Classes' to begin</span></h1>
+                    </header>
+                    <div class="content clearfix">
+                        <div class="block block-40 clearfix">
+                            <p><a href="#" id="trigger" class="menu-trigger">View Classes</a></p>
+                        </div>
+                        <div class="block block-60">
+                            <p><strong>To Start:</strong> Select 'View Classes'</p>
+                            <p>Simple implementation. Can add multiple classes, tutors, etc.</p> 
+                            <p>Eventually the inital menu will be permanent.</p>
+                        </div>
+                    </div>
+                </div><!-- /scroller-inner -->
 
-</div><!-- /container -->
+            </div><!-- /scroller -->
+
+        </div><!-- /pusher -->
+
+    </div><!-- /container -->
 
 
-<script src="js/classie.js"></script>
-<script src="js/mlpushmenu.js"></script>
-<script>
-    new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ), {
-        type : 'cover'
-    } );
-</script>
+    <script src="js/classie.js"></script>
+    <script src="js/mlpushmenu.js"></script>
+    <script>
+        new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ), {
+            type : 'cover'
+        } );
+    </script>
 </body>
 </html>
