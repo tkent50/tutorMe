@@ -1,115 +1,174 @@
 
 <html>
-<head>
+<style type="text/css">
 
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="css/icons.css" />
-    <link rel="stylesheet" type="text/css" href="css/component.css" />
-    <script src="js/modernizr.custom.js"></script>
-    <script src="js/addTutor.js"></script>
+
+/* Tutor info pane */
+
+#tutorInfo {
+    height       : 100%;
+    width        : calc(100% - 300px);
+    position     : absolute;
+    float        : right;
+    margin-left  : 300px;
+    z-index      : 3;
+    background   : gray;
+    color        : white;
+    padding-left : 60px; 
+}
+
+</style>
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/starRating/starability-all.css"/>
+  <link rel="shortcut icon" href="../favicon.ico">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/demo.css" />
+  <link rel="stylesheet" type="text/css" href="css/icons.css" />
+  <link rel="stylesheet" type="text/css" href="css/component.css" />
+  <script src="js/modernizr.custom.js"></script>
+  <script src="js/addTutor.js"></script>
+
+
+
+  <title>Find a Tutor!</title>
 </head>
 <body onload="onPageLoad()">
 
     <!-- Div that loads tutor content -->
     <div id="tutorInfo"> <!-- Add mp-pushed class on close button -->
-        <div style="padding-left: 35px;">
-            <label style="float:left"><h1>Tutor Name</h1></label>
-            <label style="line-height: 40px; text-align: bottom"><h2>Class Name</h2></label>
-            <hr style="clear:both">
+
+        <div id="heading" style="position: relative;">
+            <p style="position: relative; float: left; font-size: 40; font-weight: bold">John Doe </p>
+            <p style="position: relative; float: left; font-size: 30; font-weight: bold; top: 19; left: 30; ">CS 408</p>    
         </div>
-    </div>
 
-    <!-- div for main page -->
-    <div class="container">
-        <!-- Push Wrapper -->
-        <div class="mp-pusher" id="mp-pusher">
-            <!-- mp-menu -->
-            <nav id="mp-menu" class="mp-menu">
-                <div id="classList" class="mp-level">
-                    <h2>Classes</h2>
-                    <ul>
-                        <li class="icon icon-arrow-left">
-                            <a href="#">Class A</a>
-                            <div class="mp-level">
-                                <h2 id="classATitle">Class A</h2>
-                                <a class="mp-back" onclick="closeTutorInfo()">back</a>
-                                <ul id="tutorAList">
-                                    <li><a onclick="showTutor()">Tutor 1</a></li>
-                                    <li><a href="#">Tutor 2</a></li>
-                                </ul>
-                                <input type="text" id="newTutorName">
-                                <input type="button" id="addButton" value="Add Tutor" onclick="addTutor()"/>
-                            </div>
+        <div style="position: relative; clear:both; top: -50">
+            <p style="position: relative; font-size: 20; float: left;"><a href="mailto:">username@purdue.edu</a></p>
+            <p style="position: relative; font-size: 20; float: left; left:30">465-867-5309</p>
+        </div>
 
-                        </li>
-                        <li class="icon icon-arrow-left">
-                            <a href="#">Class B</a>
-                            <div class="mp-level">
-                                <h2>Class B</h2>
-                                <a class="mp-back" href="#">back</a>
-                                <ul>
-                                    <li><a href="#">Tutor 3</a></li>
-                                    <li><a href="#">Tutor 4</a></li>
-                                    <li><a href="#">Tutor 5</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="icon icon-arrow-left">
-                            <a href="#">Class C</a>
-                            <div class="mp-level">
-                                <h2 >Class C</h2>
-                                <a class="mp-back" href="#">back</a>
-                                <ul>
-                                    <li><a href="#">Tutor 6</a></li>
-                                    <li><a href="#">Tutor 7</a></li>
-                                    <li><a href="#">Tutor 8</a></li>
-                                    <li><a href="#">Tutor 9</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li><a class="icon icon-display" href="../wwwroot/login.html">Login Page</a></li>
-                        <li><a href="https://getbootstrap.com/">Install Bootstrap</a></li>
-                        <li><a href="https://tympanus.net/Blueprints/SlidePushMenus/">Another option</a></li>
-                    </ul>
-                </div>
-            </nav>
-            <!-- /mp-menu -->
+        <hr style="position: relative; top:-40; left:-60; width: 110%" >
+        
+        <div style="position: relative; top: -40">
+            <p style="position: relative; font-size: 20; float: left">$$$ / hr</p>
 
-            <div class="scroller">
+            <form style="position: relative; float: left; top: 15; left: 50">
+                <!-- Change starability-basic to different class to see animations. -->
+                <fieldset class="starability-slot">
 
-                <!-- this is for emulating position fixed of the nav -->
-                <div class="scroller-inner">
-                    <!-- Top Navigation -->
-                    <header class="codrops-header">
-                        <h1>Welcome to TutorMe! <span>Select 'View Classes' to begin</span></h1>
-                    </header>
-                    <div class="content clearfix">
-                        <div class="block block-40 clearfix">
-                            <p><a href="#" id="trigger" class="menu-trigger">View Classes</a></p>
+                  <input type="radio" id="rate1" name="rating" value="1" />
+                  <label for="rate1">1 star.</label>
+
+                  <input type="radio" id="rate2" name="rating" value="2" />
+                  <label for="rate2">2 stars.</label>
+
+                  <input type="radio" id="rate3" name="rating" value="3" />
+                  <label for="rate3">3 stars.</label>
+
+                  <input type="radio" id="rate4" name="rating" value="4" />
+                  <label for="rate4">4 stars.</label>
+
+                  <input type="radio" id="rate5" name="rating" value="5" />
+                  <label for="rate5">5 stars.</label>
+              </fieldset>
+          </form>
+      </div>
+
+  </div>
+
+  <!-- div for main page -->
+  <div class="container">
+    <!-- Push Wrapper -->
+    <div class="mp-pusher" id="mp-pusher">
+        <!-- mp-menu -->
+        <nav id="mp-menu" class="mp-menu">
+            <div id="classList" class="mp-level">
+                <h2>Classes</h2>
+                <ul>
+                    <li class="icon icon-arrow-left">
+                        <a href="#">Class A</a>
+                        <div class="mp-level">
+                            <h2 id="classATitle">Class A</h2>
+                            <a class="mp-back" onclick="closeTutorInfo()">back</a>
+                            <ul id="tutorAList">
+                                <li><a onclick="showTutor()">Tutor 1</a></li>
+                                <li><a href="#">Tutor 2</a></li>
+                            </ul>
+                            <input type="text" id="newTutorName">
+                            <input type="button" id="addButton" value="Add Tutor" onclick="addTutor()"/>
                         </div>
-                        <div class="block block-60">
-                            <p><strong>To Start:</strong> Select 'View Classes'</p>
-                            <p>Simple implementation. Can add multiple classes, tutors, etc.</p> 
-                            <p>Eventually the inital menu will be permanent.</p>
+
+                    </li>
+                    <li class="icon icon-arrow-left">
+                        <a href="#">Class B</a>
+                        <div class="mp-level">
+                            <h2>Class B</h2>
+                            <a class="mp-back" href="#">back</a>
+                            <ul>
+                                <li><a href="#">Tutor 3</a></li>
+                                <li><a href="#">Tutor 4</a></li>
+                                <li><a href="#">Tutor 5</a></li>
+                            </ul>
                         </div>
+                    </li>
+                    <li class="icon icon-arrow-left">
+                        <a href="#">Class C</a>
+                        <div class="mp-level">
+                            <h2 >Class C</h2>
+                            <a class="mp-back" href="#">back</a>
+                            <ul>
+                                <li><a href="#">Tutor 6</a></li>
+                                <li><a href="#">Tutor 7</a></li>
+                                <li><a href="#">Tutor 8</a></li>
+                                <li><a href="#">Tutor 9</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a class="icon icon-display" href="../wwwroot/login.html">Login Page</a></li>
+                    <li><a href="https://getbootstrap.com/">Install Bootstrap</a></li>
+                    <li><a href="https://tympanus.net/Blueprints/SlidePushMenus/">Another option</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /mp-menu -->
+
+        <div class="scroller">
+
+            <!-- this is for emulating position fixed of the nav -->
+            <div class="scroller-inner">
+                <!-- Top Navigation -->
+                <header class="codrops-header">
+                    <h1>Welcome to TutorMe! <span>Select 'View Classes' to begin</span></h1>
+                </header>
+                <div class="content clearfix">
+                    <div class="block block-40 clearfix">
+                        <p><a href="#" id="trigger" class="menu-trigger">View Classes</a></p>
                     </div>
-                </div><!-- /scroller-inner -->
+                    <div class="block block-60">
+                        <p><strong>To Start:</strong> Select 'View Classes'</p>
+                        <p>Simple implementation. Can add multiple classes, tutors, etc.</p> 
+                        <p>Eventually the inital menu will be permanent.</p>
+                    </div>
+                </div>
+            </div><!-- /scroller-inner -->
 
-            </div><!-- /scroller -->
+        </div><!-- /scroller -->
 
-        </div><!-- /pusher -->
+    </div><!-- /pusher -->
 
-    </div><!-- /container -->
+</div><!-- /container -->
 
 
-    <script src="js/classie.js"></script>
-    <script src="js/mlpushmenu.js"></script>
-    <script>
-        new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ), {
-            type : 'cover'
-        } );
-    </script>
+<script src="js/classie.js"></script>
+<script src="js/mlpushmenu.js"></script>
+<script>
+    new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ), {
+        type : 'cover'
+    } );
+</script>
 </body>
 </html>
