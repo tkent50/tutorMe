@@ -99,8 +99,7 @@ html, body, .container, .scroller {
 	z-index: -1;
 }
 
-.mp-pusher.mp-pushed::after,
-.mp-level.mp-level-overlay::after {
+.mp-pusher.mp-pushed::after {
 	width: 100%;
 	height: 100%;
 	opacity: 1;
