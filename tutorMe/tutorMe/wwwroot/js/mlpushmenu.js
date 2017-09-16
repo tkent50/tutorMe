@@ -194,7 +194,7 @@
 			}
 			// add class mp-pushed to main wrapper if opening the first time
 			if( this.level === 1 ) {
-				classie.add( this.wrapper, 'mp-pushed' );
+				//classie.add( this.wrapper, 'mp-pushed' );
 				this.open = true;
 			}
 			// add class mp-level-open to the opening level element
@@ -205,7 +205,7 @@
 			this._setTransform('translate3d(0,0,0)');
 			this.level = 0;
 			// remove class mp-pushed from main wrapper
-			classie.remove( this.wrapper, 'mp-pushed' );
+			//classie.remove( this.wrapper, 'mp-pushed' );
 			this._toggleLevels();
 			this.open = false;
 		},
