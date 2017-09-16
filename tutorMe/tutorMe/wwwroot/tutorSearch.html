@@ -11,9 +11,9 @@
     position     : absolute;
     float        : right;
     margin-left  : 300px;
-    z-index      : -1;
-    background   : white;
-    color        : 3399FF;
+    visibility   : hidden;
+    background   : gray;
+    color        : #3399FF;
     padding-left : 60px; 
 }
 
@@ -45,7 +45,7 @@
 </head>
 <body onload="onPageLoad()">
 
-   <!-- Div that loads tutor content
+   <!-- Div that loads tutor content -->
     <div id="tutorInfo">
 
         <div id="heading" style="position: relative;">
@@ -86,7 +86,7 @@
 
         
 
-        <div id="dp" style="border: 20px; border-color:black; width:auto; top:100; right:50; height:50%; padding-left: 0px;"></div>
+        <div id="dp" style=" border: 20px; border-color:black; width:auto; top:100; right:50; height:50%; padding-left: 0px;"></div>
 
         <script type="text/javascript">
         var dp = new DayPilot.Calendar("dp");
@@ -123,7 +123,7 @@
         
 
     </div>
-    end of tutor info -->
+    <!-- end of tutor info -->
 
     <!-- div for main page -->
     <div class="container-fluid">
@@ -132,9 +132,9 @@
             <!-- mp-menu -->
             <nav id="mp-menu" style="left:285; " class="mp-menu">
                 <div id="classList" class="mp-level">
-                    <h2 style="color:white">Classes</h2>
+                    <h2>Classes</h2>
                     <ul>
-                        <li class="icon icon-arrow-left">
+                        <li class="icon icon-arrow-left" >
                             <a href="#">Class A</a>
                             <div class="mp-level">
                                 <h2 id="classATitle">Class A</h2>
@@ -184,7 +184,7 @@
             <div class="scroller">
 
                 <!-- this is for emulating position fixed of the nav -->
-                <div class="scroller-inner">
+                <div class="scroller-inner" style="width: 80%; float: right">
                     <!-- Top Navigation -->
                     <header class="codrops-header">
                         <h1>Welcome to TutorMe! <span>Select 'View Classes' to begin</span></h1>

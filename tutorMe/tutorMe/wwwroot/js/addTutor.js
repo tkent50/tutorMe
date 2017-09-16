@@ -20,8 +20,10 @@ function onPageLoad() {
 
 function showTutor() {
 	document.getElementById("tutorInfo").style.zIndex = "3";
+	document.getElementById("tutorInfo").style.visibility = "visible";
 }
 
 function closeTutorInfo() {
 	document.getElementById("tutorInfo").style.zIndex = "-1";
+	document.getElementById("tutorInfo").style.visibility = "hidden";
 }
