@@ -11,9 +11,9 @@
     position     : absolute;
     float        : right;
     margin-left  : 300px;
-    z-index      : 3;
-    background   : gray;
-    color        : white;
+    z-index      : -1;
+    background   : white;
+    color        : 3399FF;
     padding-left : 60px; 
 }
 
@@ -49,18 +49,18 @@
         </div>
 
         <div style="position: relative; clear:both; top: -50">
-            <p style="position: relative; font-size: 20; float: left;"><a href="mailto:">username@purdue.edu</a></p>
+            <p style="position: relative; font-size: 20; float: left;"><a href="mailto:" style="color:#3399FF;">username@purdue.edu</a></p>
             <p style="position: relative; font-size: 20; float: left; left:30">465-867-5309</p>
         </div>
 
         <hr style="position: relative; top:-40; left:-30; width: 100%" >
 
-        <div style="position: relative; top: -40">
+        <div style="position: relative; top: -40;">
             <p style="position: relative; font-size: 20; float: left">$$$ / hr</p>
 
             <form style="position: relative; float: left; top: 15; left: 50">
                 <!-- Change starability-basic to different class to see animations. -->
-                <fieldset class="starability-slot">
+                <fieldset class="starability-heart">
 
                     <input type="radio" id="rate1" name="rating" value="1" />
                     <label for="rate1">1 star.</label>
@@ -80,7 +80,9 @@
             </form>
         </div>
 
-        <div id="dp" style="width:auto; top:100; right:50; height:50%; padding-left: 0px"></div>
+        <!-- Beginning of calender -->
+
+        <div id="dp" style="border: 20px; border-color:black; width:auto; top:100; right:50; height:50%; padding-left: 0px;"></div>
 
         <script type="text/javascript">
 
@@ -115,12 +117,14 @@
             start: new DayPilot.Date("2013-03-25T12:00:00"),
             end: new DayPilot.Date("2013-03-25T12:00:00").addHours(3).addMinutes(15),
             id: "1",
-            text: "Special event"
+            text: ""
         });
         dp.events.add(e);
 
 
         </script>
+
+        <!-- End of calender -->
 
     </div>
 
@@ -131,7 +135,7 @@
             <!-- mp-menu -->
             <nav id="mp-menu" class="mp-menu">
                 <div id="classList" class="mp-level">
-                    <h2>Classes</h2>
+                    <h2 style="color:white">Classes</h2>
                     <ul>
                         <li class="icon icon-arrow-left">
                             <a href="#">Class A</a>
