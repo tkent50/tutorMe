@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{20F72E7E-33F7-4BB0-8765-EBE8DBDA662D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="tutorMe/wwwroot/tutorSearch.html">
+  <MonoDevelop.Ide.Workbench ActiveDocument="tutorMe/Startup.cs">
     <Files>
       <File FileName="tutorMe/Startup.cs" Line="25" Column="39" />
       <File FileName="tutorMe/wwwroot/login.html" Line="11" Column="57" />
