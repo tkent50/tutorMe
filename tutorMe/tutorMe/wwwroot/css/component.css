@@ -15,7 +15,30 @@ html, body, .container, .scroller {
 #classList > ul > li > a, #classList > ul > li > div > ul > li > a, 
 #classList > h2, #classList > ul > li > div > h2,
 #classList > ul > li > div > a {
-	color:black;
+	color:white;
+	font-weight: bold;
+}
+
+/*	 This puts the buttons on the bottom right. You'll 	*/
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-lg {
+  background-color:#333399 !important;
+  border-color: #333399 !important;
+}
+
+#fixedbutton {
+    position: fixed;
+    bottom: 0px;
+    right: 0px; 
+}
+
+#dp * {
+	visibility: hidden;
+	z-index: 10;
+	pointer-events: none;
 }
 
 .scroller {
