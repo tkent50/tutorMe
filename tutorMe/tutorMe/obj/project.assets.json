@@ -28881,15 +28881,15 @@
     ]
   },
   "packageFolders": {
-    "/Users/rajatsrivastava/.nuget/packages/": {}
+    "/Users/srishti/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/rajatsrivastava/Documents/GitHub/CS408/tutorMe/tutorMe/tutorMe.csproj",
+      "projectUniqueName": "/Users/srishti/Desktop/cs408/CS408/tutorMe/tutorMe/tutorMe.csproj",
       "projectName": "tutorMe",
-      "projectPath": "/Users/rajatsrivastava/Documents/GitHub/CS408/tutorMe/tutorMe/tutorMe.csproj",
-      "outputPath": "/Users/rajatsrivastava/Documents/GitHub/CS408/tutorMe/tutorMe/obj",
+      "projectPath": "/Users/srishti/Desktop/cs408/CS408/tutorMe/tutorMe/tutorMe.csproj",
+      "outputPath": "/Users/srishti/Desktop/cs408/CS408/tutorMe/tutorMe/obj",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp2.0"
