@@ -158,6 +158,7 @@
 				} );
 			} );
 
+
 			// by clicking on a specific element
 			this.levelBack.forEach( function( el, i ) {
 				el.addEventListener( self.eventtype, function( ev ) {
@@ -166,7 +167,7 @@
 					if( self.level <= level ) {
 						ev.stopPropagation();
 						self.level = closest( el, 'mp-level' ).getAttribute( 'data-level' ) - 1;
-						self.level === 0 ? self._resetMenu() : self._closeMenu();
+						self._resetMenu();
 					}
 				} );
 			} );	
@@ -175,6 +176,7 @@
 			// increment level depth
 			++this.level;
 
+			/*
 			// move the main wrapper
 			var levelFactor = ( this.level - 1 ) * this.options.levelSpacing,
 				translateVal = this.options.type === 'overlap' ? this.el.offsetWidth + levelFactor : this.el.offsetWidth;
@@ -192,6 +194,8 @@
 					}
 				}
 			}
+			*/
+
 			// add class mp-pushed to main wrapper if opening the first time
 			if( this.level === 1 ) {
 				//classie.add( this.wrapper, 'mp-pushed' );
