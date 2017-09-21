@@ -22,3 +22,14 @@
 /Users/rajatsrivastava/Documents/GitHub/CS408/tutorMe/tutorMe/obj/Debug/netcoreapp2.0/tutorMe.AssemblyInfo.cs
 /Users/rajatsrivastava/Documents/GitHub/CS408/tutorMe/tutorMe/obj/Debug/netcoreapp2.0/tutorMe.dll
 /Users/rajatsrivastava/Documents/GitHub/CS408/tutorMe/tutorMe/obj/Debug/netcoreapp2.0/tutorMe.pdb
+C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\bin\Debug\netcoreapp2.0\tutorMe.deps.json
+C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\bin\Debug\netcoreapp2.0\tutorMe.runtimeconfig.json
+C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\bin\Debug\netcoreapp2.0\tutorMe.runtimeconfig.dev.json
+C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\bin\Debug\netcoreapp2.0\tutorMe.dll
+C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\bin\Debug\netcoreapp2.0\tutorMe.pdb
+C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\obj\Debug\netcoreapp2.0\tutorMe.csprojResolveAssemblyReference.cache
+C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\obj\Debug\netcoreapp2.0\tutorMe.csproj.CoreCompileInputs.cache
+C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\obj\Debug\netcoreapp2.0\tutorMe.AssemblyInfoInputs.cache
+C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\obj\Debug\netcoreapp2.0\tutorMe.AssemblyInfo.cs
+C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\obj\Debug\netcoreapp2.0\tutorMe.dll
+C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\obj\Debug\netcoreapp2.0\tutorMe.pdb

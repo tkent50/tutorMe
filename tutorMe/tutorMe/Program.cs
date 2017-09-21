@@ -7,6 +7,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MySql.Data.MySqlClient;
+using MySql.Data.Types;
 
 namespace tutorMe
 {
@@ -14,6 +16,7 @@ namespace tutorMe
     {
         public static void Main(string[] args)
         {
+            MySqlConnection con = new MySqlConnection();
             BuildWebHost(args).Run();
         }
 
