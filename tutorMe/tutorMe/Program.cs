@@ -17,7 +17,20 @@ namespace tutorMe
         public static void Main(string[] args)
         {
             MySqlConnection con = new MySqlConnection();
-            BuildWebHost(args).Run();
+            MySqlCommand cmd = new MySqlCommand();
+            try
+            {
+                con.ConnectionString = "1"; //Fix this !!
+                con.Open();
+                Console.WriteLine("Made it.");
+            }
+            catch {
+                Console.WriteLine("Maybe next time.");
+            }
+            finally
+            {
+                BuildWebHost(args).Run();
+            }
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
