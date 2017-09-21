@@ -18,14 +18,14 @@ namespace tutorMe
         {
             MySqlConnection con = new MySqlConnection();
             MySqlCommand cmd = new MySqlCommand();
-            con.ConnectionString = "server=127.0.0.1;user id=root;database=test;port=3306"; //My local mysql server
+            con.ConnectionString = "server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True"; //Mysql server
             try
             {
                 con.Open();
                 Console.WriteLine("Made it.");
             }
-            catch {
-                Console.WriteLine("Maybe next time.");
+            catch(Exception ex) {
+                Console.WriteLine(ex);
             }
             finally
             {
