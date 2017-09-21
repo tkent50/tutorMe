@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "a7aa306d2e264d92ffef06296341a5e29b6e41eb"
+    "signature": "fd8eb6621cb70c19360750e25e1303366b7533ad"
   },
   "compilationOptions": {
     "defines": [
@@ -24,7 +24,8 @@
       "tutorMe/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.All": "2.0.0",
-          "Microsoft.NETCore.App": "2.0.0"
+          "Microsoft.NETCore.App": "2.0.0",
+          "MySql.Data": "6.9.9"
         },
         "runtime": {
           "tutorMe.dll": {}
@@ -2315,6 +2316,14 @@
         },
         "compile": {
           "ref/netstandard2.0/Microsoft.Win32.Registry.dll": {}
+        }
+      },
+      "MySql.Data/6.9.9": {
+        "runtime": {
+          "lib/net45/MySql.Data.dll": {}
+        },
+        "compile": {
+          "lib/net45/MySql.Data.dll": {}
         }
       },
       "Newtonsoft.Json/10.0.1": {
@@ -5111,6 +5120,13 @@
       "sha512": "sha512-dA36TlNVn/XfrZtmf0fiI/z1nd3Wfp2QVzTdj26pqgP9LFWq0i1hYEUAW50xUjGFYn1+/cP3KGuxT2Yn1OUNBQ==",
       "path": "microsoft.win32.registry/4.4.0",
       "hashPath": "microsoft.win32.registry.4.4.0.nupkg.sha512"
+    },
+    "MySql.Data/6.9.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rhpv2iJBqvvHU9gkhn/OZfhanQT/jZpfovyO9TEbJl5jLKMvABgxSkIPQbubrvR04M2/ZtdTeI9fC9WSkBe2wA==",
+      "path": "mysql.data/6.9.9",
+      "hashPath": "mysql.data.6.9.9.nupkg.sha512"
     },
     "Newtonsoft.Json/10.0.1": {
       "type": "package",

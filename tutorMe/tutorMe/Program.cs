@@ -18,9 +18,9 @@ namespace tutorMe
         {
             MySqlConnection con = new MySqlConnection();
             MySqlCommand cmd = new MySqlCommand();
+            con.ConnectionString = "server=127.0.0.1;user id=root;database=test;port=3306"; //My local mysql server
             try
             {
-                con.ConnectionString = "1"; //Fix this !!
                 con.Open();
                 Console.WriteLine("Made it.");
             }

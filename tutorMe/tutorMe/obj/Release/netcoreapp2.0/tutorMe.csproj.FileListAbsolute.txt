@@ -3,7 +3,6 @@ C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\bin\Release\net
 C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\bin\Release\netcoreapp2.0\tutorMe.runtimeconfig.dev.json
 C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\bin\Release\netcoreapp2.0\tutorMe.dll
 C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\bin\Release\netcoreapp2.0\tutorMe.pdb
-C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\obj\Release\netcoreapp2.0\tutorMe.csprojResolveAssemblyReference.cache
 C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\obj\Release\netcoreapp2.0\tutorMe.csproj.CoreCompileInputs.cache
 C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\obj\Release\netcoreapp2.0\tutorMe.AssemblyInfoInputs.cache
 C:\Users\Ztken\Dropbox\College\Senior\Sem3\CS408\tutorMe\tutorMe\obj\Release\netcoreapp2.0\tutorMe.AssemblyInfo.cs
