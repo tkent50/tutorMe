@@ -16,13 +16,16 @@ namespace WebApplication5
         {
             if (Page.IsPostBack)
             {
-                System.Windows.Forms.MessageBox.Show("Registration Success!");
-                Server.Transfer("Default.aspx", true);
+                Response.Redirect("Default.aspx", false);
             }
         }
 
         protected void SubmitRegistration_Click(object sender, EventArgs e)
         {
+
+            //CHECK FOR NULL ENTRIES! 
+
+            //Make Connection
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
             MySqlCommand cmd = new MySqlCommand(cmdText: "insert into users(firstname, lastname, email, passHash) Values(@firstname, @lastname, @email, @passHash)", connection: con);
@@ -32,11 +35,21 @@ namespace WebApplication5
                 cmd.Parameters.AddWithValue("@passHash", user_password.Text);
 
                 con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-
+                try
+                {
+                    //Execute Command
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    // Handle nonunique emails, or bad entries.
+                }
+                finally
+                {
+                    con.Close();
+                }
+  
             }
         }
-
     }
 }

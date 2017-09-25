@@ -126,7 +126,7 @@ width: 100%;
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-8">
-                        <asp:Button ID="SubmitRegistration" runat="server"  OnClick="SubmitRegistration_Click" Text="Button"></asp:Button>
+                        <asp:Button ID="SubmitRegistration" runat="server"  OnClick="SubmitRegistration_Click" Text="Register"></asp:Button>
                     </div>
                 </div>
              </form>  <!-- .net FORM -->

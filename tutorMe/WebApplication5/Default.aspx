@@ -46,22 +46,22 @@
         </div>
 
                <div class="form-group">
-                    <label class="control-label col-sm-3" for="username">Username<em></em></label>
+                    <label class="control-label col-sm-3" for="username">Email<em></em></label>
                     <div class="col-sm-8 col-xs-12">
-                        <input type="text" name="username" id="username" placeholder="Username" required="true" class="form-control" />
+                        <asp:TextBox ID="user_input" runat="server"></asp:TextBox>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="password">Password<em></em></label>
                     <div class="col-sm-8 col-xs-12">
-                        <input type="password" name="password" id="password" placeholder="Password" required="true" class="form-control" />
+                        <asp:TextBox ID="pass_input" TextMode="Password" runat="server"></asp:TextBox>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-8">    
                            </br>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit" onClick="location.href='TutorSearch.aspx'">Login</button>  
-                        <button class="btn btn-lg btn-primary btn-block" type="submit" onClick="location.href='SignUp.aspx'">Sign up</button>
+                        <asp:Button ID="login_button" runat="server" OnClick="Login_Click" Text="Login"></asp:Button>
+                        <asp:Button ID="signup_button" runat="server" OnClick="SignUp_Click" Text="Signup"></asp:Button>
                     </div>
                 </div>
         </div>
