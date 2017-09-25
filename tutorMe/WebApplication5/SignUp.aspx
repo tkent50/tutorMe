@@ -45,6 +45,8 @@ margin: 8px 0;
 width: 100%;
                 }
             </style>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,6 +58,8 @@ width: 100%;
     <div class="container">
         <form class="well form-horizontal" action=" " method="post" id="contact_form">
             <fieldset>
+            <form id="regform" runat="server"> <!-- .net FORM -->
+
                 <!-- Form Name -->
                 <div class="text-center">
                     <h1 class="logo-font" align="center"><strong>Sign Up</strong></h1>
@@ -66,7 +70,9 @@ width: 100%;
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="first_name" placeholder="First Name" class="form-control" type="text">
+                                <div>
+                                 <asp:TextBox ID="first_name" runat="server"></asp:TextBox>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -76,17 +82,9 @@ width: 100%;
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="last_name" placeholder="Last Name" class="form-control" type="text">
-                        </div>
-                    </div>
-                </div>
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Username</label>
-                    <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="user_name" placeholder="Username" class="form-control" type="text">
+                                <div>
+                                 <asp:TextBox ID="last_name" runat="server"></asp:TextBox>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -96,7 +94,9 @@ width: 100%;
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="user_password" placeholder="Password" class="form-control" type="password">
+                                 <div>
+                                    <asp:TextBox ID="user_password" runat="server"></asp:TextBox>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,9 @@ width: 100%;
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="confirm_password" placeholder="Confirm Password" class="form-control" type="password">
+                              <div>
+                                    <asp:TextBox ID="confirm_password" runat="server"></asp:TextBox>
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -116,15 +118,18 @@ width: 100%;
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input name="email" placeholder="E-Mail Address" class="form-control" type="text">
+                              <div>
+                                    <asp:TextBox ID="email" runat="server"></asp:TextBox>
+                              </div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-8">
-                        <button type="button" class="btn-lg btn-primary btn-block" onClick="location.href='tutorSearch.html'">SIGN UP</button>
+                        <asp:Button ID="SubmitRegistration" runat="server"  OnClick="SubmitRegistration_Click" Text="Button"></asp:Button>
                     </div>
                 </div>
+             </form>  <!-- .net FORM -->
             </fieldset>
         </form>
     </div>
