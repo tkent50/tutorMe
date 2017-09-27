@@ -202,8 +202,8 @@
 
                         <!-- Copy this entire btn-group div for buttons. -->
                         <div class="btn-group" id="fixedbutton" style="z-index: 3">
-                            <button type="button" class="btn-lg btn-primary" onClick="location.href='login.html'">Log Out</button>
-                            <button type="button" class="btn-lg btn-primary" onClick="location.href='tutor_profile.html'">Become a tutor</button>
+                            <button type="button" class="btn-lg btn-primary" onClick="location.href='Default.aspx'">Log Out</button>
+                            <button type="button" class="btn-lg btn-primary" onClick="location.href='tutor_profile.aspx'">Become a tutor</button>
                         </div>
                         
                     </div><!-- /scroller-inner -->
