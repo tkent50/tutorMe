@@ -1,14 +1,32 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="tutor_profile.aspx.cs" Inherits="WebApplication5.tutor_profile" %>
+﻿<!--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="tutor_profile.aspx.cs" Inherits="WebApplication5.tutor_profile" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent">
 <!DOCTYPE html>
+-->
 <html lang="en">
+<style type="text/css">
 
+.shrink {
+    -webkit-transform:scale(0.5);
+    -moz-transform:scale(0.5);
+    -ms-transform:scale(0.5);
+    transform:scale(0.5);
+}
+
+</style>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Tutor Profile Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="Content/starRating/starability-all.css"/>
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="Content/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="Content/demo.css" />
+    <link rel="stylesheet" type="text/css" href="Content/icons.css" />
+    <link rel="stylesheet" type="text/css" href="Content/component.css" />
 
     <!-- Bootstrap -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -22,32 +40,61 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <![endif]-->
 </head>
 
-<body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Logo -->
-            <div class="navbar-header">
-                <a class="navbar-brand">TUTOR MY CLASS</a>
-            </div>
-            <!-- Menu Items -->
-            <div>
-                <ul class="nav navbar-nav">
-                    <li><a href="TutorSearch.aspx"><i class="fa fa-home" aria-hidden="true"></i> Home Page</a></li>
-                    <li><a href="#">Student Profile Settings</a></li>
-                    <li class="active"><a href="#">Tutor Profile Settings</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="Default.aspx">Log Out</a></li>
-                </ul>
-            </div>
+<body style="min-width: 1400">
+    <div style="background-color:gray; width: 100%; height:190; padding-bottom: 30; position: absolute;">
+        <div style="margin-left: 10%; float: left">
+            <h1>Your Info</h1>
+            <h3>First Last</h3>
+            <h3>email</h3>
+        </div>
+        
+        <textarea style="display: block; width: 50%; margin: 40 15% auto auto;" rows="5" placeholder="Tell us about yourself"></textarea>
+    </div>
 
+    <nav id="" style="left:400; height:86; top:220; position: absolute;" class="mp-menu">
+    <div id="classList" class="mp-level">
+            <h2>Classes</h2>
         </div>
     </nav>
+
+    <nav id="" style="left:400; height:350; top:300; position: absolute;" class="mp-menu">
+        
+        <div id="classList" style="overflow-y:scroll" class="mp-level">
+            <ul>
+                <li>
+                    <a href="#">Class 1</a>
+                    <a href="#">Class 2</a>
+                    <a href="#">Class 3</a>
+                    <a href="#">Class 4</a>
+                    <a href="#">Class 5</a>
+                    <a href="#">Class 6</a>
+                    <a href="#">Class 7</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <nav id="" style="left:335; height:54.44; top:700; width: 170; position: absolute;" class="mp-menu">
+        <div id="classList" style="overflow-y:scroll" class="mp-level">
+            <ul>
+                <li>
+                    <a href="#">Add Class</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="btn-group" id="fixedbutton" style="z-index: 3">
+        <button type="button" class="btn-lg btn-primary" onClick="location.href='Default.aspx'">Log Out</button>
+        <button type="button" class="btn-lg btn-primary" onClick="location.href='TutorSearch.aspx'">Home</button>
+    </div>
+
 </body>
 
 </html>
+<!--
 </asp:Content>
-
+-->
