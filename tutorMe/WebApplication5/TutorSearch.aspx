@@ -133,7 +133,7 @@
     <!-- Push Wrapper -->
     <div class="mp-pusher" id="mp-pusher">
         <!-- mp-menu -->
-        <nav id="mp-menu" style="left:285; " class="mp-menu">
+        <nav id="mp-menu" style="left:300; " class="mp-menu">
             <div id="classList" class="mp-level">
                 <h2>Classes</h2>
                 <ul>
@@ -202,8 +202,8 @@
 
                         <!-- Copy this entire btn-group div for buttons. -->
                         <div class="btn-group" id="fixedbutton" style="z-index: 3">
-                            <button type="button" class="btn-lg btn-primary" onClick="location.href='login.html'">Log Out</button>
-                            <button type="button" class="btn-lg btn-primary" onClick="location.href='tutor_profile.html'">Become a tutor</button>
+                            <button type="button" class="btn-lg btn-primary" onClick="location.href='Default'">Log Out</button>
+                            <button type="button" class="btn-lg btn-primary" onClick="location.href='tutor_profile'">Become a tutor</button>
                         </div>
                         
                     </div><!-- /scroller-inner -->
