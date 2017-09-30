@@ -15,10 +15,7 @@ namespace WebApplication5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Page.IsPostBack)
-            {
-                Response.Redirect("Default.aspx", false);
-            }
+
         }
 
         protected void SubmitRegistration_Click(object sender, EventArgs e)
@@ -35,6 +32,11 @@ namespace WebApplication5
                 this.Show("Last name field is required");
                 return;
             }
+            if (last_name.Text.Length > 32 || first_name.Text.Length > 32)
+            {
+                this.Show("Names must be less than 32 characters long");
+                return;
+            }
             if (!(new EmailAddressAttribute().IsValid(email.Text)))
             {
                 this.Show("Not a valid email address");
@@ -45,9 +47,32 @@ namespace WebApplication5
                 this.Show("Password field is required");
                 return;
             }
+            if (user_password.Text.Length < 8 || user_password.Text.Length > 16)
+            {
+                this.Show("Password must be between 8 and 16 characters long");
+                return;
+            }
             if (user_password.Text != confirm_password.Text)
             {
                 this.Show("Passwords do not match");
+                return;
+            }
+            bool emailInDatabase = false;
+            MySqlConnection con1 = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM users WHERE email = @email", connection: con1);
+                cmd.Parameters.AddWithValue("@email", email.Text);
+                con1.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    emailInDatabase = true;
+                }
+                con1.Close();
+            }
+            if (emailInDatabase)
+            {
+                this.Show("That email address is already associated with an account");
                 return;
             }
 
@@ -75,6 +100,7 @@ namespace WebApplication5
                 finally
                 {
                     con.Close();
+                    Response.Redirect("Default.aspx", false);
                 }
   
             }
