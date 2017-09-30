@@ -19,7 +19,7 @@ namespace WebApplication5
         }
         protected void Login_Click(object sender, EventArgs e)
         {
-            List<Object> arrList = new List<Object>();
+           /* List<Object> arrList = new List<Object>();
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * from users", connection: con);
@@ -38,7 +38,7 @@ namespace WebApplication5
                 con.Close();
                 pass_input.Text = "";
                 this.Show("Login Denied!");
-            }
+            }*/
         }
         protected void SignUp_Click(object sender, EventArgs e)
         {

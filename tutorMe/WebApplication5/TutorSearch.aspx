@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TutorSearch.aspx.cs" Inherits="WebApplication5.TutorSearch" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent">
 
+
+
 <html>
 <style type="text/css">
 
@@ -36,11 +38,9 @@
     <script src="Scripts/modernizr.custom.js"></script>
     <script src="Scripts/addTutor.js"></script>
 
-
-    <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="Scripts/daypilot-all.min.js?v=217" type="text/javascript"></script>
-
-
+    <script type="text/javascript" src="Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="Scripts/jquery-1.10.2.min.js"></script>
 
     <title>Find a Tutor!</title>
 </head>
@@ -143,7 +143,7 @@
                             <h2>Class A</h2>
                             <a class="mp-back" onclick="closeTutorInfo()">back</a>
                             <ul id="tutorAList">
-                                <li><a onclick="showTutor(this.innerHTML)">Tutor 1</a></li>
+                                <li><a onclick="loadClasses()">Tutor 1</a></li>
                                 <li><a onclick="showTutor(this.innerHTML)">Tutor 2</a></li>
                             </ul>
                                 <!-- <input type="text" id="newTutorName">
@@ -187,7 +187,7 @@
                     <div class="scroller-inner" style="width: 80%; float: right">
                         <!-- Top Navigation -->
                         <header class="codrops-header">
-                            <h1>Welcome to TutorMe! <span>Select 'View Classes' to begin</span></h1>
+                            <h1>Welcome to TutorMe!<span>Select 'View Classes' to begin</span></h1>
                         </header>
                         <div class="content clearfix">
                             <div class="block block-40 clearfix">
