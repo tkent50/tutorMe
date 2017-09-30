@@ -23,9 +23,9 @@ namespace WebApplication5
                    MySqlCommand cmd = new MySqlCommand("select * from classes", con);
                    MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
                    DataSet ds = new DataSet();
-                   adp.Fill(ds);
-                   GridView1.DataSource = ds;
-                   GridView1.DataBind();
+                   //adp.Fill(ds);
+                   //GridView1.DataSource = ds;
+                   //GridView1.DataBind();
                    cmd.Dispose();
                    con.Close();
         }
