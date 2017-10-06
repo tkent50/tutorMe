@@ -203,6 +203,7 @@
     <Content Include="Site.Master" />
     <Content Include="TutorSearch.aspx" />
     <Content Include="tutor_profile.aspx" />
+    <Content Include="UserSettings.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -270,6 +271,13 @@
     </Compile>
     <Compile Include="tutor_profile.aspx.designer.cs">
       <DependentUpon>tutor_profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSettings.aspx.cs">
+      <DependentUpon>UserSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSettings.aspx.designer.cs">
+      <DependentUpon>UserSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

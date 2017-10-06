@@ -45,7 +45,7 @@
     <title>Find a Tutor!</title>
 </head>
 <body onload="onPageLoad()">
-
+    <div class="container-fluid">
    <!-- Div that loads tutor content -->
    <div id="tutorInfo">
 
@@ -126,6 +126,7 @@
 
 
 </div>
+        </div>
 <!-- end of tutor info -->
 
 <!-- div for main page -->
@@ -222,6 +223,7 @@
                 type : 'cover'
             } );
         </script>
+        
     </body>
     </html>
 </asp:Content>
