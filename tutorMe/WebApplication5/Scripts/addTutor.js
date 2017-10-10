@@ -9,11 +9,9 @@ function addTutor() {
 }
 
 function loadClasses() {
-    alert("Bef");
 
-    //alert(PageMethods.MyMethod("Paul Hayman"));
+    var test = "class1";
 
-    
     $.ajax({
         url: "TutorSearch.aspx/getClasses",
         method: "POST",
@@ -23,11 +21,25 @@ function loadClasses() {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
         success: function (result) {
-            alert("We returned: " + result.d);
+            handleClasses(result);
         }
     });
+}
 
-    alert("after");
+function handleClasses(classList) {
+    var numClasses = parseInt(classList.d[0]);
+    for (var i = 1; i <= numClasses; i++) {
+        var backButton = document.createElement("LI");
+        backButton.className = "icon icon-arrow-left";
+
+        var classLink = document.createElement("a");
+        classLink.href = "#";
+        classLink.innerHTML = classList.d[i];
+
+        backButton.appendChild(classLink);
+
+        document.getElementById("classList").appendChild(backButton);
+    }
 }
 
 function onPageLoad() {
@@ -40,7 +52,7 @@ function showTutor(name) {
 	document.getElementById("tutorInfo").style.visibility = "visible";
 	document.getElementById("tutorName").innerHTML = name;
 	document.getElementById("tutorClass").innerHTML = name + "'s Class";
-	document.getElementById("tutorEmail").innerHTML = "(" + name + ")@purduasdfasdfasdfe.edu";
+	document.getElementById("tutorEmail").innerHTML = "(" + name + ")@purdue.edu";
 
 
 	var x = document.getElementById("dp").querySelectorAll("div");

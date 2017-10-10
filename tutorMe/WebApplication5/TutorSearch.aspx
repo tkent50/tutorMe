@@ -1,25 +1,24 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TutorSearch.aspx.cs" Inherits="WebApplication5.TutorSearch" %>
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent">
+
+<asp:content id="BodyContent" contentplaceholderid="MainContent">
 
 
 
 <html>
 <style type="text/css">
+    /* Tutor info pane */
 
-/* Tutor info pane */
-
-#tutorInfo {
-    height       : 100%;
-    width        : calc(100% - 285px);
-    position     : absolute;
-    float        : right;
-    margin-left  : 300px;
-    visibility   : hidden;
-    background   : gray;
-    color        : black;
-    padding-left : 60px; 
-}
-
+    #tutorInfo {
+        height: 100%;
+        width: calc(100% - 285px);
+        position: absolute;
+        float: right;
+        margin-left: 300px;
+        visibility: hidden;
+        background: gray;
+        color: black;
+        padding-left: 60px;
+    }
 </style>
 
 
@@ -109,7 +108,7 @@
             dp.events.add(e);
             dp.clearSelection();
         };
-        dp.onEventClick = function(args) {
+        dp.onEventClick = function (args) {
             alert("clicked: " + args.e.id());
         };
         dp.headerDateFormat = "dddd";
@@ -134,23 +133,20 @@
     <div class="mp-pusher" id="mp-pusher">
         <!-- mp-menu -->
         <nav id="mp-menu" style="left:300; " class="mp-menu">
-            <div id="classList" class="mp-level">
+            <div class="mp-level">
                 <h2>Classes</h2>
-                <ul>
-                    <li class="icon icon-arrow-left" >
-                        <a href="#">Class A</a>
-                        <div class="mp-level">
-                            <h2>Class A</h2>
-                            <a class="mp-back" onclick="closeTutorInfo()">back</a>
-                            <ul id="tutorAList">
-                                <li><a onclick="loadClasses()">Tutor 1</a></li>
-                                <li><a onclick="showTutor(this.innerHTML)">Tutor 2</a></li>
-                            </ul>
-                                <!-- <input type="text" id="newTutorName">
-                                    <input type="button" id="addButton" value="Add Tutor" onclick="addTutor()"/> -->
-                                </div>
-
-                            </li>
+                    <ul id="classList">
+                        <li class="icon icon-arrow-left" >
+                            <a href="#">Class A</a>
+                            <div class="mp-level">
+                                <h2>Class A</h2>
+                                <a class="mp-back" onclick="closeTutorInfo()">back</a>
+                                <ul id="tutorAList">
+                                    <li><a onclick="showTutor(this.innerHTML)">Tutor 1</a></li>
+                                    <li><a onclick="showTutor(this.innerHTML)">Tutor 2</a></li>
+                                </ul>
+                            </div>
+                        </li>
                             <li class="icon icon-arrow-left">
                                 <a href="#">Class B</a>
                                 <div class="mp-level">
@@ -218,11 +214,11 @@
         <script src="Scripts/classie.js"></script>
         <script src="Scripts/mlpushmenu.js"></script>
         <script>
-            new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ), {
-                type : 'cover'
-            } );
+            new mlPushMenu(document.getElementById('mp-menu'), document.getElementById('trigger'), {
+                type: 'cover'
+            });
         </script>
     </body>
     </html>
-</asp:Content>
+</asp:content>
 

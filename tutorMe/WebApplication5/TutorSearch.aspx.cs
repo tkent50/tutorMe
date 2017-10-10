@@ -9,11 +9,11 @@ using System.Data;
 using System.Web.Services;
 using Newtonsoft.Json;
 
-
-public class tester
+public class tutor
 {
-    public string Name;
-    public int Num;
+    public string name;
+    public string email;
+    public string phoneNumber;
 }
 
 namespace WebApplication5
@@ -38,16 +38,21 @@ namespace WebApplication5
         }
 
         [WebMethod]
-        public static tester getClasses()
+        public static string[] getClasses()
         {
-            return new tester { Name = "Jake", Num = 1 };
-           
-        }
+            var classes = new string[] { "2", "class1", "class2" };
 
-        [WebMethod]
-        public static string MyMethod(string name)
-        {
-            return "Hello " + name;
+            /*
+            classList.Add("class1", new tutor[2]);
+            classList["class1"][0] = new tutor { name = "Jake", email = "jake@purdue.edu", phoneNumber = "111-111-1111" };
+            classList["class1"][1] = new tutor { name = "John", email = "john@purdue.edu", phoneNumber = "222-222-2222" };
+
+            classList.Add("class2", new tutor[2]);
+            classList["class2"][0] = new tutor { name = "Jack", email = "jack@purdue.edu", phoneNumber = "333-333-3333" };
+            classList["class2"][0] = new tutor { name = "Jane", email = "jane@purdue.edu", phoneNumber = "444-444-4444" };
+            */
+            return classes;
         }
+        
     }
 }
