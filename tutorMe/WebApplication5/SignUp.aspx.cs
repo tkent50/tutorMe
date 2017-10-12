@@ -8,6 +8,8 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Threading;
 using System.ComponentModel.DataAnnotations;
+using System.Net.Mail;
+using System.Net;
 
 namespace WebApplication5
 {
@@ -100,6 +102,7 @@ namespace WebApplication5
                 finally
                 {
                     con.Close();
+                    SendRegistrationEmail(email.Text);
                     Response.Redirect("Default.aspx", false);
                 }
   
@@ -117,6 +120,32 @@ namespace WebApplication5
                 hash = hash + ((i + 1) * password[i]);
             }
             return hash;
+        }
+        protected void SendRegistrationEmail(string email)
+        {
+            var fromAddress = new MailAddress("tutorapp408@gmail.com", null);
+            var toAddress = new MailAddress(email, null);
+            const string fromPassword = "5515hebt";
+            const string subject = "Test registration";
+            const string body = "You've registered for TutorMe!!!!!!";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+            }
         }
     }
 }
