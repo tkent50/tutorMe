@@ -19,7 +19,8 @@ namespace WebApplication5
         }
         protected void Login_Click(object sender, EventArgs e)
         {
-           /* List<Object> arrList = new List<Object>();
+            int hash = CalculateHash(user_input.Text, pass_input.Text);
+            List<Object> arrList = new List<Object>();
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * from users", connection: con);
@@ -29,7 +30,7 @@ namespace WebApplication5
                 {
                     // Basic Validation
                     if (reader["email"].ToString() == user_input.Text) {
-                        if (reader["passHash"].ToString() == pass_input.Text)
+                        if (Convert.ToInt32(reader["passHash"]) == hash)
                         {
                             Response.Redirect("TutorSearch.aspx", false);
                         }
@@ -37,12 +38,25 @@ namespace WebApplication5
                 }
                 con.Close();
                 pass_input.Text = "";
-                this.Show("Login Denied!");
-            }*/
+                this.Show("Incorrect email or password");
+            }
         }
         protected void SignUp_Click(object sender, EventArgs e)
         {
             Response.Redirect("SignUp.aspx", false);
+        }
+        protected int CalculateHash(string email, string password)
+        {
+            int hash = 0;
+            for (int i = 0; i < email.Length; i++)
+            {
+                hash = hash + ((i + 1) * email[i]);
+            }
+            for (int i = 0; i < password.Length; i++)
+            {
+                hash = hash + ((i + 1) * password[i]);
+            }
+            return hash;
         }
     }
     public static class MessageBox
