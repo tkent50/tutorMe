@@ -43,7 +43,6 @@ function handleClasses(classList) {
 }
 
 function onPageLoad() {
-    alert("loading");
     loadClasses();
 }
 
