@@ -40,7 +40,7 @@ namespace WebApplication5
         [WebMethod]
         public static string[] getClasses()
         {
-            var classes = new string[] { "2", "class1", "class2" };
+            var classes = new string[] { "4", "class1", "class2", "class3", "class4" }; // First number is size of array
 
             /*
             classList.Add("class1", new tutor[2]);
