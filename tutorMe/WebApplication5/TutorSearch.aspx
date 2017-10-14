@@ -1,23 +1,24 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TutorSearch.aspx.cs" Inherits="WebApplication5.TutorSearch" %>
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent">
+
+<asp:content id="BodyContent" contentplaceholderid="MainContent">
+
+
 
 <html>
 <style type="text/css">
+    /* Tutor info pane */
 
-/* Tutor info pane */
-
-#tutorInfo {
-    height       : 100%;
-    width        : calc(100% - 285px);
-    position     : absolute;
-    float        : right;
-    margin-left  : 300px;
-    visibility   : hidden;
-    background   : gray;
-    color        : black;
-    padding-left : 60px; 
-}
-
+    #tutorInfo {
+        height: 100%;
+        width: calc(100% - 285px);
+        position: absolute;
+        float: right;
+        margin-left: 300px;
+        visibility: hidden;
+        background: gray;
+        color: black;
+        padding-left: 60px;
+    }
 </style>
 
 
@@ -36,11 +37,9 @@
     <script src="Scripts/modernizr.custom.js"></script>
     <script src="Scripts/addTutor.js"></script>
 
-
-    <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="Scripts/daypilot-all.min.js?v=217" type="text/javascript"></script>
-
-
+    <script type="text/javascript" src="Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="Scripts/jquery-1.10.2.min.js"></script>
 
     <title>Find a Tutor!</title>
 </head>
@@ -109,7 +108,7 @@
             dp.events.add(e);
             dp.clearSelection();
         };
-        dp.onEventClick = function(args) {
+        dp.onEventClick = function (args) {
             alert("clicked: " + args.e.id());
         };
         dp.headerDateFormat = "dddd";
@@ -134,24 +133,21 @@
     <!-- Push Wrapper -->
     <div class="mp-pusher" id="mp-pusher">
         <!-- mp-menu -->
-        <nav id="mp-menu" style="left:285; " class="mp-menu">
-            <div id="classList" class="mp-level">
+        <nav id="mp-menu" style="left:300; " class="mp-menu">
+            <div class="mp-level">
                 <h2>Classes</h2>
-                <ul>
-                    <li class="icon icon-arrow-left" >
-                        <a href="#">Class A</a>
-                        <div class="mp-level">
-                            <h2>Class A</h2>
-                            <a class="mp-back" onclick="closeTutorInfo()">back</a>
-                            <ul id="tutorAList">
-                                <li><a onclick="showTutor(this.innerHTML)">Tutor 1</a></li>
-                                <li><a onclick="showTutor(this.innerHTML)">Tutor 2</a></li>
-                            </ul>
-                                <!-- <input type="text" id="newTutorName">
-                                    <input type="button" id="addButton" value="Add Tutor" onclick="addTutor()"/> -->
-                                </div>
-
-                            </li>
+                    <ul id="classList">
+                        <li class="icon icon-arrow-left" >
+                            <a href="#">Class A</a>
+                            <div class="mp-level">
+                                <h2>Class A</h2>
+                                <a class="mp-back" onclick="closeTutorInfo()">back</a>
+                                <ul id="tutorAList">
+                                    <li><a onclick="showTutor(this.innerHTML)">Tutor 1</a></li>
+                                    <li><a onclick="showTutor(this.innerHTML)">Tutor 2</a></li>
+                                </ul>
+                            </div>
+                        </li>
                             <li class="icon icon-arrow-left">
                                 <a href="#">Class B</a>
                                 <div class="mp-level">
@@ -188,7 +184,7 @@
                     <div class="scroller-inner" style="width: 80%; float: right">
                         <!-- Top Navigation -->
                         <header class="codrops-header">
-                            <h1>Welcome to TutorMe! <span>Select 'View Classes' to begin</span></h1>
+                            <h1>Welcome to TutorMe!<span>Select 'View Classes' to begin</span></h1>
                         </header>
                         <div class="content clearfix">
                             <div class="block block-40 clearfix">
@@ -203,8 +199,8 @@
 
                         <!-- Copy this entire btn-group div for buttons. -->
                         <div class="btn-group" id="fixedbutton" style="z-index: 3">
-                            <button type="button" class="btn-lg btn-primary" onClick="location.href='Default.aspx'">Log Out</button>
-                            <button type="button" class="btn-lg btn-primary" onClick="location.href='tutor_profile.aspx'">Become a tutor</button>
+                            <button type="button" class="btn-lg btn-primary" onClick="location.href='Default'">Log Out</button>
+                            <button type="button" class="btn-lg btn-primary" onClick="location.href='tutor_profile'">Become a tutor</button>
                         </div>
                         
                     </div><!-- /scroller-inner -->
@@ -219,12 +215,12 @@
         <script src="Scripts/classie.js"></script>
         <script src="Scripts/mlpushmenu.js"></script>
         <script>
-            new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ), {
-                type : 'cover'
-            } );
+            new mlPushMenu(document.getElementById('mp-menu'), document.getElementById('trigger'), {
+                type: 'cover'
+            });
         </script>
         
     </body>
     </html>
-</asp:Content>
+</asp:content>
 
