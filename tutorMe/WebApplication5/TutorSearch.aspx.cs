@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Web.Services;
+using Newtonsoft.Json;
 
 namespace WebApplication5
 {
@@ -164,6 +166,14 @@ namespace WebApplication5
                 con.Close();
             }
             return isTutor;
+        }
+
+        [WebMethod]
+        public static string[] getClasses()
+        {
+            var classes = new string[] { "6", "class1", "class2", "class3", "class4", "class5", "class6" }; // First number is size of array
+            
+            return classes;
         }
     }
 }
