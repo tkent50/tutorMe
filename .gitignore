@@ -1,7 +1,10 @@
-
-tutorMe/.vs/tutorMe/v15/.suo
-*.dll
-*.ide
+tutorMe/.vs/tutorMe/v15/sqlite3/storage.ide
+tutorMe/WebApplication5/obj/Debug/WebApplication5.pdb
+tutorMe/WebApplication5/obj/Debug/TutorMe.csprojResolveAssemblyReference.cache
+tutorMe/WebApplication5/obj/Debug/TutorMe.csproj.CoreCompileInputs.cache
 *.cache
-*.props
-*.targets
+tutorMe/WebApplication5/obj/Debug/TutorMe.csproj.FileListAbsolute.txt
+*.dll
+*.config
+tutorMe/.vs/tutorMe/v15/.suo
+*.pdb

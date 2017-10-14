@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "task-tutor_profile",
+      "appliesTo": "tutorMe/WebApplication5/tutor_profile.aspx",
+      "type": "launch"
+    }
+  ]
+}
