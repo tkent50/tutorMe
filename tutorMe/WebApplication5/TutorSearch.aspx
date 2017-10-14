@@ -135,9 +135,9 @@
     <div class="mp-pusher" id="mp-pusher">
         <!-- mp-menu -->
         <nav id="mp-menu" style="left:285; " class="mp-menu">
-            <div id="classList" class="mp-level">
+            <div class="mp-level">
                 <h2>Classes</h2>
-                <ul>
+                <ul id="classList">
                     <li class="icon icon-arrow-left" >
                         <a href="#">Class A</a>
                         <div class="mp-level">
