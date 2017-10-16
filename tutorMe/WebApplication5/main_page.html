@@ -118,7 +118,7 @@
                     <br>
                     <br>
                     <br>
-                    <div style="position:absolute; overflow-y: scroll; height: 60px; margin-right:100px">
+                    <div class="container" style="padding-left:0px; padding-bottom:5px;">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pretium mattis nisl non accumsan. Lorem
                             ipsum dolor sit amet, consectetur adipiscing elit. Mauris risus orci, laoreet ac lacus malesuada,
                             viverra iaculis tellus. Mauris suscipit augue at augue finibus, id aliquet mauris commodo. Morbi
@@ -129,13 +129,19 @@
                             et malesuada fames ac ante ipsum primis in faucibus. Aenean fringilla congue enim, id posuere
                             ex ornare id.</p>
                     </div>
-                    <div id="dp" style="position:relative;float: left; right:3%; top:5%; border: 0px"></div>
+                    <div  class="container" id="calendar" style="border:0px; padding-left:0px;" >
                     <script type="text/javascript">
-                        var dp = new DayPilot.Calendar("dp");
+                        var dp = new DayPilot.Calendar("calendar");
                         // view
                         dp.startDate = "2013-03-25";  // or just dp.startDate = "2013-03-25";
                         dp.viewType = "Week";
+                        dp.timeRangeSelectedHandling = "Disabled";
+                        dp.eventMoveHandling = "Disabled";
+                        dp.eventResizeHandling = "Disabled";
+                        dp.init();
+                        
                         // event creating
+                        /*
                         dp.onTimeRangeSelected = function (args) {
                             var name = prompt("New event name:", "Event");
                             if (!name) return;
@@ -148,11 +154,11 @@
                             dp.events.add(e);
                             dp.clearSelection();
                         };
+                        */
                         dp.onEventClick = function (args) {
-                            alert("clicked: " + args.e.id());
+                            alert("Do you wanna request to book this time slot ?");
                         };
                         dp.headerDateFormat = "dddd";
-                        dp.init();
                         var e = new DayPilot.Event({
                             start: new DayPilot.Date("2013-03-25T12:00:00"),
                             end: new DayPilot.Date("2013-03-25T12:00:00").addHours(3).addMinutes(15),
