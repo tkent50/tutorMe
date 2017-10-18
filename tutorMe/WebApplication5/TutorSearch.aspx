@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="Content/starRating/starability-all.css" />
     <link rel="stylesheet" href="css/main_page.css">
     <script src="Scripts/daypilot-all.min.js?v=217" type="text/javascript"></script>
-    <script src="Scripts/addTutor.js"></script>
+    <script src="Scripts/main_page.js"></script>
 </head>
 
 <body onload="onPageLoad()">
@@ -27,11 +27,12 @@
             <div class="mn-navblock">
                 <ul id="classList" class="mn-vnavigation">
 
-                    <li id="testParentParent" class="dropdown-submenu">
-                        <a tabindex="-1" href="#">Front End Team</a>
-                        <ul id="testParent" class="dropdown-menu">
-                            <li id="test">
-                                <a tabindex="-1" href="#" onclick="alert(this.parentNode.parentNode.parentNode.id)">Rajat Srivastava</a>
+                    <!--
+                        <li id="class0" class="dropdown-submenu">
+                        <a href="#">Front End Team</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#" onclick="showTutor(this.innerHTML)">Rajat Srivastava</a>
                             </li>
                             <li>
                                 <a href="#" onclick="showTutor(this.innerHTML)">Matt Coker</a>
@@ -41,6 +42,7 @@
                             </li>
                         </ul>
                     </li>
+                        -->
 
                 </ul>
             </div>
@@ -160,7 +162,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/main_page.js"></script>
 
 </body>
     </html>

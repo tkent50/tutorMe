@@ -164,13 +164,8 @@ namespace WebApplication5
             return isTutor;
         }
 
-        [WebMethod]
-        public static string[] getClassesTest()
-        {
-            var classes = new string[] { "3", "class1", "class2", "class3" }; // First number is size of array
 
-            return classes;
-        }
+        /*********************************** EVERYTHING BELOW ARE TEST METHODS ***********************************/
 
         public class tutor
         {
@@ -178,19 +173,76 @@ namespace WebApplication5
             public int id;
         }
 
+        public class tutorInfo
+        {
+            public string name;
+            public string description;
+            public string email;
+            public string phone;
+            public double rating;
+        }
+
+        [WebMethod]
+        public static string[] getClassesTest()
+        {
+            var classes = new string[] { "3", "class1", "class2", "class3" }; // First number is size of array
+
+            return classes;
+        }
         [WebMethod]
         public static string getTutorsTest(string input)
         {
-            List<tutor> classTutors = new List<tutor>
-            {
-                new tutor{name = "John", id = 1},
-                new tutor{name = "Jane", id = 2 }
-            };
+            List<tutor> classTutors;
 
+            if (String.Compare(input, "class1") == 0)
+            {
+                classTutors = new List<tutor>
+                {
+                    new tutor{name = "John", id = 1},
+                    new tutor{name = "Jane", id = 2}
+                };
+            }
+            else if (String.Compare(input, "class2") == 0)
+            { 
+                    classTutors = new List<tutor>
+                {
+                    new tutor{name = "Jack", id = 3},
+                    new tutor{name = "Jill", id = 4}
+                };
+            }
+            else if (String.Compare(input, "class3") == 0)
+            {
+                classTutors = new List<tutor>
+                {
+                    new tutor{name = "John", id = 1},
+                    new tutor{name = "Jack", id = 3}
+                };
+            }
+            else
+            {
+                classTutors = null;
+            }
+
+            // Normally, return this variable. It's a json string.
             var json = new JavaScriptSerializer().Serialize(classTutors);
 
-            return "Class is: " + input;
+            return json;
         }
 
+
+        [WebMethod]
+        public static string getTutorInfoTest(string id)
+        {
+            tutorInfo info = new tutorInfo {
+                name = "Test Name",
+                description = "Test description",
+                email = "test@email.com",
+                phone = "867-5309",
+                rating = 2.5
+            };
+
+            var json = new JavaScriptSerializer().Serialize(info);
+            return json;
+        }
     }
 }

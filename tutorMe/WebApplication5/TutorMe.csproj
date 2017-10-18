@@ -165,7 +165,7 @@
     <Content Include="Content\starRating\CHANGELOG.md" />
     <Content Include="Content\starRating\package.json" />
     <Content Include="Content\starRating\starabilityREADME.md" />
-    <Content Include="Scripts\addTutor.js" />
+    <Content Include="Scripts\main_page.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\classie.js" />
