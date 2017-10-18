@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System.Web.Services;
-using Newtonsoft.Json;
+using System.Web.Script.Serialization;
 
 namespace WebApplication5
 {
@@ -15,21 +11,21 @@ namespace WebApplication5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-                 BindData();
+            BindData();
         }
         public void BindData()
         {
-                   MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
-                   con.Open();
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            con.Open();
 
-                   MySqlCommand cmd = new MySqlCommand("SELECT * FROM classes", con);
-                   MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
-                   DataSet ds = new DataSet();
-                   //adp.Fill(ds);
-                   //GridView1.DataSource = ds;
-                   //GridView1.DataBind();
-                   cmd.Dispose();
-                   con.Close();
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM classes", con);
+            MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            //adp.Fill(ds);
+            //GridView1.DataSource = ds;
+            //GridView1.DataBind();
+            cmd.Dispose();
+            con.Close();
         }
         protected void GetClasses()
         {
@@ -169,11 +165,32 @@ namespace WebApplication5
         }
 
         [WebMethod]
-        public static string[] getClasses()
+        public static string[] getClassesTest()
         {
-            var classes = new string[] { "6", "class1", "class2", "class3", "class4", "class5", "class6" }; // First number is size of array
-            
+            var classes = new string[] { "3", "class1", "class2", "class3" }; // First number is size of array
+
             return classes;
         }
+
+        public class tutor
+        {
+            public string name;
+            public int id;
+        }
+
+        [WebMethod]
+        public static string getTutorsTest(string input)
+        {
+            List<tutor> classTutors = new List<tutor>
+            {
+                new tutor{name = "John", id = 1},
+                new tutor{name = "Jane", id = 2 }
+            };
+
+            var json = new JavaScriptSerializer().Serialize(classTutors);
+
+            return "Class is: " + input;
+        }
+
     }
 }

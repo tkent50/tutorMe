@@ -1,19 +1,15 @@
-function addTutor() {
-	/*var newTutor = document.createElement("li");
-	var tutorLink = document.createElement("a");
-	tutorLink.innerHTML = newTutorName.value;
-	tutorLink.href = "#";
-	newTutor.appendChild(tutorLink);
-	tutorAList.appendChild(newTutor);
-	newTutorName.value="";*/
+function onPageLoad() {
+    loadClasses();
+    loadClassTutors("testClass");
 }
+
 
 function loadClasses() {
 
     var test = "class1";
 
     $.ajax({
-        url: "TutorSearch.aspx/getClasses",
+        url: "TutorSearch.aspx/getClassesTest",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
@@ -29,22 +25,39 @@ function loadClasses() {
 function handleClasses(classList) {
     var numClasses = parseInt(classList.d[0]);
     for (var i = 1; i <= numClasses; i++) {
-        var backButton = document.createElement("LI");
-        backButton.className = "icon icon-arrow-left";
 
-        var classLink = document.createElement("a");
-        classLink.href = "#";
-        classLink.innerHTML = classList.d[i];
+        var newClassName = document.createElement("a");
+        newClassName.innerHTML = classList.d[i];
+        newClassName.href = "#";
 
-        backButton.appendChild(classLink);
+        var newTab = document.createElement("LI");
+        newTab.className = "dropdown-submenu";
+        newTab.id = classList.d[i];
 
-        document.getElementById("classList").appendChild(backButton);
+        newTab.appendChild(newClassName);
+        document.getElementById("classList").appendChild(newTab);
     }
 }
 
-function onPageLoad() {
-    loadClasses();
+function loadClassTutors(className) {
+    alert("Loading tutors...");
+
+    $.ajax({
+        url: "TutorSearch.aspx/getTutorsTest",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        data: '{"input":"' + className + '"}',
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            alert(result.d);
+        }
+    });
 }
+
+
 
 function showTutor(name) {
     document.getElementById("tutorInfo").style.zIndex = "3";

@@ -1,2 +1,6 @@
 
 tutorMe/\.vs/tutorMe/v15/
+
+*.dll
+
+*.pdb

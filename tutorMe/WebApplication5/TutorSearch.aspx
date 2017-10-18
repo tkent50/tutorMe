@@ -25,12 +25,13 @@
                 <i class="fa fa-bars"></i>
             </div>
             <div class="mn-navblock">
-                <ul class="mn-vnavigation">
-                    <li class="dropdown-submenu">
+                <ul id="classList" class="mn-vnavigation">
+
+                    <li id="testParentParent" class="dropdown-submenu">
                         <a tabindex="-1" href="#">Front End Team</a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a tabindex="-1" href="#" onclick="showTutor(this.innerHTML)">Rajat Srivastava</a>
+                        <ul id="testParent" class="dropdown-menu">
+                            <li id="test">
+                                <a tabindex="-1" href="#" onclick="alert(this.parentNode.parentNode.parentNode.id)">Rajat Srivastava</a>
                             </li>
                             <li>
                                 <a href="#" onclick="showTutor(this.innerHTML)">Matt Coker</a>
@@ -39,23 +40,6 @@
                                 <a href="#" onclick="showTutor(this.innerHTML)">Srishti Gupta</a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <a tabindex="-1" href="#">Back End Team</a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a tabindex="-1" href="#" onclick="showTutor(this.innerHTML)">Zach Kent</a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="showTutor(this.innerHTML)">Travis Kent</a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="showTutor(this.innerHTML)">Matt Coker</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Its Lit!</a>
                     </li>
 
                 </ul>
