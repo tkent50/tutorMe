@@ -20,56 +20,97 @@ namespace WebApplication5
 {
     public partial class TutorSearch : System.Web.UI.Page
     {
+        public string CommandText { get; private set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-                 BindData();
+            BindData();
+            GetClasses();
+            //int cs250 = GetTutorNames("CS250");
+            int cs251 = GetTutorNames("CS251");
+           // System.Diagnostics.Trace.WriteLine(cs250);
+            System.Diagnostics.Trace.WriteLine(cs251);
+
         }
         public void BindData()
         {
-                   /*MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
-                   con.Open();
+            /*MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            con.Open();
 
-                   MySqlCommand cmd = new MySqlCommand("SELECT * FROM classes", con);
-                   MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
-                   DataSet ds = new DataSet();
-                   adp.Fill(ds);
-                   cmd.Dispose();
-                   con.Close();*/
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM classes", con);
+            MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            cmd.Dispose();
+            con.Close();*/
         }
-    }
-}
-        protected void GetClasses()
+
+        [WebMethod]
+        protected string[] GetClasses()
         {
+            string[] classList;
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
-                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM classes", connection: con);
                 con.Open();
+                //get total number of classes
+                MySqlCommand countCom = new MySqlCommand("SELECT COUNT(*) FROM classes", con);
+                Int32 count = Convert.ToInt32(countCom.ExecuteScalar());
+                classList = new string[count + 1];
+                string countString = count.ToString();
+                classList[0] = countString;
+
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM classes", connection: con);
                 MySqlDataReader reader = cmd.ExecuteReader();
+
+                int classCount = 1;
                 while (reader.Read())
                 {
                     //TODO write classes to class object
-                    reader["classID"].ToString();
-                    reader["className"].ToString();
+                    //reader["classID"].ToString();
+                    classList[classCount++] = reader["className"].ToString();
                 }
                 con.Close();
+                for (int j = 0; j < classCount; j++) {
+                    System.Diagnostics.Trace.WriteLine(classList[j]);
+                }
             }
+            return classList;
         }
-        protected void GetTutorNames(int classID)
+        class tutors {
+            string firstname;
+            string lastname;
+            int userId;
+        }
+
+        [WebMethod]
+        protected Int32 GetTutorNames(string className)
         {
+            Int32 count;
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
-                MySqlCommand cmd = new MySqlCommand(cmdText: ("SELECT * FROM users JOIN tutorClasses ON users.userID = tutorClasses.tutorID WHERE tutorClasses.classID = " + classID.ToString()), connection: con);
+
                 con.Open();
+                //get total number of classes
+                MySqlCommand countCom = new MySqlCommand(cmdText: $"SELECT COUNT(*) FROM tutorClasses WHERE tutorClasses.className = '{className}'", connection: con);
+                count = Convert.ToInt32(countCom.ExecuteScalar());
+
+                
+                MySqlCommand cmd = new MySqlCommand(cmdText: $"SELECT * FROM users JOIN tutorClasses ON users.userID = tutorClasses.tutorID WHERE tutorClasses.className = '{className}'", connection: con);
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     //TODO write user data to user object
                     reader["firstname"].ToString();
+                    System.Diagnostics.Trace.WriteLine(reader["firstname"].ToString());
                     reader["lastname"].ToString();
+                    System.Diagnostics.Trace.WriteLine(reader["lastname"].ToString());
                     reader["userID"].ToString();
+                    System.Diagnostics.Trace.WriteLine(reader["userID"].ToString());
                 }
+                
                 con.Close();
             }
+            return count;
         }
         protected void GetTutorDetails(int tutorID, int classID)
         {
@@ -175,20 +216,20 @@ namespace WebApplication5
             return isTutor;
         }
 
-        [WebMethod]
-        public static string[] getClasses()
-        {
-            var classes = new string[] { "4", "class1", "class2", "class3", "class4" }; // First number is size of array
+        /*
+         [WebMethod]
+         public static string[] getClasses()
+         {
+             var classes = new string[] { "4", "class1", "class2", "class3", "class4" }; // First number is size of array
 
-            /*
-            classList.Add("class1", new tutor[2]);
-            classList["class1"][0] = new tutor { name = "Jake", email = "jake@purdue.edu", phoneNumber = "111-111-1111" };
-            classList["class1"][1] = new tutor { name = "John", email = "john@purdue.edu", phoneNumber = "222-222-2222" };
+             classList.Add("class1", new tutor[2]);
+             classList["class1"][0] = new tutor { name = "Jake", email = "jake@purdue.edu", phoneNumber = "111-111-1111" };
+             classList["class1"][1] = new tutor { name = "John", email = "john@purdue.edu", phoneNumber = "222-222-2222" };
 
-            classList.Add("class2", new tutor[2]);
-            classList["class2"][0] = new tutor { name = "Jack", email = "jack@purdue.edu", phoneNumber = "333-333-3333" };
-            classList["class2"][0] = new tutor { name = "Jane", email = "jane@purdue.edu", phoneNumber = "444-444-4444" };
-            */
-            return classes;
-        }
-        
+             classList.Add("class2", new tutor[2]);
+             classList["class2"][0] = new tutor { name = "Jack", email = "jack@purdue.edu", phoneNumber = "333-333-3333" };
+             classList["class2"][0] = new tutor { name = "Jane", email = "jane@purdue.edu", phoneNumber = "444-444-4444" };
+             return classes;
+         } */
+    }
+}
