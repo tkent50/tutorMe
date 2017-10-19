@@ -6,7 +6,7 @@ function onPageLoad() {
 function loadClasses() {
 
     $.ajax({
-        url: "TutorSearch.aspx/getClassesTest",
+        url: "TutorSearch.aspx/GetClasses",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
@@ -51,14 +51,14 @@ function handleClasses(classList) {
 }
 
 function loadClassTutors(className) {
-    //alert("Loading tutors...");
+    //alert("Loading " + className + " tutors...");
 
     $.ajax({
-        url: "TutorSearch.aspx/getTutorsTest",
+        url: "TutorSearch.aspx/getClassTutors",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: '{"input":"' + className + '"}',
+        data: '{"className":"' + className + '"}',
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
@@ -84,11 +84,11 @@ function handleClassTutors(tutorList, className) {
         var newTutorLi = document.createElement("li");
         var newTutor = document.createElement("a");
         newTutor.href = "#";
-        newTutor.id = parsedTutors[i].id;
-        newTutor.innerHTML = parsedTutors[i].name;
+        newTutor.id = parsedTutors[i].userId;
+        newTutor.innerHTML = parsedTutors[i].firstname + ' ' + parsedTutors[i].lastname;
 
         newTutor.onclick = function () {
-            showTutor(this.id);
+            showTutor(this.id, className);
         }
 
         newTutorLi.appendChild(newTutor);
@@ -98,22 +98,26 @@ function handleClassTutors(tutorList, className) {
     document.getElementById(className).appendChild(tutorNameList);
 }
 
-function showTutor(tutorId) {
+function showTutor(tutorId, className) {
+
+    alert(className)
     $.ajax({
-        url: "TutorSearch.aspx/getTutorInfoTest",
+        url: "TutorSearch.aspx/getTutorDetails",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: '{"id":"' + tutorId + '"}',
+        data: '{"tutorID":"' + tutorId + '"}',
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
         success: function (result) {
             var parsedInfo = JSON.parse(result.d);
-            document.getElementById("tutorName").innerHTML = parsedInfo.name;
-            document.getElementById("tutorDescription").innerHTML = parsedInfo.description;
-            document.getElementById("tutorEmail").innerHTML = parsedInfo.email;
-            document.getElementById("tutorPhone").innerHTML = parsedInfo.phone;
+           
+            document.getElementById("tutorName").innerHTML = parsedInfo[0].firstname + ' ' + parsedInfo[0].lastname;
+            document.getElementById("tutorDescription").innerHTML = parsedInfo[0].bio;
+            document.getElementById("tutorEmail").innerHTML = parsedInfo[0].email;
+            document.getElementById("tutorPhone").innerHTML = parsedInfo[0].phone;
+            document.getElementById("tutorClass").innerHTML = className;
         }
     });
 }

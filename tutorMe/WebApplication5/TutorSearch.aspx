@@ -27,7 +27,8 @@
             <div class="mn-navblock">
                 <ul id="classList" class="mn-vnavigation">
 
-                    <!--
+                    <!--    Example structure   -->
+                    <!-- 
                         <li id="class0" class="dropdown-submenu">
                         <a href="#">Front End Team</a>
                         <ul class="dropdown-menu">
@@ -63,7 +64,7 @@
                     <h1></h1>
                     <div id="heading">
                         <p id="tutorName" style="float:left; font-size: 40px; font-weight: bold; padding-right: 100px;"></p>
-                        <p id="tutorClass" style="float: left; font-size: 30px; font-weight: bold; top: 10px; left: 30px; margin-bottom: 5px; padding-top: 2px;">CS 408</p>
+                        <p id="tutorClass" style="float: left; font-size: 30px; font-weight: bold; top: 10px; left: 30px; margin-bottom: 5px; padding-top: 2px;"></p>
                     </div>
 
                     <div style="position: relative; clear:both; top:10px">
