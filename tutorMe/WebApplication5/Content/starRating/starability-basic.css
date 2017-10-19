@@ -61,17 +61,7 @@
   background-position: 0 -30px;
 }
 
-.starability-basic > input:hover ~ label {
-  background-position: 0 0;
-}
 
-.starability-basic > input:hover + label {
-  background-position: 0 -30px;
-}
-
-.starability-basic > input:hover + label::before {
-  opacity: 1;
-}
 
 .starability-basic > label {
   position: relative;

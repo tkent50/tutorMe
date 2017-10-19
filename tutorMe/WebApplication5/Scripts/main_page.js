@@ -5,8 +5,6 @@ function onPageLoad() {
 
 function loadClasses() {
 
-    var test = "class1";
-
     $.ajax({
         url: "TutorSearch.aspx/getClassesTest",
         method: "POST",
@@ -42,7 +40,7 @@ function handleClasses(classList) {
             $(this).parents(".dropdown-submenu").addClass('open');
             // this is also open (or was)
             $(this).toggleClass('open');
-            tester(this.id);
+            //tester(this.id);
         }
 
         
@@ -90,7 +88,7 @@ function handleClassTutors(tutorList, className) {
         newTutor.innerHTML = parsedTutors[i].name;
 
         newTutor.onclick = function () {
-            showTutor(this.innerHTML);
+            showTutor(this.id);
         }
 
         newTutorLi.appendChild(newTutor);
@@ -101,30 +99,23 @@ function handleClassTutors(tutorList, className) {
 }
 
 function showTutor(tutorId) {
-
-}
-
-function handleTutorInfo(name) {
-    document.getElementById("tutorInfo").style.zIndex = "3";
-    document.getElementById("tutorInfo").style.visibility = "visible";
-    document.getElementById("tutorName").innerHTML = name;
-    document.getElementById("tutorClass").innerHTML = name + "'s Class";
-    document.getElementById("tutorEmail").innerHTML = "(" + name + ")@purdue.edu";
-
-    var x = document.getElementById("dp").querySelectorAll("div");
-    for (var i = 0; i < x.length; i++) {
-        x[i].style.visibility = "visible";
-    }
-}
-
-function closeTutorInfo() {
-    document.getElementById("tutorInfo").style.zIndex = "-1";
-    document.getElementById("tutorInfo").style.visibility = "hidden";
-
-    var x = document.getElementById("dp").querySelectorAll("div");
-    for (var i = 0; i < x.length; i++) {
-        x[i].style.visibility = "hidden";
-    }
+    $.ajax({
+        url: "TutorSearch.aspx/getTutorInfoTest",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        data: '{"id":"' + tutorId + '"}',
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            var parsedInfo = JSON.parse(result.d);
+            document.getElementById("tutorName").innerHTML = parsedInfo.name;
+            document.getElementById("tutorDescription").innerHTML = parsedInfo.description;
+            document.getElementById("tutorEmail").innerHTML = parsedInfo.email;
+            document.getElementById("tutorPhone").innerHTML = parsedInfo.phone;
+        }
+    });
 }
 
 

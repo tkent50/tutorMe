@@ -4,6 +4,7 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Web.Services;
 using System.Web.Script.Serialization;
+using System.Diagnostics;
 
 namespace WebApplication5
 {
@@ -192,6 +193,8 @@ namespace WebApplication5
         [WebMethod]
         public static string getTutorsTest(string input)
         {
+
+            Debug.WriteLine("getTutorsTest recieved " + input);
             List<tutor> classTutors;
 
             if (String.Compare(input, "class1") == 0)
@@ -233,6 +236,9 @@ namespace WebApplication5
         [WebMethod]
         public static string getTutorInfoTest(string id)
         {
+
+            Debug.WriteLine("getTutorInfoTest recieved " + id);
+            
             tutorInfo info = new tutorInfo {
                 name = "Test Name",
                 description = "Test description",
