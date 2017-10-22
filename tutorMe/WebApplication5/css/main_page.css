@@ -78,7 +78,7 @@ body{
   width: 216px;
   background: #272930;
 }
-.dropdown-submenu:hover > 
+.dropdown-submenu:onClick > 
 .dropdown-menu {
 	display: block;
 }
