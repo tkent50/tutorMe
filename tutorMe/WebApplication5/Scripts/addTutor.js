@@ -8,7 +8,6 @@ function addTutor() {
 	newTutorName.value="";*/
 }
 
-<<<<<<< HEAD
 function loadClasses() {
 
     var test = "class1";
@@ -46,19 +45,7 @@ function handleClasses(classList) {
 function onPageLoad() {
 
 	loadClasses();
-=======
-function onPageLoad() {
-	document.getElementById("newTutorName")
-	.addEventListener("keyup", function(event) {
-		event.preventDefault();
-		if (event.keyCode == 13) {
-			document.getElementById("addButton").click();
-		}
-	});
 
-	showTutor();
-
->>>>>>> origin/Srish
 }
 
 function showTutor(name) {

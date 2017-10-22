@@ -8,11 +8,9 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Threading;
 using System.ComponentModel.DataAnnotations;
-<<<<<<< HEAD
 using System.Net.Mail;
 using System.Net;
-=======
->>>>>>> origin/Srish
+
 
 namespace WebApplication5
 {
@@ -105,10 +103,8 @@ namespace WebApplication5
                 finally
                 {
                     con.Close();
-<<<<<<< HEAD
                     SendRegistrationEmail(email.Text);
-=======
->>>>>>> origin/Srish
+
                     Response.Redirect("Default.aspx", false);
                 }
   
@@ -127,7 +123,7 @@ namespace WebApplication5
             }
             return hash;
         }
-<<<<<<< HEAD
+
         protected void SendRegistrationEmail(string email)
         {
             var fromAddress = new MailAddress("tutorapp408@gmail.com", null);
@@ -154,7 +150,5 @@ namespace WebApplication5
                 smtp.Send(message);
             }
         }
-=======
->>>>>>> origin/Srish
     }
 }
