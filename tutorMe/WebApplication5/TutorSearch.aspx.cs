@@ -8,12 +8,40 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Web.Services;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
-public class tutor
+public class ClassTutor // USED FOR TUTORINFO
 {
-    public string name;
+    public string firstname;
+    public string lastname;
+    public int userId;
+
+    public ClassTutor(string firstname, string lastname, string userId)
+    {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.userId = Int32.Parse(userId);
+    }
+}
+
+public class Tutor // USED FOR TUTOR DETAILS
+{
+    public string firstname;
+    public string lastname;
+    public string bio;
     public string email;
-    public string phoneNumber;
+    public string phone;
+    public double rating;
+
+    public Tutor(string firstname, string lastname, string bio, string email, string phone, string rating)
+    {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.bio = bio;
+        this.email = email;
+        this.phone = phone;
+        this.rating = Double.Parse(rating);
+    }
 }
 
 namespace WebApplication5
@@ -24,28 +52,20 @@ namespace WebApplication5
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindData();
             GetClasses();
-            //int cs250 = GetTutorNames("CS250");
-            int cs251 = GetTutorNames("CS251");
-           // System.Diagnostics.Trace.WriteLine(cs250);
+            string cs250 = getClassTutors("CS250");
+            System.Diagnostics.Trace.WriteLine("cs250 --");
+            System.Diagnostics.Trace.WriteLine(cs250);
+            string cs251 = getClassTutors("CS251");
+            System.Diagnostics.Trace.WriteLine("cs251 --");
             System.Diagnostics.Trace.WriteLine(cs251);
+            string details = getTutorDetails(16);
+            System.Diagnostics.Trace.WriteLine("16 --");
+            System.Diagnostics.Trace.WriteLine(details);
 
         }
-        public void BindData()
-        {
-            /*MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
-            con.Open();
 
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM classes", con);
-            MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            cmd.Dispose();
-            con.Close();*/
-        }
-
-        [WebMethod]
+        [WebMethod] // DONE
         protected string[] GetClasses()
         {
             string[] classList;
@@ -65,104 +85,126 @@ namespace WebApplication5
                 int classCount = 1;
                 while (reader.Read())
                 {
-                    //TODO write classes to class object
-                    //reader["classID"].ToString();
                     classList[classCount++] = reader["className"].ToString();
                 }
                 con.Close();
-                for (int j = 0; j < classCount; j++) {
+                for (int j = 0; j < classCount; j++)
+                {
                     System.Diagnostics.Trace.WriteLine(classList[j]);
                 }
             }
             return classList;
         }
-        class tutors {
-            string firstname;
-            string lastname;
-            int userId;
-        }
 
-        [WebMethod]
-        protected Int32 GetTutorNames(string className)
+        [WebMethod] // DONE
+        protected string getClassTutors(string className)
         {
-            Int32 count;
+            List<ClassTutor> tutorList = new List<ClassTutor>();
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
-
                 con.Open();
-                //get total number of classes
-                MySqlCommand countCom = new MySqlCommand(cmdText: $"SELECT COUNT(*) FROM tutorClasses WHERE tutorClasses.className = '{className}'", connection: con);
-                count = Convert.ToInt32(countCom.ExecuteScalar());
-
-                
                 MySqlCommand cmd = new MySqlCommand(cmdText: $"SELECT * FROM users JOIN tutorClasses ON users.userID = tutorClasses.tutorID WHERE tutorClasses.className = '{className}'", connection: con);
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    //TODO write user data to user object
-                    reader["firstname"].ToString();
-                    System.Diagnostics.Trace.WriteLine(reader["firstname"].ToString());
-                    reader["lastname"].ToString();
-                    System.Diagnostics.Trace.WriteLine(reader["lastname"].ToString());
-                    reader["userID"].ToString();
-                    System.Diagnostics.Trace.WriteLine(reader["userID"].ToString());
+
+                    string first = reader["firstname"].ToString();
+                    string last = reader["lastname"].ToString();
+                    string id = reader["userID"].ToString();
+                    ClassTutor newTutor = new ClassTutor(first, last, id);
+                    tutorList.Add(newTutor);
+
                 }
-                
+
                 con.Close();
             }
-            return count;
+            string classTutors = JsonConvert.SerializeObject(tutorList);
+            return classTutors;
         }
-        protected void GetTutorDetails(int tutorID, int classID)
+
+        [WebMethod] // DONE - SHARES A RATING FOR ALL CLASSES
+        protected string getTutorDetails(int tutorID)
         {
+            List<Tutor> tutorDetails = new List<Tutor>();
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
                 MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM users WHERE userID = @tutorID", connection: con);
                 cmd.Parameters.AddWithValue("@tutorID", tutorID);
                 con.Open();
                 MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    //TODO write tutor data to tutor object
-                    reader["firstname"].ToString();
-                    reader["lastname"].ToString();
-                    reader["bio"].ToString();
-                    reader["email"].ToString();
-                }
+                reader.Read();
+                //TODO write tutor data to tutor object
+                string first = reader["firstname"].ToString();
+                string last = reader["lastname"].ToString();
+                string bio = reader["bio"].ToString();
+                string email = reader["email"].ToString();
+                string phone = reader["phoneNumber"].ToString();
                 con.Close();
-            }
 
-            MySqlConnection con2 = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
-            {
-                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM tutorClasses WHERE tutorID = @tutorID AND classID = @classID", connection: con);
-                cmd.Parameters.AddWithValue("@tutorID", tutorID);
-                cmd.Parameters.AddWithValue("@classID", classID);
-                con2.Open();
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    //TODO write tutor data to tutor object
-                    reader["price"].ToString();
-                    reader["avgRating"].ToString();
-                }
-                con2.Close();
-            }
+                MySqlCommand cmd2 = new MySqlCommand(cmdText: "SELECT * FROM tutorRatings WHERE tutorID = @tutorID", connection: con);
+                cmd2.Parameters.AddWithValue("@tutorID", tutorID);
+                con.Open();
+                MySqlDataReader reader2 = cmd2.ExecuteReader();
+                reader2.Read();
+                string rating = reader2["rating"].ToString();
+                con.Close();
 
-            MySqlConnection con3 = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
-            {
-                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM tutorSchedules WHERE tutorID = @tutorID AND classID = @classID", connection: con);
-                cmd.Parameters.AddWithValue("@tutorID", tutorID);
-                cmd.Parameters.AddWithValue("@classID", classID);
-                con3.Open();
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    //TODO write tutor data to tutor object
-                    reader["startTime"].ToString();
-                    reader["endTime"].ToString();
-                }
-                con3.Close();
+                Tutor newTutor = new Tutor(first, last, bio, email, phone, rating);
+                tutorDetails.Add(newTutor);
+
             }
+            string tutorDetail = JsonConvert.SerializeObject(tutorDetails);
+            return tutorDetail;
         }
+
+
+        [WebMethod] // DONE - SHARES A RATING FOR ALL CLASSES
+        protected string updateUserEmail(int userID, string email)
+        {
+            List<Tutor> tutorDetails = new List<Tutor>();
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM users WHERE userID = @tutorID", connection: con);
+                cmd.Parameters.AddWithValue("@tutorID", userID);
+                con.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+                //TODO write tutor data to tutor object
+                string first = reader["firstname"].ToString();
+                string last = reader["lastname"].ToString();
+                string bio = reader["bio"].ToString();
+                string userEmail = reader["email"].ToString();
+                string phone = reader["phoneNumber"].ToString();
+                con.Close();
+
+                MySqlCommand cmd2 = new MySqlCommand(cmdText: "SELECT * FROM tutorRatings WHERE tutorID = @tutorID", connection: con);
+                cmd2.Parameters.AddWithValue("@tutorID", userID);
+                con.Open();
+                MySqlDataReader reader2 = cmd2.ExecuteReader();
+                reader2.Read();
+                string rating = reader2["rating"].ToString();
+                con.Close();
+
+                Tutor newTutor = new Tutor(first, last, bio, userEmail, phone, rating);
+                tutorDetails.Add(newTutor);
+
+            }
+            string tutorDetail = JsonConvert.SerializeObject(tutorDetails);
+            return tutorDetail;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         protected void RateTutor(int userID, int tutorID, int classID, int rating)
         {
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
@@ -216,20 +258,93 @@ namespace WebApplication5
             return isTutor;
         }
 
-        /*
-         [WebMethod]
-         public static string[] getClasses()
-         {
-             var classes = new string[] { "4", "class1", "class2", "class3", "class4" }; // First number is size of array
 
-             classList.Add("class1", new tutor[2]);
-             classList["class1"][0] = new tutor { name = "Jake", email = "jake@purdue.edu", phoneNumber = "111-111-1111" };
-             classList["class1"][1] = new tutor { name = "John", email = "john@purdue.edu", phoneNumber = "222-222-2222" };
 
-             classList.Add("class2", new tutor[2]);
-             classList["class2"][0] = new tutor { name = "Jack", email = "jack@purdue.edu", phoneNumber = "333-333-3333" };
-             classList["class2"][0] = new tutor { name = "Jane", email = "jane@purdue.edu", phoneNumber = "444-444-4444" };
-             return classes;
-         } */
+        /*********************************** EVERYTHING BELOW ARE TEST METHODS ***********************************/
+
+        public class tutor
+        {
+            public string name;
+            public int id;
+        }
+
+        public class tutorInfo
+        {
+            public string name;
+            public string description;
+            public string email;
+            public string phone;
+            public double rating;
+        }
+
+        [WebMethod]
+        public static string[] getClassesTest()
+        {
+            var classes = new string[] { "3", "class1", "class2", "class3" }; // First number is size of array
+
+            return classes;
+        }
+        [WebMethod]
+        public static string getTutorsTest(string input)
+        {
+
+            Debug.WriteLine("getTutorsTest recieved " + input);
+            List<tutor> classTutors;
+
+            if (String.Compare(input, "class1") == 0)
+            {
+                classTutors = new List<tutor>
+                {
+                    new tutor{name = "John", id = 1},
+                    new tutor{name = "Jane", id = 2}
+                };
+            }
+            else if (String.Compare(input, "class2") == 0)
+            {
+                classTutors = new List<tutor>
+                {
+                    new tutor{name = "Jack", id = 3},
+                    new tutor{name = "Jill", id = 4}
+                };
+            }
+            else if (String.Compare(input, "class3") == 0)
+            {
+                classTutors = new List<tutor>
+                {
+                    new tutor{name = "John", id = 1},
+                    new tutor{name = "Jack", id = 3}
+                };
+            }
+            else
+            {
+                classTutors = null;
+            }
+
+            // Normally, return this variable. It's a json string.
+            var json = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(classTutors);
+
+            return json;
+        }
+
+
+        [WebMethod]
+        public static string getTutorInfoTest(string id)
+        {
+
+            Debug.WriteLine("getTutorInfoTest recieved " + id);
+
+            tutorInfo info = new tutorInfo
+            {
+                name = "Test Name",
+                description = "Test description",
+                email = "test@email.com",
+                phone = "867-5309",
+                rating = 2.5
+            };
+
+            var json = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(info);
+            return json;
+        }
     }
 }
+

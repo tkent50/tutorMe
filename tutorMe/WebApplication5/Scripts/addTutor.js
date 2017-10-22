@@ -45,6 +45,7 @@ function handleClasses(classList) {
 function onPageLoad() {
 
 	loadClasses();
+
 }
 
 function showTutor(name) {

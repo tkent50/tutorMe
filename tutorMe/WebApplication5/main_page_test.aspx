@@ -1,5 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="main_page_test.aspx.cs" Inherits="WebApplication5.main_page_test" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent">
+
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -11,12 +14,14 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="Content/starRating/starability-all.css" />
-    <link rel="stylesheet" href="css/main_page.css">
+    <!-- <link rel="stylesheet" href="Scripts/main_page_test.css"> -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main_page.js"></script>
     <script src="Scripts/daypilot-all.min.js?v=217" type="text/javascript"></script>
     <script src="Scripts/addTutor.js"></script>
 </head>
 
-<body onload="onPageLoad()">
+<body>
     <div id="mn-wrapper">
         <div class="mn-sidebar">
             <div class="mn-toggle">
@@ -52,9 +57,6 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#">Its Lit!</a>
-                    </li>
 
                 </ul>
             </div>
@@ -89,12 +91,12 @@
                         </p>
                     </div>
                     <br>
-                    <hr size="100" style="position: relative; width: 100%; font-weight: bold; "></hr>
+                    <hr style="position: relative; width: 100%; font-weight: bold; "></>
                     <div style="position: relative; height:10px">
                         <p style="position: relative; font-size: 20px; top: 5px; float: left;  height: 10px; left: 5px;">$$$/hr</p>
                         <br>
                         <br>
-                        <form style="position: absolute; float: left;  left: 50; height: 10;">
+                        <form style="position: absolute; float: left;  left: 50px; height: 10px;">
                             <fieldset class="starability-heart">
 
                                 <input type="radio" id="rate1" name="rating" value="1" />
@@ -131,41 +133,7 @@
                     </div>
                     <div  class="container" id="calendar" style="border:0px; padding-left:0px;" >
                     <script type="text/javascript">
-                        var dp = new DayPilot.Calendar("calendar");
-                        // view
-                        dp.startDate = "2013-03-25";  // or just dp.startDate = "2013-03-25";
-                        dp.viewType = "Week";
-                        dp.timeRangeSelectedHandling = "Disabled";
-                        dp.eventMoveHandling = "Disabled";
-                        dp.eventResizeHandling = "Disabled";
-                        dp.init();
-                        
-                        // event creating
-                        /*
-                        dp.onTimeRangeSelected = function (args) {
-                            var name = prompt("New event name:", "Event");
-                            if (!name) return;
-                            var e = new DayPilot.Event({
-                                start: args.start,
-                                end: args.end,
-                                id: DayPilot.guid(),
-                                text: name
-                            });
-                            dp.events.add(e);
-                            dp.clearSelection();
-                        };
-                        */
-                        dp.onEventClick = function (args) {
-                            alert("Do you wanna request to book this time slot ?");
-                        };
-                        dp.headerDateFormat = "dddd";
-                        var e = new DayPilot.Event({
-                            start: new DayPilot.Date("2013-03-25T12:00:00"),
-                            end: new DayPilot.Date("2013-03-25T12:00:00").addHours(3).addMinutes(15),
-                            id: "1",
-                            text: ""
-                        });
-                        dp.events.add(e);
+                      
                     </script>
                 </div>
 
@@ -173,14 +141,16 @@
         </div>
 
     </div>
+    </div>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main_page.js"></script>
+    
 
 </body>
 
 </html>
+
+</asp:Content>

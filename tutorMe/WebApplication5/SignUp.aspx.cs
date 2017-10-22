@@ -11,6 +11,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Net.Mail;
 using System.Net;
 
+
 namespace WebApplication5
 {
     public partial class SignUp : System.Web.UI.Page
@@ -103,6 +104,7 @@ namespace WebApplication5
                 {
                     con.Close();
                     SendRegistrationEmail(email.Text);
+
                     Response.Redirect("Default.aspx", false);
                 }
   
@@ -121,6 +123,7 @@ namespace WebApplication5
             }
             return hash;
         }
+
         protected void SendRegistrationEmail(string email)
         {
             var fromAddress = new MailAddress("tutorapp408@gmail.com", null);
