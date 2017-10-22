@@ -12,3 +12,4 @@ tutorMe/.vs/tutorMe/v15/.suo
 *.ide
 
 tutorMe/\.vs/tutorMe/v15/
+tutorMe/packages/Microsoft.Web.Infrastructure.1.0.0.0/tools/Install.ps1
