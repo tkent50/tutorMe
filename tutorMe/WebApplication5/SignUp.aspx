@@ -67,7 +67,7 @@
                     <label class="col-md-4 control-label">Password</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                  <div>
                                     <asp:TextBox ID="user_password" placeholder="Password" class="form-control"  type="password" runat="server"></asp:TextBox>
                                 </div>
@@ -79,7 +79,7 @@
                     <label class="col-md-4 control-label">Confirm Password</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                               <div>
                                     <asp:TextBox ID="confirm_password" placeholder="Confirm Password" class="form-control"  type="password" runat="server"></asp:TextBox>
                               </div>
@@ -101,7 +101,7 @@
                 <div class="form-group">
 					<label class="col-md-4 control-label"></label>
 					 <div class="col-md-4"><br>
-                    <div class="col-sm-offset-2 col-sm-8">
+                    <div class="col-sm-offset-2 col-sm-8 text-center">
                         <asp:Button ID="SubmitRegistration" runat="server"  OnClick="SubmitRegistration_Click" class="btn btn-secondary btn-lg active" Text="Register"></asp:Button>
                     </div>
 				</div>
