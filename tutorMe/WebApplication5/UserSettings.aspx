@@ -70,7 +70,7 @@
 
             </div>
             <div class="container text-center"> 
-                <button type="submit" class="btn btn-primary text-center">Submit</button> 
+                <asp:Button ID="submit" runat="server"  OnClick="SubmitChanges" class="btn btn-secondary btn-lg active" Text="Submit"></asp:Button>
             </div>
             
         </form>
