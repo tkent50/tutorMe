@@ -179,7 +179,7 @@
     <Content Include="js\modernizr.custom.js" />
     <Content Include="js\npm.js" />
     <Content Include="js\user_settings.js" />
-    <Content Include="main_page.aspx" />
+    <Content Include="MainPage.aspx" />
     <Content Include="Scripts\addTutor.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -218,7 +218,8 @@
     <Content Include="signin.html" />
     <Content Include="SignUp.aspx" />
     <Content Include="Site.Master" />
-    <Content Include="tutor_profile.aspx" />
+    <Content Include="TutorSearch.aspx" />
+    <Content Include="TutorProfile.aspx" />
     <Content Include="UserSettings.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -252,12 +253,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="main_page.aspx.cs">
-      <DependentUpon>main_page.aspx</DependentUpon>
+    <Compile Include="MainPage.aspx.cs">
+      <DependentUpon>MainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="main_page.aspx.designer.cs">
-      <DependentUpon>main_page.aspx</DependentUpon>
+    <Compile Include="MainPage.aspx.designer.cs">
+      <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignUp.aspx.cs">
@@ -281,12 +282,15 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="tutor_profile.aspx.cs">
-      <DependentUpon>tutor_profile.aspx</DependentUpon>
+    <Compile Include="TutorSearch.aspx.cs">
+      <DependentUpon>TutorSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TutorProfile.aspx.cs">
+      <DependentUpon>TutorProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="tutor_profile.aspx.designer.cs">
-      <DependentUpon>tutor_profile.aspx</DependentUpon>
+    <Compile Include="TutorProfile.aspx.designer.cs">
+      <DependentUpon>TutorProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserSettings.aspx.cs">
       <DependentUpon>UserSettings.aspx</DependentUpon>

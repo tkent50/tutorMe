@@ -353,3 +353,9 @@ C:\Users\Ztken\AppData\Local\GitHubDesktop\app-1.0.4\CS408\tutorMe\WebApplicatio
 C:\Users\Ztken\AppData\Local\GitHubDesktop\app-1.0.4\CS408\tutorMe\WebApplication5\obj\Debug\TutorMe.csproj.CoreCompileInputs.cache
 C:\Users\Ztken\AppData\Local\GitHubDesktop\app-1.0.4\CS408\tutorMe\WebApplication5\obj\Debug\WebApplication5.dll
 C:\Users\Ztken\AppData\Local\GitHubDesktop\app-1.0.4\CS408\tutorMe\WebApplication5\obj\Debug\WebApplication5.pdb
+C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\System.IO.Compression.dll
+C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\VBCSCompiler.exe
