@@ -100,7 +100,7 @@ function handleClassTutors(tutorList, className) {
 
 function showTutor(tutorId, className) {
 
-    alert(className)
+    //alert(className)
     $.ajax({
         url: "TutorSearch.aspx/getTutorDetails",
         method: "POST",
