@@ -13,10 +13,13 @@
             </style>
 
 <head>
+     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Find My Tutor</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
     <!-- Bootstrap -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -117,6 +120,7 @@
 					<label class="col-md-4 control-label"></label>
 					 <div class="col-md-4"><br>
                     <div class="col-sm-offset-2 col-sm-8">
+                        <asp:Button ID="SubmitRegistration" runat="server"  OnClick="SubmitRegistration_Click" class="btn btn-secondary btn-lg active" Text="Register"></asp:Button>
                     </div>
 				</div>
 
