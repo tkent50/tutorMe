@@ -267,17 +267,6 @@ C:\Users\Zachary - Unlocked\Source\Repos\CS408\tutorMe\WebApplication5\bin\rosly
 C:\Users\Zachary - Unlocked\Source\Repos\CS408\tutorMe\WebApplication5\bin\roslyn\System.Reflection.Metadata.dll
 C:\Users\Zachary - Unlocked\Source\Repos\CS408\tutorMe\WebApplication5\bin\roslyn\System.Security.Cryptography.Primitives.dll
 C:\Users\Zachary - Unlocked\Source\Repos\CS408\tutorMe\WebApplication5\bin\roslyn\VBCSCompiler.exe
-C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
-C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\System.IO.FileSystem.dll
-C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\System.IO.FileSystem.Primitives.dll
-C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\System.Security.Cryptography.Primitives.dll
-C:\Users\Zachary - Unlocked\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\roslyn\VBCSCompiler.exe
 C:\Users\Ztken\AppData\Local\GitHubDesktop\app-1.0.4\CS408\tutorMe\WebApplication5\bin\ApplicationInsights.config
 C:\Users\Ztken\AppData\Local\GitHubDesktop\app-1.0.4\CS408\tutorMe\WebApplication5\bin\roslyn\csc.exe
 C:\Users\Ztken\AppData\Local\GitHubDesktop\app-1.0.4\CS408\tutorMe\WebApplication5\bin\roslyn\csc.exe.config
