@@ -23,17 +23,16 @@ namespace WebApplication5
             List<Object> arrList = new List<Object>();
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
-               MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * from users", connection: con);
+               MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * from users WHERE email = @email", connection: con);
                 con.Open();
+                cmd.Parameters.AddWithValue("@email", user_input.Text);
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    // Basic Validation
-                    if (reader["email"].ToString() == user_input.Text) {
-                        if (Convert.ToInt32(reader["passHash"]) == hash)
-                        {
-                            Response.Redirect("TutorSearch.aspx", false);
-                        }
+                    if (Convert.ToInt32(reader["passHash"]) == hash)
+                    {
+                        CreateUserIdCookie(reader["userID"].ToString());
+                        Response.Redirect("TutorSearch.aspx", false);
                     }
                 }
                 con.Close();
@@ -57,6 +56,12 @@ namespace WebApplication5
                 hash = hash + ((i + 1) * password[i]);
             }
             return hash;
+        }
+        protected void CreateUserIdCookie(string userId)
+        {
+            HttpCookie userIdCookie = new HttpCookie("userId");
+            userIdCookie.Value = userId;
+            Response.Cookies.Add(userIdCookie);
         }
     }
     public static class MessageBox

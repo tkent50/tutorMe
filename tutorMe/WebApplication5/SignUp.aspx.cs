@@ -50,9 +50,9 @@ namespace WebApplication5
                 this.Show("Password field is required");
                 return;
             }
-            if (user_password.Text.Length < 8 || user_password.Text.Length > 16)
+            if (user_password.Text.Length < 8 || user_password.Text.Length > 32)
             {
-                this.Show("Password must be between 8 and 16 characters long");
+                this.Show("Password must be between 8 and 32 characters long");
                 return;
             }
             if (user_password.Text != confirm_password.Text)
