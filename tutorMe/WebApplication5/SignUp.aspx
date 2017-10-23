@@ -13,34 +13,20 @@
             </style>
 
 <head>
-    <meta charset="utf-8" />
+     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Sign Up</title>
+    <title>Find My Tutor</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="Content/starRating/starability-all.css"/>
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" type="text/css" href="Content/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="Content/demo.css" />
-    <link rel="stylesheet" type="text/css" href="Content/icons.css" />
-    <link rel="stylesheet" type="text/css" href="Content/component.css" />
-
+    
     <!-- Bootstrap -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="Scripts/bootstrap.min.js"></script>
     <link href="Content/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
+    
 </head>
 <body>
     <div class="container">
@@ -116,7 +102,7 @@
 					<label class="col-md-4 control-label"></label>
 					 <div class="col-md-4"><br>
                     <div class="col-sm-offset-2 col-sm-8">
-                        <asp:Button ID="SubmitRegistration" runat="server"  OnClick="SubmitRegistration_Click" class="btn bg-info" Text="Register"></asp:Button>
+                        <asp:Button ID="SubmitRegistration" runat="server"  OnClick="SubmitRegistration_Click" class="btn btn-secondary btn-lg active" Text="Register"></asp:Button>
                     </div>
 				</div>
                 </div>
