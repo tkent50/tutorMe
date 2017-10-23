@@ -10,6 +10,6 @@
 namespace WebApplication5 {
     
     
-    public partial class TutorSearch {
+    public partial class main_page {
     }
 }

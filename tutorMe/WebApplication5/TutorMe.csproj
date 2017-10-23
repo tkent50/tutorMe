@@ -167,7 +167,19 @@
     <Content Include="Content\starRating\package.json" />
     <Content Include="Content\starRating\starabilityREADME.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="main_page_test.aspx" />
+    <Content Include="js\addTutor.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.css" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\classie.js" />
+    <Content Include="js\daypilot-all.min.js" />
+    <Content Include="js\jquery-1.9.1.min.js" />
+    <Content Include="js\main_page.js" />
+    <Content Include="js\mlpushmenu.js" />
+    <Content Include="js\modernizr.custom.js" />
+    <Content Include="js\npm.js" />
+    <Content Include="js\user_settings.js" />
+    <Content Include="main_page.aspx" />
     <Content Include="Scripts\addTutor.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -206,7 +218,6 @@
     <Content Include="signin.html" />
     <Content Include="SignUp.aspx" />
     <Content Include="Site.Master" />
-    <Content Include="TutorSearch.aspx" />
     <Content Include="tutor_profile.aspx" />
     <Content Include="UserSettings.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -241,12 +252,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="main_page_test.aspx.cs">
-      <DependentUpon>main_page_test.aspx</DependentUpon>
+    <Compile Include="main_page.aspx.cs">
+      <DependentUpon>main_page.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="main_page_test.aspx.designer.cs">
-      <DependentUpon>main_page_test.aspx</DependentUpon>
+    <Compile Include="main_page.aspx.designer.cs">
+      <DependentUpon>main_page.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignUp.aspx.cs">
@@ -269,13 +280,6 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
-    </Compile>
-    <Compile Include="TutorSearch.aspx.cs">
-      <DependentUpon>TutorSearch.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TutorSearch.aspx.designer.cs">
-      <DependentUpon>TutorSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="tutor_profile.aspx.cs">
       <DependentUpon>tutor_profile.aspx</DependentUpon>

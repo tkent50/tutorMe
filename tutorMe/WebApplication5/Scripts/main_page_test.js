@@ -1,19 +1,12 @@
-﻿function onPageLoad() {
-    loadTutorSched();
-}
-
-function loadTutorSched() {
-
-    var test = "class1";
+﻿function loadTutorSched() {
 
     $.ajax({
-        url: "TutorSearch.aspx/setTutorScheduleTest",
+        url: "main_page.aspx/setTutorScheduleTest",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: '{"tutorID": 23 }',
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+            alert("MyRequest: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown + "\nThis one");
         },
         success: function (result) {
             handleTutorSched(result);
