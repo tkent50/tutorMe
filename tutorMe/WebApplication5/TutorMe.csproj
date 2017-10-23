@@ -151,6 +151,7 @@
     <Content Include="Content\starRating\starability-heartbeat.css" />
     <Content Include="Content\starRating\starability-rotate.css" />
     <Content Include="Content\starRating\starability-slot.css" />
+    <Content Include="css\signin.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -202,6 +203,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="signin.html" />
     <Content Include="SignUp.aspx" />
     <Content Include="Site.Master" />
     <Content Include="TutorSearch.aspx" />
