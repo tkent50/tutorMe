@@ -8,6 +8,7 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Web.Services;
 using Newtonsoft.Json;
+using System.Web.Script.Serialization;
 using System.Diagnostics;
 
 public class ClassTutor // USED FOR TUTORINFO
@@ -52,7 +53,8 @@ namespace WebApplication5
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            GetClasses();
+            /*
+            Debug.WriteLine(GetClasses());
             string cs250 = getClassTutors("CS250");
             System.Diagnostics.Trace.WriteLine("cs250 --");
             System.Diagnostics.Trace.WriteLine(cs250);
@@ -62,11 +64,11 @@ namespace WebApplication5
             string details = getTutorDetails(16);
             System.Diagnostics.Trace.WriteLine("16 --");
             System.Diagnostics.Trace.WriteLine(details);
-
+            */
         }
 
         [WebMethod] // DONE
-        protected string[] GetClasses()
+        public static string[] GetClasses()
         {
             string[] classList;
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
@@ -93,11 +95,13 @@ namespace WebApplication5
                     System.Diagnostics.Trace.WriteLine(classList[j]);
                 }
             }
+
+            Debug.WriteLine(classList);
             return classList;
         }
 
         [WebMethod] // DONE
-        protected string getClassTutors(string className)
+        public static string getClassTutors(string className)
         {
             List<ClassTutor> tutorList = new List<ClassTutor>();
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
@@ -123,7 +127,7 @@ namespace WebApplication5
         }
 
         [WebMethod] // DONE - SHARES A RATING FOR ALL CLASSES
-        protected string getTutorDetails(int tutorID)
+        public static string getTutorDetails(int tutorID)
         {
             List<Tutor> tutorDetails = new List<Tutor>();
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
@@ -158,40 +162,7 @@ namespace WebApplication5
         }
 
 
-        [WebMethod] // DONE - SHARES A RATING FOR ALL CLASSES
-        protected string updateUserEmail(int userID, string email)
-        {
-            List<Tutor> tutorDetails = new List<Tutor>();
-            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
-            {
-                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM users WHERE userID = @tutorID", connection: con);
-                cmd.Parameters.AddWithValue("@tutorID", userID);
-                con.Open();
-                MySqlDataReader reader = cmd.ExecuteReader();
-                reader.Read();
-                //TODO write tutor data to tutor object
-                string first = reader["firstname"].ToString();
-                string last = reader["lastname"].ToString();
-                string bio = reader["bio"].ToString();
-                string userEmail = reader["email"].ToString();
-                string phone = reader["phoneNumber"].ToString();
-                con.Close();
 
-                MySqlCommand cmd2 = new MySqlCommand(cmdText: "SELECT * FROM tutorRatings WHERE tutorID = @tutorID", connection: con);
-                cmd2.Parameters.AddWithValue("@tutorID", userID);
-                con.Open();
-                MySqlDataReader reader2 = cmd2.ExecuteReader();
-                reader2.Read();
-                string rating = reader2["rating"].ToString();
-                con.Close();
-
-                Tutor newTutor = new Tutor(first, last, bio, userEmail, phone, rating);
-                tutorDetails.Add(newTutor);
-
-            }
-            string tutorDetail = JsonConvert.SerializeObject(tutorDetails);
-            return tutorDetail;
-        }
 
 
 
@@ -259,7 +230,6 @@ namespace WebApplication5
         }
 
 
-
         /*********************************** EVERYTHING BELOW ARE TEST METHODS ***********************************/
 
         public class tutor
@@ -321,7 +291,7 @@ namespace WebApplication5
             }
 
             // Normally, return this variable. It's a json string.
-            var json = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(classTutors);
+            var json = new JavaScriptSerializer().Serialize(classTutors);
 
             return json;
         }
@@ -342,9 +312,8 @@ namespace WebApplication5
                 rating = 2.5
             };
 
-            var json = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(info);
+            var json = new JavaScriptSerializer().Serialize(info);
             return json;
         }
     }
 }
-

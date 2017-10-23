@@ -43,7 +43,7 @@ function handleClasses(classList) {
             //tester(this.id);
         }
 
-        
+
         newTab.appendChild(newClassName);
         //newTab.appendChild(testList);
         document.getElementById("classList").appendChild(newTab);
@@ -100,7 +100,7 @@ function handleClassTutors(tutorList, className) {
 
 function showTutor(tutorId, className) {
 
-    alert(className)
+    //alert(className)
     $.ajax({
         url: "TutorSearch.aspx/getTutorDetails",
         method: "POST",
@@ -112,7 +112,7 @@ function showTutor(tutorId, className) {
         },
         success: function (result) {
             var parsedInfo = JSON.parse(result.d);
-           
+
             document.getElementById("tutorName").innerHTML = parsedInfo[0].firstname + ' ' + parsedInfo[0].lastname;
             document.getElementById("tutorDescription").innerHTML = parsedInfo[0].bio;
             document.getElementById("tutorEmail").innerHTML = parsedInfo[0].email;
