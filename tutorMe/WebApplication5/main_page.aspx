@@ -1,28 +1,26 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="main_page_test.aspx.cs" Inherits="WebApplication5.main_page_test" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="main_page.aspx.cs" Inherits="WebApplication5.main_page" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent">
+<!DOCTYPE html>
 
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>TutorMyClass HomePage</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="Content/starRating/starability-all.css" />
-    <!-- <link rel="stylesheet" href="Scripts/main_page_test.css"> -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main_page.js"></script>
+    <link rel="stylesheet" href="css/main_page.css" />
+    <script src="Scripts/main_page_test.js"></script>
     <script src="Scripts/daypilot-all.min.js?v=217" type="text/javascript"></script>
-    <script src="Scripts/addTutor.js"></script>
+    <!-- <script src="Scripts/addTutor.js"></script> -->
 </head>
-
 <body>
     <div id="mn-wrapper">
+        
         <div class="mn-sidebar">
             <div class="mn-toggle">
                 <i class="fa fa-bars"></i>
@@ -57,6 +55,9 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="#">Its Lit!</a>
+                    </li>
 
                 </ul>
             </div>
@@ -76,27 +77,27 @@
                 <div id="tutorInfo">
                     <h1></h1>
                     <div id="heading">
-                        <p id="tutorName" style="float:left; font-size: 40px; font-weight: bold; padding-right: 100px;">Tutor Name</p>
+                        <p id="tutorName" style="float: left; font-size: 40px; font-weight: bold; padding-right: 100px;">Tutor Name</p>
                         <p id="tutorClass" style="float: left; font-size: 30px; font-weight: bold; top: 10px; left: 30px; margin-bottom: 5px; padding-top: 2px;">CS 408</p>
                     </div>
 
-                    <div style="position: relative; clear:both; top:10px">
+                    <div style="position: relative; clear: both; top: 10px">
                         <p id="tutorEmail" style="position: relative; font-size: 20px; float: left; padding-right: 30px; padding-left: 5px;">
-                            <a style="font-weight: bold; color:black;">Email: </a>
-                            <a href="mailto:" style="color:black;">username@purdue.edu</a>
+                            <a style="font-weight: bold; color: black;">Email: </a>
+                            <a href="mailto:" style="color: black;">username@purdue.edu</a>
                         </p>
-                        <p style="position: relative; font-size: 20px; float: left; left:30px">
-                            <a style="font-weight: bold; color:black;">Phone: </a>
+                        <p style="position: relative; font-size: 20px; float: left; left: 30px">
+                            <a style="font-weight: bold; color: black;">Phone: </a>
                             <a href="tel:">465-867-5309</a>
                         </p>
                     </div>
                     <br>
-                    <hr style="position: relative; width: 100%; font-weight: bold; "></>
-                    <div style="position: relative; height:10px">
-                        <p style="position: relative; font-size: 20px; top: 5px; float: left;  height: 10px; left: 5px;">$$$/hr</p>
+                    <hr style="position: relative; width: 100%; font-weight: bold;"></hr>
+                    <div style="position: relative; height: 10px">
+                        <p style="position: relative; font-size: 20px; top: 5px; float: left; height: 10px; left: 5px;">$$$/hr</p>
                         <br>
                         <br>
-                        <form style="position: absolute; float: left;  left: 50px; height: 10px;">
+                        <form style="position: absolute; float: left; left: 50; height: 10;">
                             <fieldset class="starability-heart">
 
                                 <input type="radio" id="rate1" name="rating" value="1" />
@@ -116,12 +117,13 @@
                             </fieldset>
                         </form>
                     </div>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="container" style="padding-left:0px; padding-bottom:5px;">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pretium mattis nisl non accumsan. Lorem
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="container" style=" padding-left: 0px; padding-bottom: 5px;">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pretium mattis nisl non accumsan. Lorem
                             ipsum dolor sit amet, consectetur adipiscing elit. Mauris risus orci, laoreet ac lacus malesuada,
                             viverra iaculis tellus. Mauris suscipit augue at augue finibus, id aliquet mauris commodo. Morbi
                             eu rhoncus velit. Proin leo risus, vulputate tempus scelerisque sit amet, congue non velit. Donec
@@ -129,25 +131,25 @@
                             vel suscipit metus iaculis sed. Maecenas elit nisl, imperdiet quis dui id, rhoncus tempus ligula.
                             In hac habitasse platea dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum
                             et malesuada fames ac ante ipsum primis in faucibus. Aenean fringilla congue enim, id posuere
-                            ex ornare id.</p>
+                            ex ornare id.
+                        </p>
                     </div>
-                    <div  class="container" id="calendar" style="border:0px; padding-left:0px;" >
+                    <div class="container" id="calendar" style="border: 0px; padding-left: 0px;">
+                        <div class="container">
+                            <button type="submit" class="btn btn-primary" id="showCalendar" onclick="loadTutorSched()">Show Calendar</button>
+                        </div>
+                    </div>
+
                 </div>
-
             </div>
-        </div>
 
-    </div>
+        </div>
     </div>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    
-
+    <script src="Scripts/bootstrap.min.js"></script>
 </body>
-
 </html>
-
-</asp:Content>
