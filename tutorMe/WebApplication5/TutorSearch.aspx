@@ -50,7 +50,7 @@
             <div class="bottom-mn">
                 <ul class="mn-vnavigation">
                     <li>
-                        <a href="#">My Favourite</a>
+                        <a href="/UserSettings.aspx">User Settings</a>
                     </li>
                     <li>
                         <a href="#">Most Popular</a>
