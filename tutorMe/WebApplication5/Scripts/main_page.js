@@ -123,17 +123,21 @@ function showTutor(tutorId, className) {
             document.getElementById(rating).checked = true;
         }
     });
+    dp.init();
+    dp.deleteEvents();
+    getTutorSched(tutorId);
 }
 
 function saveRating(rating) {
     alert(rating);
 }
-function getTutorSched() {
+function getTutorSched(tutorId) {
     $.ajax({
         url: "TutorSearch.aspx/getTutorSchedule",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
+        data: '{"tutorID":"' + tutorId + '"}',
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
@@ -145,7 +149,7 @@ function getTutorSched() {
 
 function loadSchedule(tutorSched) {
     var parsedSched = JSON.parse(tutorSched.d);
-
+    
     for (i in parsedSched) {
         var e = new DayPilot.Event({
             start: parsedSched[i].startTime,

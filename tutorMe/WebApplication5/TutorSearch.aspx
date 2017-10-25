@@ -110,21 +110,26 @@
                         </div>
                        <div id="calendar" class="container" style="padding-left:0px; border:0px">
                         <script>
-                            // Initialize and Display Calendar
-                            var dp = new DayPilot.Calendar("calendar");
-                            dp.startDate = "2013-03-25";
-                            dp.viewType = "Week";
-                            dp.timeRangeSelectedHandling = "Disabled";
-                            dp.eventMoveHandling = "Disabled";
-                            dp.eventResizeHandling = "Disabled";
-                            dp.init();
-                            dp.headerDateFormat = "dddd";
-                            dp.onEventClick = function (args) {
-                                alert("Do you wanna request to book this time slot ?");
-                            };
+
+                            var dp;
+                            function initializeCal() {
+                                dp = new DayPilot.Calendar("calendar");
+                                dp.startDate = "2013-03-25";
+                                dp.viewType = "Week";
+                                dp.timeRangeSelectedHandling = "Disabled";
+                                dp.eventMoveHandling = "Disabled";
+                                dp.eventResizeHandling = "Disabled";
+                                dp.init();
+                                dp.headerDateFormat = "dddd";
+                                dp.onEventClick = function (args) {
+                                    //alert("Do you wanna request to book this time slot ?");
+                                };
+                            }
+
+                            initializeCal();
+                           
 
                         </script>
-                        <button type="submit" class="btn btn-primary" id="showCalendar" onclick="getTutorSched()">Show Calendar</button>
                     </div>
                     </div>
 
