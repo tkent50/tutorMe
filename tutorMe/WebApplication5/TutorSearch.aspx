@@ -85,20 +85,20 @@
                         <br>
                         <form style="position: absolute; float: left;  left: 50px; height: 10px;">
                             <fieldset class="starability-basic">
-
-                                <input type="radio" id="rate1" name="rating" value="1" />
+                                <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                                <input type="radio" id="rate1" name="rating" value="1" onclick="saveRating(this.value)"/>
                                 <label for="rate1">1 star.</label>
 
-                                <input type="radio" id="rate2" name="rating" value="2" />
+                                <input type="radio" id="rate2" name="rating" value="2" onclick="saveRating(this.value)"/>
                                 <label for="rate2">2 stars.</label>
 
-                                <input type="radio" id="rate3" name="rating" value="3" />
+                                <input type="radio" id="rate3" name="rating" value="3" onclick="saveRating(this.value)"/>
                                 <label for="rate3">3 stars.</label>
 
-                                <input type="radio" id="rate4" name="rating" value="4" />
+                                <input type="radio" id="rate4" name="rating" value="4" onclick="saveRating(this.value)"/>
                                 <label for="rate4">4 stars.</label>
 
-                                <input type="radio" id="rate5" name="rating" value="5" />
+                                <input type="radio" id="rate5" name="rating" value="5" onclick="saveRating(this.value)"/>
                                 <label for="rate5">5 stars.</label>
                             </fieldset>
                         </form>

@@ -118,8 +118,15 @@ function showTutor(tutorId, className) {
             document.getElementById("tutorEmail").innerHTML = parsedInfo[0].email;
             document.getElementById("tutorPhone").innerHTML = parsedInfo[0].phone;
             document.getElementById("tutorClass").innerHTML = className;
+            var rating = "rate" + parsedInfo[0].rating;
+            document.getElementById("no-rate").checked = true;
+            document.getElementById(rating).checked = true;
         }
     });
+}
+
+function saveRating(rating) {
+    alert(rating);
 }
 
 
