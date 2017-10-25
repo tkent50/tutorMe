@@ -128,5 +128,32 @@ function showTutor(tutorId, className) {
 function saveRating(rating) {
     alert(rating);
 }
+function getTutorSched() {
+    $.ajax({
+        url: "TutorSearch.aspx/getTutorSchedule",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            loadSchedule(result);
+        }
+    });
+}
 
+function loadSchedule(tutorSched) {
+    var parsedSched = JSON.parse(tutorSched.d);
 
+    for (i in parsedSched) {
+        var e = new DayPilot.Event({
+            start: parsedSched[i].startTime,
+            end: parsedSched[i].endTime,
+            id: parsedSched[i].calID,
+            text: parsedSched[i].text,
+        });
+        dp.events.add(e);
+    }
+
+}

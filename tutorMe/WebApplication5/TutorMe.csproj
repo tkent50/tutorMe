@@ -178,7 +178,6 @@
     <Content Include="js\mlpushmenu.js" />
     <Content Include="js\modernizr.custom.js" />
     <Content Include="js\npm.js" />
-    <Content Include="js\user_settings.js" />
     <Content Include="MainPage.aspx" />
     <Content Include="Scripts\addTutor.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -194,6 +193,7 @@
     <Content Include="Scripts\modernizr.custom.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\user_settings.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />

@@ -241,12 +241,16 @@ namespace WebApplication5
         }
         protected void changeButton()
         {
+            // Add a try catch there
+            /* 
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             string userId = userIdCookie.Value;
             if (UserIsTutor(userId))
             {
                 become_tutor.Text = "Tutor Settings";
             }
+            */
+
         }
 
 
@@ -334,6 +338,58 @@ namespace WebApplication5
 
             var json = new JavaScriptSerializer().Serialize(info);
             return json;
+        }
+
+        public class tutorSchedInfo
+        {
+            public int calID;
+            public int tutorID;
+            public string text;
+            public string startTime;
+            public string endTime;
+            public string classID;
+        }
+
+        [WebMethod]
+        public static string getTutorSchedule()
+        {
+
+            List<tutorSchedInfo> tutorSched;
+            int tutorID = 23;
+            if (tutorID == 23)
+            {
+                tutorSched = new List<tutorSchedInfo>
+                {
+                    new tutorSchedInfo{calID = 3, tutorID = 23, startTime = "2013-03-24T02:00:00", endTime = "2013-03-24T04:00:00", text = "Event 1"},
+                    new tutorSchedInfo{calID = 4, tutorID = 23, startTime = "2013-03-25T12:00:00", endTime = "2013-03-25T15:00:00", text = "Event 2"},
+                    new tutorSchedInfo{calID = 5, tutorID = 23, startTime = "2013-03-26T18:00:00", endTime = "2013-03-26T23:59:00", text = "Event 3"},
+                    new tutorSchedInfo{calID = 6, tutorID = 23, startTime = "2013-03-27T02:00:00", endTime = "2013-03-29T13:00:00", text = "Event 4"},
+                };
+            }
+            else if (tutorID == 24)
+            {
+                tutorSched = new List<tutorSchedInfo>
+                {
+                    new tutorSchedInfo{calID = 1, tutorID = 24, startTime = "2013-03-24T02:00:00", endTime = "2013-03-25T04:00:00", text = "Event 1"},
+                    new tutorSchedInfo{calID = 2, tutorID = 24, startTime = "2013-03-24T12:00:00", endTime = "2013-03-25T15:00:00", text = "Event 2"},
+
+                };
+            }
+            else if (tutorID == 25)
+            {
+                tutorSched = new List<tutorSchedInfo>
+                {
+                    new tutorSchedInfo{calID = 7, tutorID = 25, startTime = "2013-03-24T18:00:00", endTime = "2013-03-25T23:59:00", text = "Event 1"},
+                    new tutorSchedInfo{calID = 8, tutorID = 25, startTime = "2013-03-24T02:00:00", endTime = "2013-03-25T13:00:00", text = "Event 2"},
+                };
+            }
+            else
+            {
+                tutorSched = null;
+            }
+            var json = new JavaScriptSerializer().Serialize(tutorSched);
+            return json;
+
         }
     }
 }

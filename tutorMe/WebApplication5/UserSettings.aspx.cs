@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.ComponentModel.DataAnnotations;
 using MySql.Data.MySqlClient;
+using System.Web.Services;
+using System.Web.Script.Serialization;
 
 namespace WebApplication5
 {
@@ -188,6 +190,62 @@ namespace WebApplication5
                 hash = hash + ((i + 1) * password[i]);
             }
             return hash;
+        }
+
+        public class studentSchedInfo
+        {
+            public int calID;
+            public int studentID;
+            public string text;
+            public string startTime;
+            public string endTime;
+        }
+
+        [WebMethod]
+        public static string setUserSchedule()
+        {
+            return "success";
+        }
+
+        [WebMethod]
+        public static string getUserSchedule()
+        {
+            List<studentSchedInfo> tutorSched;
+            int studentID = 24;
+            if (studentID == 23)
+            {
+                tutorSched = new List<studentSchedInfo>
+                {
+                    new studentSchedInfo{calID = 3, studentID = 23, startTime = "2013-03-24T02:00:00", endTime = "2013-03-24T04:00:00", text = "Event 1"},
+                    new studentSchedInfo{calID = 4, studentID = 23, startTime = "2013-03-25T12:00:00", endTime = "2013-03-25T15:00:00", text = "Event 2"},
+                    new studentSchedInfo{calID = 5, studentID = 23, startTime = "2013-03-26T18:00:00", endTime = "2013-03-26T23:59:00", text = "Event 3"},
+                    new studentSchedInfo{calID = 6, studentID = 23, startTime = "2013-03-27T02:00:00", endTime = "2013-03-29T13:00:00", text = "Event 4"},
+                };
+            }
+            else if (studentID == 24)
+            {
+                tutorSched = new List<studentSchedInfo>
+                {
+                    new studentSchedInfo{calID = 1, studentID = 24, startTime = "2013-03-24T02:00:00", endTime = "2013-03-24T04:00:00", text = "Event 1"},
+                    new studentSchedInfo{calID = 2, studentID = 24, startTime = "2013-03-27T12:00:00", endTime = "2013-03-27T15:00:00", text = "Event 2"},
+
+                };
+            }
+            else if (studentID == 25)
+            {
+                tutorSched = new List<studentSchedInfo>
+                {
+                    new studentSchedInfo{calID = 7, studentID = 25, startTime = "2013-03-24T18:00:00", endTime = "2013-03-25T23:59:00", text = "Event 1"},
+                    new studentSchedInfo{calID = 8, studentID = 25, startTime = "2013-03-24T02:00:00", endTime = "2013-03-25T13:00:00", text = "Event 2"},
+                };
+            }
+            else
+            {
+                tutorSched = null;
+            }
+            var json = new JavaScriptSerializer().Serialize(tutorSched);
+            return json;
+
         }
     }
 }
