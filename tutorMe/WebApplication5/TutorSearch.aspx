@@ -23,7 +23,7 @@
   
         <!-- .net FORM -->
         <div id="mn-wrapper">
-            <div class="mn-sidebar">
+            <div class="mn-sidebar" style="z-index:3;">
                 <div class="mn-toggle">
                     <i class="fa fa-bars"></i>
                 </div>
@@ -61,10 +61,16 @@
                     </ul>
                 </div>
             </div>
-            <div class="container" id="mn-cont">
-                <div class="cnt-mcont">
-                    <div id="tutorInfo">
-                        <h1></h1>
+
+         
+
+            
+            
+            <div class="container" id="mn-cont"  >
+                <div class="container " id="landing" style="position:absolute; z-index:2; width:100%; height:100%; visibility:visible ">
+                     </div>
+                <div class="cnt-mcont" style="position:absolute; z-index:1; max-height:100%; " >
+                    <div id="tutorInfo" style="visibility:hidden;">
                         <div id="heading">
                             <p id="tutorName" style="float: left; font-size: 40px; font-weight: bold; padding-right: 100px;"></p>
                             <p id="tutorClass" style="float: left; font-size: 30px; font-weight: bold; top: 10px; left: 30px; margin-bottom: 5px; padding-top: 2px;"></p>
@@ -117,7 +123,7 @@
                             dp.timeRangeSelectedHandling = "Disabled";
                             dp.eventMoveHandling = "Disabled";
                             dp.eventResizeHandling = "Disabled";
-                            dp.init();
+                            
                             dp.headerDateFormat = "dddd";
                             dp.onEventClick = function (args) {
                                 alert("Do you wanna request to book this time slot ?");
@@ -130,7 +136,6 @@
 
                 </div>
             </div>
-
         </div>
 
 
