@@ -1,6 +1,3 @@
-
-var calLoaded = false;
-
 function onPageLoad() {
     loadClasses();
 }
@@ -101,18 +98,7 @@ function handleClassTutors(tutorList, className) {
     document.getElementById(className).appendChild(tutorNameList);
 }
 
-function firstTutorInfoLoad() {
-    dp.init();
-    document.getElementById("tutorInfo").style.visibility = 'visible';
-    document.getElementById("landing").remove();
-    calLoaded = true;
-}
-
 function showTutor(tutorId, className) {
-
-    if (!calLoaded) {
-        firstTutorInfoLoad();
-    }
 
     //alert(className)
     $.ajax({
@@ -137,21 +123,17 @@ function showTutor(tutorId, className) {
             document.getElementById(rating).checked = true;
         }
     });
-    dp.init();
-    dp.deleteEvents();
-    getTutorSched(tutorId);
 }
 
 function saveRating(rating) {
     alert(rating);
 }
-function getTutorSched(userId) {
+function getTutorSched() {
     $.ajax({
         url: "TutorSearch.aspx/getTutorSchedule",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: '{"userId":"' + userId + '"}',
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
@@ -163,7 +145,7 @@ function getTutorSched(userId) {
 
 function loadSchedule(tutorSched) {
     var parsedSched = JSON.parse(tutorSched.d);
-    
+
     for (i in parsedSched) {
         var e = new DayPilot.Event({
             start: parsedSched[i].startTime,

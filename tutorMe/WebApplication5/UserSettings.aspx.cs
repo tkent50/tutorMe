@@ -16,6 +16,10 @@ namespace WebApplication5
         static string userId = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            /* setUserSchedule(25, "2013-03-27 11:45:30", "2013-03-27 13:45:30", 5, "CS354");
+             setUserSchedule(27, "2013-03-27 11:45:30", "2013-03-27 13:45:30", 5, "CS354");
+             setUserSchedule(28, "2013-03-27 11:45:30", "2013-03-27 13:45:30", 5, "CS354"); */
+            deleteUserSchedule(27,5);
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (userIdCookie == null)
             {
@@ -211,16 +215,74 @@ namespace WebApplication5
         }
 
         [WebMethod]
-        public static string setUserSchedule()
+        public static int setUserSchedule(int userId, string startTime, string endTime, int calId, string text)
         {
-            return "success";
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO studentSchedules(userID,startTime,endTime,calID,text) VALUES(@userID, @startTime,@endTime,@calID,@text)", connection: con);
+                cmd.Parameters.AddWithValue("@userID", userId);
+                cmd.Parameters.AddWithValue("@startTime", startTime);
+                cmd.Parameters.AddWithValue("@endTime", endTime);
+                cmd.Parameters.AddWithValue("@calID", calId);
+                cmd.Parameters.AddWithValue("@text", text);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return 1;
+            }
+        }
+
+
+        [WebMethod]
+        public static int deleteUserSchedule(int userId, int calId)
+        {
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "DELETE from studentSchedules where userID = @userId AND calID = @calId", connection: con);
+                cmd.Parameters.AddWithValue("@userID", userId);
+                cmd.Parameters.AddWithValue("@calID", calId);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return 1;
+            }
         }
 
         [WebMethod]
-        public static string getUserSchedule()
+        public static string getUserSchedule(int userId)
         {
             List<studentSchedInfo> tutorSched;
-            int studentID = 24;
+
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM studentSchedules WHERE userID = @userId", connection: con);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                con.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                int calID = 0;
+                int studID = Convert.ToInt32(userId);
+                string startTime = "";
+                string endTime = "";
+                string text = "";
+                while (reader.Read())
+                {
+                    calID = Convert.ToInt32(reader["calID"].ToString());
+                    startTime = reader["startTime"].ToString();
+                    endTime = reader["endTime"].ToString();
+                    text = reader["text"].ToString();
+
+                }
+                tutorSched = new List<studentSchedInfo>
+                {
+                    new studentSchedInfo{calID = calID, studentID = studID, startTime = startTime, endTime = endTime, text = text}
+                };
+            }
+            con.Close();
+            var json = new JavaScriptSerializer().Serialize(tutorSched);
+            return json;
+        }
+
+        /*int studentID = 24;
             if (studentID == 23)
             {
                 tutorSched = new List<studentSchedInfo>
@@ -256,5 +318,6 @@ namespace WebApplication5
             return json;
 
         }
+    }*/
     }
 }

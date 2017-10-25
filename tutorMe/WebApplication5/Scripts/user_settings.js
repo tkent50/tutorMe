@@ -14,7 +14,8 @@ function getUserSched() {
     });
 }
 
-//data: '{"startDate":"' + start + '","endDate":"' + start + '","tutorID":"' + id + '","text":"' + text + '"}',
+//setUserSchedule(int userId, string startTime, string endTime, int calId, string text)
+//data: '{"tutorID":"' + tutorId + '"}',
 
 function setUserSched() {
 
