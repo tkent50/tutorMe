@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TutorSearch.aspx.cs" Inherits="WebApplication5.TutorSearch" %>
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent">
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TutorSearch.aspx.cs" Inherits="WebApplication5.TutorSearch" %>
 
 <html>
 
@@ -19,6 +18,7 @@
 </head>
 
 <body onload="onPageLoad()">
+    <form id="regform" runat="server"> <!-- .net FORM -->
     <div id="mn-wrapper">
         <div class="mn-sidebar">
             <div class="mn-toggle">
@@ -50,10 +50,10 @@
             <div class="bottom-mn">
                 <ul class="mn-vnavigation">
                     <li>
-                        <a href="#">My Favourite</a>
+                        <a href="/UserSettings.aspx">User Settings</a>
                     </li>
                     <li>
-                        <a href="#">Most Popular</a>
+                        <asp:HyperLink ID="become_tutor" runat="server" href="/TutorSettings.aspx">Become a Tutor</asp:HyperLink>
                     </li>
                 </ul>
             </div>
@@ -156,7 +156,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 
+    </form>
 </body>
     </html>
-</asp:Content>
 

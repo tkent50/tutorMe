@@ -10,6 +10,6 @@
 namespace WebApplication5 {
     
     
-    public partial class Default {
+    public partial class main_page {
     }
 }

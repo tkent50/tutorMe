@@ -8,6 +8,28 @@ function addTutor() {
 	newTutorName.value="";*/
 }
 
+<<<<<<< HEAD
+function loadClasses() {
+    alert("Before");
+    $.ajax({
+        url: "TutorSearch.aspx/getClasses",
+        method: "POST",
+        data: {},
+        success: function() {alert("Success!")}
+    })
+    alert("after");
+}
+
+
+function onPageLoad() {
+
+
+	//showTutor();
+	alert("Loaded");
+	loadClasses();
+
+}
+=======
 function onPageLoad() {
 	document.getElementById("newTutorName")
 	.addEventListener("keyup", function(event) {
@@ -44,3 +66,4 @@ function closeTutorInfo() {
 		x[i].style.visibility = "hidden";
 	}
 }
+>>>>>>> origin/Srish
