@@ -131,13 +131,13 @@ function showTutor(tutorId, className) {
 function saveRating(rating) {
     alert(rating);
 }
-function getTutorSched(tutorId) {
+function getTutorSched(userId) {
     $.ajax({
         url: "TutorSearch.aspx/getTutorSchedule",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: '{"tutorID":"' + tutorId + '"}',
+        data: '{"userId":"' + userId + '"}',
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
