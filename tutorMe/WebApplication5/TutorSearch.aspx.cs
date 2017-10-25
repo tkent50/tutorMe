@@ -158,12 +158,23 @@ namespace WebApplication5
                 string phone = reader["phoneNumber"].ToString();
                 con.Close();
 
+                
                 MySqlCommand cmd2 = new MySqlCommand(cmdText: "SELECT * FROM tutorRatings WHERE tutorID = @tutorID", connection: con);
                 cmd2.Parameters.AddWithValue("@tutorID", tutorID);
                 con.Open();
                 MySqlDataReader reader2 = cmd2.ExecuteReader();
-                reader2.Read();
-                string rating = reader2["rating"].ToString();
+
+                bool found = false;
+                while (reader2.Read())
+                {
+                    found = true;
+                }
+                
+                string rating = "0";
+                if (found)
+                {
+                    rating = reader2["rating"].ToString();
+                }
                 con.Close();
 
                 Tutor newTutor = new Tutor(first, last, bio, email, phone, rating);

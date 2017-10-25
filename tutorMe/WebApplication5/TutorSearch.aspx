@@ -13,7 +13,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="Content/starRating/starability-basic.css" />
+    <link rel="stylesheet" type="text/css" href="Content/starRating/starability-all.css" />
     <link rel="stylesheet" href="css/main_page.css">
     <script src="Scripts/daypilot-all.min.js?v=217" type="text/javascript"></script>
     <script src="Scripts/main_page.js"></script>
@@ -81,31 +81,26 @@
                             </p>
                         </div>
                         <br>
-                        <hr size="100" style="position: relative; width: 100%; font-weight: bold;" />
-                        <div style="position: relative; height: 10px">
-                            <p style="position: relative; font-size: 20px; top: 5px; float: left; height: 10px; left: 5px;">$$$/hr</p>
-                            <br>
-                            <br>
-                            <form style="position: absolute; float: left; left: 50px; height: 10px;">
-                                <fieldset class="starability-basic">
+                        <br>
+                        <form style="position: absolute; float: left;  left: 250px; height: 10px; ">
+                            <fieldset class="starability-basic">
+                                <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                                <input type="radio" id="rate1" name="rating" value="1" onclick="saveRating(this.value)"/>
+                                <label for="rate1">1 star.</label>
 
-                                    <input type="radio" id="rate1" name="rating" value="1" />
-                                    <label for="rate1">1 star.</label>
+                                <input type="radio" id="rate2" name="rating" value="2" onclick="saveRating(this.value)"/>
+                                <label for="rate2">2 stars.</label>
 
-                                    <input type="radio" id="rate2" name="rating" value="2" />
-                                    <label for="rate2">2 stars.</label>
+                                <input type="radio" id="rate3" name="rating" value="3" onclick="saveRating(this.value)"/>
+                                <label for="rate3">3 stars.</label>
 
-                                    <input type="radio" id="rate3" name="rating" value="3" />
-                                    <label for="rate3">3 stars.</label>
+                                <input type="radio" id="rate4" name="rating" value="4" onclick="saveRating(this.value)"/>
+                                <label for="rate4">4 stars.</label>
 
-                                    <input type="radio" id="rate4" name="rating" value="4" />
-                                    <label for="rate4">4 stars.</label>
-
-                                    <input type="radio" id="rate5" name="rating" value="5" />
-                                    <label for="rate5">5 stars.</label>
-                                </fieldset>
-                            </form>
-                        </div>
+                                <input type="radio" id="rate5" name="rating" value="5" onclick="saveRating(this.value)"/>
+                                <label for="rate5">5 stars.</label>
+                            </fieldset>
+                        </form>
                         <br>
                         <br>
                         <br>
