@@ -14,8 +14,6 @@ function getUserSched() {
     });
 }
 
-//setUserSchedule(int userId, string startTime, string endTime, int calId, string text)
-//data: '{"tutorID":"' + tutorId + '"}',
 
 function setUserSched() {
 
@@ -24,6 +22,7 @@ function setUserSched() {
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
+        data: '{"startTime":"' + startTime + '","endTime":"' + endTime + '","calId":"' + calId + '","text":"' + text + '"}',
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("ThisRequest: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },

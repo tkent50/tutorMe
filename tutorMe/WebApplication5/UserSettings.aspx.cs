@@ -232,9 +232,8 @@ namespace WebApplication5
             }
         } 
 
-
         [WebMethod]
-        public static string getUserSchedule(int userId)
+        public static string getUserSchedule()
         {
             List<studentSchedInfo> tutorSched;
 
