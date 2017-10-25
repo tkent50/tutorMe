@@ -67,6 +67,11 @@ namespace WebApplication5
             System.Diagnostics.Trace.WriteLine("16 --");
             System.Diagnostics.Trace.WriteLine(details);
             */
+            getTutorSchedule(25);
+            setTutorSchedule(28, "2013-03-27 11:45:30", "2013-03-27 13:45:30", 5, "CS354");
+            setTutorSchedule(28, "2013-03-27 09:45:30", "2013-03-27 10:45:30", 5, "CS354");
+
+
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (userIdCookie == null)
             {
@@ -158,7 +163,7 @@ namespace WebApplication5
                 string phone = reader["phoneNumber"].ToString();
                 con.Close();
 
-                
+
                 MySqlCommand cmd2 = new MySqlCommand(cmdText: "SELECT * FROM tutorRatings WHERE tutorID = @tutorID", connection: con);
                 cmd2.Parameters.AddWithValue("@tutorID", tutorID);
                 con.Open();
@@ -169,7 +174,7 @@ namespace WebApplication5
                 {
                     found = true;
                 }
-                
+
                 string rating = "0";
                 if (found)
                 {
@@ -359,49 +364,55 @@ namespace WebApplication5
             public string text;
             public string startTime;
             public string endTime;
-            public string classID;
         }
 
+
         [WebMethod]
-        public static string getTutorSchedule()
+        public static int setTutorSchedule(int userId, string startTime, string endTime, int calId, string text)
         {
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO tutorSchedules(tutorID,startTime,endTime,calID,text) VALUES(@tutorID, @startTime,@endTime,@calID,@text)", connection: con);
+                cmd.Parameters.AddWithValue("@tutorID", userId);
+                cmd.Parameters.AddWithValue("@startTime", startTime);
+                cmd.Parameters.AddWithValue("@endTime", endTime);
+                cmd.Parameters.AddWithValue("@calID", calId);
+                cmd.Parameters.AddWithValue("@text", text);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return 1;
+            }
+        }
+        [WebMethod]
+        public static string getTutorSchedule(int userId)
+        {
+            List<tutorSchedInfo> tutorSched = new List<tutorSchedInfo>();
 
-            List<tutorSchedInfo> tutorSched;
-            int tutorID = 23;
-            if (tutorID == 23)
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
-                tutorSched = new List<tutorSchedInfo>
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM tutorSchedules WHERE tutorID = @userId", connection: con);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                con.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                int calID = 0;
+                int tutorID = Convert.ToInt32(userId);
+                string startTime = "";
+                string endTime = "";
+                string text = "";
+                while (reader.Read())
                 {
-                    new tutorSchedInfo{calID = 3, tutorID = 23, startTime = "2013-03-24T02:00:00", endTime = "2013-03-24T04:00:00", text = "Event 1"},
-                    new tutorSchedInfo{calID = 4, tutorID = 23, startTime = "2013-03-25T12:00:00", endTime = "2013-03-25T15:00:00", text = "Event 2"},
-                    new tutorSchedInfo{calID = 5, tutorID = 23, startTime = "2013-03-26T18:00:00", endTime = "2013-03-26T23:59:00", text = "Event 3"},
-                    new tutorSchedInfo{calID = 6, tutorID = 23, startTime = "2013-03-27T02:00:00", endTime = "2013-03-29T13:00:00", text = "Event 4"},
-                };
-            }
-            else if (tutorID == 24)
-            {
-                tutorSched = new List<tutorSchedInfo>
-                {
-                    new tutorSchedInfo{calID = 1, tutorID = 24, startTime = "2013-03-24T02:00:00", endTime = "2013-03-25T04:00:00", text = "Event 1"},
-                    new tutorSchedInfo{calID = 2, tutorID = 24, startTime = "2013-03-24T12:00:00", endTime = "2013-03-25T15:00:00", text = "Event 2"},
+                    calID = Convert.ToInt32(reader["calID"].ToString());
+                    startTime = reader["startTime"].ToString();
+                    endTime = reader["endTime"].ToString();
+                    text = reader["text"].ToString();
+                    tutorSched.Add(new tutorSchedInfo { calID = calID, tutorID = tutorID, startTime = startTime, endTime = endTime, text = text });
+                }
+                con.Close();
+                var json = new JavaScriptSerializer().Serialize(tutorSched);
+                return json;
 
-                };
             }
-            else if (tutorID == 25)
-            {
-                tutorSched = new List<tutorSchedInfo>
-                {
-                    new tutorSchedInfo{calID = 7, tutorID = 25, startTime = "2013-03-24T18:00:00", endTime = "2013-03-25T23:59:00", text = "Event 1"},
-                    new tutorSchedInfo{calID = 8, tutorID = 25, startTime = "2013-03-24T02:00:00", endTime = "2013-03-25T13:00:00", text = "Event 2"},
-                };
-            }
-            else
-            {
-                tutorSched = null;
-            }
-            var json = new JavaScriptSerializer().Serialize(tutorSched);
-            return json;
-
         }
     }
 }
