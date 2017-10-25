@@ -67,10 +67,6 @@ namespace WebApplication5
             System.Diagnostics.Trace.WriteLine("16 --");
             System.Diagnostics.Trace.WriteLine(details);
             */
-            getTutorSchedule(25);
-            setTutorSchedule(28, "2013-03-27 11:45:30", "2013-03-27 13:45:30", 5, "CS354");
-            setTutorSchedule(28, "2013-03-27 09:45:30", "2013-03-27 10:45:30", 5, "CS354");
-
 
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (userIdCookie == null)
