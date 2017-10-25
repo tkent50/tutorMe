@@ -37,7 +37,7 @@
                             <button class="btn btn-secondary" type="button" id="showPassword1">Show Password</button>
                         </span>
                     </div>
-                    <small id="emailHelp" class="form-text text-muted">Password should be more than 8 characters and less than 32 character</small>
+                    <small id="emailHelp" class="form-text text-muted">Password should be between 8 and 32 characters long</small>
                 </div>
 
             </div>

@@ -33,7 +33,7 @@
           </div>
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <asp:TextBox ID="pass_input" type="text" class="form-control" name="password" placeholder="Password" runat="server"></asp:TextBox>     
+            <asp:TextBox ID="pass_input" type="password" class="form-control" name="password" placeholder="Password" runat="server"></asp:TextBox>     
           </div>
           
           <div class="row">

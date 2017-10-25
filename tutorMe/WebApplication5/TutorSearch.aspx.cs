@@ -65,6 +65,7 @@ namespace WebApplication5
             System.Diagnostics.Trace.WriteLine("16 --");
             System.Diagnostics.Trace.WriteLine(details);
             */
+            changeButton();
         }
 
         [WebMethod] // DONE
@@ -207,7 +208,7 @@ namespace WebApplication5
                 con.Close();
             }
         }
-        protected bool UserIsTutor(int userID)
+        protected bool UserIsTutor(string userID)
         {
             bool isTutor = false;
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
@@ -222,11 +223,19 @@ namespace WebApplication5
                     {
                         isTutor = true;
                     }
-                    reader["endTime"].ToString();
                 }
                 con.Close();
             }
             return isTutor;
+        }
+        protected void changeButton()
+        {
+            HttpCookie userIdCookie = Request.Cookies.Get("userId");
+            string userId = userIdCookie.Value;
+            if (UserIsTutor(userId))
+            {
+                become_tutor.Text = "Tutor Settings";
+            }
         }
 
 
