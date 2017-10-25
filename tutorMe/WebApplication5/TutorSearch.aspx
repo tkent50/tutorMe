@@ -82,7 +82,7 @@
                         </div>
                         <br>
                         <br>
-                        <form style="position: absolute; float: left;  left: 50px; height: 10px;">
+                        <form style="position: absolute; float: left;  left: 250px; height: 10px; ">
                             <fieldset class="starability-basic">
                                 <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
                                 <input type="radio" id="rate1" name="rating" value="1" onclick="saveRating(this.value)"/>
