@@ -16,10 +16,10 @@ namespace WebApplication5
         static string userId = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            /* setUserSchedule(25, "2013-03-27 11:45:30", "2013-03-27 13:45:30", 5, "CS354");
-             setUserSchedule(27, "2013-03-27 11:45:30", "2013-03-27 13:45:30", 5, "CS354");
-             setUserSchedule(28, "2013-03-27 11:45:30", "2013-03-27 13:45:30", 5, "CS354"); */
-            deleteUserSchedule(27,5);
+           /* setUserSchedule(25, "2013-03-27 11:45:30", "2013-03-27 13:45:30", 5, "CS354");
+            setUserSchedule(27, "2013-03-27 11:45:30", "2013-03-27 13:45:30", 5, "CS354");
+            setUserSchedule(28, "2013-03-27 11:45:30", "2013-03-27 13:45:30", 5, "CS354"); */
+     
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (userIdCookie == null)
             {
@@ -230,26 +230,10 @@ namespace WebApplication5
                 con.Close();
                 return 1;
             }
-        }
-
-
-        [WebMethod]
-        public static int deleteUserSchedule(int userId, int calId)
-        {
-            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
-            {
-                MySqlCommand cmd = new MySqlCommand(cmdText: "DELETE from studentSchedules where userID = @userId AND calID = @calId", connection: con);
-                cmd.Parameters.AddWithValue("@userID", userId);
-                cmd.Parameters.AddWithValue("@calID", calId);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-                return 1;
-            }
-        }
+        } 
 
         [WebMethod]
-        public static string getUserSchedule(int userId)
+        public static string getUserSchedule()
         {
             List<studentSchedInfo> tutorSched;
 

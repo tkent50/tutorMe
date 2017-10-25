@@ -18,4 +18,4 @@ tutorMe/packages/Microsoft.Web.Infrastructure.1.0.0.0/tools/Install.ps1
 tutorMe/.vs/tutorMe/v15/.suo
 *.config
 tutorMe/.vs/tutorMe/v15/.suo
-tutorMe/WebApplication5/bin/roslyn/VBCSCompiler.exe
+*.config
