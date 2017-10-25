@@ -49,6 +49,8 @@ namespace WebApplication5
 {
     public partial class TutorSearch : System.Web.UI.Page
     {
+        static string userId = "";
+
         public string CommandText { get; private set; }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -65,6 +67,16 @@ namespace WebApplication5
             System.Diagnostics.Trace.WriteLine("16 --");
             System.Diagnostics.Trace.WriteLine(details);
             */
+
+            HttpCookie userIdCookie = Request.Cookies.Get("userId");
+            if (userIdCookie == null)
+            {
+                Response.Redirect("/Default.aspx");
+            }
+            else
+            {
+                userId = userIdCookie.Value;
+            }
             changeButton();
         }
 
@@ -108,7 +120,8 @@ namespace WebApplication5
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand(cmdText: $"SELECT * FROM users JOIN tutorClasses ON users.userID = tutorClasses.tutorID WHERE tutorClasses.className = '{className}'", connection: con);
+                MySqlCommand cmd = new MySqlCommand(cmdText: $"SELECT * FROM users JOIN tutorClasses ON users.userID = tutorClasses.tutorID WHERE tutorClasses.className = '{className}' AND userID != @userId", connection: con);
+                cmd.Parameters.AddWithValue("@userId", userId);
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -146,12 +159,23 @@ namespace WebApplication5
                 string phone = reader["phoneNumber"].ToString();
                 con.Close();
 
+
                 MySqlCommand cmd2 = new MySqlCommand(cmdText: "SELECT * FROM tutorRatings WHERE tutorID = @tutorID", connection: con);
                 cmd2.Parameters.AddWithValue("@tutorID", tutorID);
                 con.Open();
                 MySqlDataReader reader2 = cmd2.ExecuteReader();
-                reader2.Read();
-                string rating = reader2["rating"].ToString();
+
+                bool found = false;
+                while (reader2.Read())
+                {
+                    found = true;
+                }
+
+                string rating = "0";
+                if (found)
+                {
+                    rating = reader2["rating"].ToString();
+                }
                 con.Close();
 
                 Tutor newTutor = new Tutor(first, last, bio, email, phone, rating);
@@ -230,12 +254,16 @@ namespace WebApplication5
         }
         protected void changeButton()
         {
+            // Add a try catch there
+            /* 
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             string userId = userIdCookie.Value;
             if (UserIsTutor(userId))
             {
                 become_tutor.Text = "Tutor Settings";
             }
+            */
+
         }
 
 
@@ -323,6 +351,64 @@ namespace WebApplication5
 
             var json = new JavaScriptSerializer().Serialize(info);
             return json;
+        }
+
+        public class tutorSchedInfo
+        {
+            public int calID;
+            public int tutorID;
+            public string text;
+            public string startTime;
+            public string endTime;
+        }
+
+
+        [WebMethod]
+        public static int setTutorSchedule(int userId, string startTime, string endTime, int calId, string text)
+        {
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO tutorSchedules(tutorID,startTime,endTime,calID,text) VALUES(@tutorID, @startTime,@endTime,@calID,@text)", connection: con);
+                cmd.Parameters.AddWithValue("@tutorID", userId);
+                cmd.Parameters.AddWithValue("@startTime", startTime);
+                cmd.Parameters.AddWithValue("@endTime", endTime);
+                cmd.Parameters.AddWithValue("@calID", calId);
+                cmd.Parameters.AddWithValue("@text", text);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return 1;
+            }
+        }
+        [WebMethod]
+        public static string getTutorSchedule(int userId)
+        {
+            List<tutorSchedInfo> tutorSched = new List<tutorSchedInfo>();
+
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM tutorSchedules WHERE tutorID = @userId", connection: con);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                con.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                int calID = 0;
+                int tutorID = Convert.ToInt32(userId);
+                string startTime = "";
+                string endTime = "";
+                string text = "";
+                while (reader.Read())
+                {
+                    calID = Convert.ToInt32(reader["calID"].ToString());
+                    startTime = reader["startTime"].ToString();
+                    endTime = reader["endTime"].ToString();
+                    text = reader["text"].ToString();
+                    tutorSched.Add(new tutorSchedInfo { calID = calID, tutorID = tutorID, startTime = startTime, endTime = endTime, text = text });
+                }
+                con.Close();
+                var json = new JavaScriptSerializer().Serialize(tutorSched);
+                return json;
+
+            }
         }
     }
 }

@@ -8,38 +8,43 @@ function addTutor() {
 	newTutorName.value="";*/
 }
 
-<<<<<<< HEAD
 function loadClasses() {
-    alert("Before");
+
+    var test = "class1";
+
     $.ajax({
         url: "TutorSearch.aspx/getClasses",
         method: "POST",
-        data: {},
-        success: function() {alert("Success!")}
-    })
-    alert("after");
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            handleClasses(result);
+        }
+    });
 }
 
+function handleClasses(classList) {
+    var numClasses = parseInt(classList.d[0]);
+    for (var i = 1; i <= numClasses; i++) {
+        var backButton = document.createElement("LI");
+        backButton.className = "icon icon-arrow-left";
+
+        var classLink = document.createElement("a");
+        classLink.href = "#";
+        classLink.innerHTML = classList.d[i];
+
+        backButton.appendChild(classLink);
+
+        document.getElementById("classList").appendChild(backButton);
+    }
+}
 
 function onPageLoad() {
 
-
-	//showTutor();
-	alert("Loaded");
 	loadClasses();
-
-}
-=======
-function onPageLoad() {
-	document.getElementById("newTutorName")
-	.addEventListener("keyup", function(event) {
-		event.preventDefault();
-		if (event.keyCode == 13) {
-			document.getElementById("addButton").click();
-		}
-	});
-
-	showTutor();
 
 }
 
@@ -66,4 +71,3 @@ function closeTutorInfo() {
 		x[i].style.visibility = "hidden";
 	}
 }
->>>>>>> origin/Srish

@@ -118,8 +118,46 @@ function showTutor(tutorId, className) {
             document.getElementById("tutorEmail").innerHTML = parsedInfo[0].email;
             document.getElementById("tutorPhone").innerHTML = parsedInfo[0].phone;
             document.getElementById("tutorClass").innerHTML = className;
+            var rating = "rate" + parsedInfo[0].rating;
+            document.getElementById("no-rate").checked = true;
+            document.getElementById(rating).checked = true;
+        }
+    });
+    dp.init();
+    dp.deleteEvents();
+    getTutorSched(tutorId);
+}
+
+function saveRating(rating) {
+    alert(rating);
+}
+function getTutorSched(userId) {
+    $.ajax({
+        url: "TutorSearch.aspx/getTutorSchedule",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        data: '{"userId":"' + userId + '"}',
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            loadSchedule(result);
         }
     });
 }
 
+function loadSchedule(tutorSched) {
+    var parsedSched = JSON.parse(tutorSched.d);
+    
+    for (i in parsedSched) {
+        var e = new DayPilot.Event({
+            start: parsedSched[i].startTime,
+            end: parsedSched[i].endTime,
+            id: parsedSched[i].calID,
+            text: parsedSched[i].text,
+        });
+        dp.events.add(e);
+    }
 
+}

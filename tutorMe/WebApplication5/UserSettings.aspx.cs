@@ -6,14 +6,29 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.ComponentModel.DataAnnotations;
 using MySql.Data.MySqlClient;
+using System.Web.Services;
+using System.Web.Script.Serialization;
 
 namespace WebApplication5
 {
     public partial class UserSettings : System.Web.UI.Page
     {
+        static string userId = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            /* setUserSchedule(25, "2013-03-27 11:45:30", "2013-03-27 13:45:30", 5, "CS354");
+             setUserSchedule(27, "2013-03-27 11:45:30", "2013-03-27 13:45:30", 5, "CS354");
+             setUserSchedule(28, "2013-03-27 11:45:30", "2013-03-27 13:45:30", 5, "CS354"); */
+            deleteUserSchedule(27,5);
+            HttpCookie userIdCookie = Request.Cookies.Get("userId");
+            if (userIdCookie == null)
+            {
+                Response.Redirect("/Default.aspx");
+            }
+            else
+            {
+                userId = userIdCookie.Value;
+            }
         }
 
         protected void SubmitChanges(object sender, EventArgs e)
@@ -189,5 +204,120 @@ namespace WebApplication5
             }
             return hash;
         }
+
+        public class studentSchedInfo
+        {
+            public int calID;
+            public int studentID;
+            public string text;
+            public string startTime;
+            public string endTime;
+        }
+
+        [WebMethod]
+        public static int setUserSchedule(int userId, string startTime, string endTime, int calId, string text)
+        {
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO studentSchedules(userID,startTime,endTime,calID,text) VALUES(@userID, @startTime,@endTime,@calID,@text)", connection: con);
+                cmd.Parameters.AddWithValue("@userID", userId);
+                cmd.Parameters.AddWithValue("@startTime", startTime);
+                cmd.Parameters.AddWithValue("@endTime", endTime);
+                cmd.Parameters.AddWithValue("@calID", calId);
+                cmd.Parameters.AddWithValue("@text", text);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return 1;
+            }
+        }
+
+
+        [WebMethod]
+        public static int deleteUserSchedule(int userId, int calId)
+        {
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "DELETE from studentSchedules where userID = @userId AND calID = @calId", connection: con);
+                cmd.Parameters.AddWithValue("@userID", userId);
+                cmd.Parameters.AddWithValue("@calID", calId);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return 1;
+            }
+        }
+
+        [WebMethod]
+        public static string getUserSchedule(int userId)
+        {
+            List<studentSchedInfo> tutorSched;
+
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM studentSchedules WHERE userID = @userId", connection: con);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                con.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                int calID = 0;
+                int studID = Convert.ToInt32(userId);
+                string startTime = "";
+                string endTime = "";
+                string text = "";
+                while (reader.Read())
+                {
+                    calID = Convert.ToInt32(reader["calID"].ToString());
+                    startTime = reader["startTime"].ToString();
+                    endTime = reader["endTime"].ToString();
+                    text = reader["text"].ToString();
+
+                }
+                tutorSched = new List<studentSchedInfo>
+                {
+                    new studentSchedInfo{calID = calID, studentID = studID, startTime = startTime, endTime = endTime, text = text}
+                };
+            }
+            con.Close();
+            var json = new JavaScriptSerializer().Serialize(tutorSched);
+            return json;
+        }
+
+        /*int studentID = 24;
+            if (studentID == 23)
+            {
+                tutorSched = new List<studentSchedInfo>
+                {
+                    new studentSchedInfo{calID = 3, studentID = 23, startTime = "2013-03-24T02:00:00", endTime = "2013-03-24T04:00:00", text = "Event 1"},
+                    new studentSchedInfo{calID = 4, studentID = 23, startTime = "2013-03-25T12:00:00", endTime = "2013-03-25T15:00:00", text = "Event 2"},
+                    new studentSchedInfo{calID = 5, studentID = 23, startTime = "2013-03-26T18:00:00", endTime = "2013-03-26T23:59:00", text = "Event 3"},
+                    new studentSchedInfo{calID = 6, studentID = 23, startTime = "2013-03-27T02:00:00", endTime = "2013-03-29T13:00:00", text = "Event 4"},
+                };
+            }
+            else if (studentID == 24)
+            {
+                tutorSched = new List<studentSchedInfo>
+                {
+                    new studentSchedInfo{calID = 1, studentID = 24, startTime = "2013-03-24T02:00:00", endTime = "2013-03-24T04:00:00", text = "Event 1"},
+                    new studentSchedInfo{calID = 2, studentID = 24, startTime = "2013-03-27T12:00:00", endTime = "2013-03-27T15:00:00", text = "Event 2"},
+
+                };
+            }
+            else if (studentID == 25)
+            {
+                tutorSched = new List<studentSchedInfo>
+                {
+                    new studentSchedInfo{calID = 7, studentID = 25, startTime = "2013-03-24T18:00:00", endTime = "2013-03-25T23:59:00", text = "Event 1"},
+                    new studentSchedInfo{calID = 8, studentID = 25, startTime = "2013-03-24T02:00:00", endTime = "2013-03-25T13:00:00", text = "Event 2"},
+                };
+            }
+            else
+            {
+                tutorSched = null;
+            }
+            var json = new JavaScriptSerializer().Serialize(tutorSched);
+            return json;
+
+        }
+    }*/
     }
 }
