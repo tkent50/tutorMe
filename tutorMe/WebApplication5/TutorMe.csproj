@@ -219,7 +219,7 @@
     <Content Include="SignUp.aspx" />
     <Content Include="Site.Master" />
     <Content Include="TutorSearch.aspx" />
-    <Content Include="TutorProfile.aspx" />
+    <Content Include="TutorSettings.aspx" />
     <Content Include="UserSettings.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -285,12 +285,12 @@
     <Compile Include="TutorSearch.aspx.cs">
       <DependentUpon>TutorSearch.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TutorProfile.aspx.cs">
-      <DependentUpon>TutorProfile.aspx</DependentUpon>
+    <Compile Include="TutorSettings.aspx.cs">
+      <DependentUpon>TutorSettings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TutorProfile.aspx.designer.cs">
-      <DependentUpon>TutorProfile.aspx</DependentUpon>
+    <Compile Include="TutorSettings.aspx.designer.cs">
+      <DependentUpon>TutorSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserSettings.aspx.cs">
       <DependentUpon>UserSettings.aspx</DependentUpon>
