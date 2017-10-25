@@ -11,7 +11,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="Content/starRating/starability-basic.css" />
+    <link rel="stylesheet" type="text/css" href="Content/starRating/starability-all.css" />
     <link rel="stylesheet" href="css/main_page.css">
     <script src="Scripts/daypilot-all.min.js?v=217" type="text/javascript"></script>
     <script src="Scripts/main_page.js"></script>

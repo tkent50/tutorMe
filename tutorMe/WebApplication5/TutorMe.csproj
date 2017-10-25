@@ -285,6 +285,9 @@
     <Compile Include="TutorSearch.aspx.cs">
       <DependentUpon>TutorSearch.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TutorSearch.aspx.designer.cs">
+      <DependentUpon>TutorSearch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TutorSettings.aspx.cs">
       <DependentUpon>TutorSettings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
