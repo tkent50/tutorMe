@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.ComponentModel.DataAnnotations;
 using MySql.Data.MySqlClient;
 using System.Web.Services;
+using System.Web.Script.Serialization;
 
 namespace WebApplication5
 {
@@ -16,6 +17,7 @@ namespace WebApplication5
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            addClass("CS348");
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (userIdCookie == null)
             {
@@ -209,6 +211,21 @@ namespace WebApplication5
             public string startTime;
             public string endTime;
         }
+
+        [WebMethod]
+        public static int addClass(string className)
+        {
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO classes(className) VALUES(@className)", connection: con);
+                cmd.Parameters.AddWithValue("@className", className);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return 1;
+            }
+        }
+
 
         [WebMethod]
         public static int setTutorSchedule(int userId, string startTime, string endTime, int calId, string text)
