@@ -13,9 +13,18 @@ namespace WebApplication5
 {
     public partial class UserSettings : System.Web.UI.Page
     {
+        static string userId = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            HttpCookie userIdCookie = Request.Cookies.Get("userId");
+            if (userIdCookie == null)
+            {
+                Response.Redirect("/Default.aspx");
+            }
+            else
+            {
+                userId = userIdCookie.Value;
+            }
         }
 
         protected void SubmitChanges(object sender, EventArgs e)

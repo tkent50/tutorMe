@@ -49,6 +49,8 @@ namespace WebApplication5
 {
     public partial class TutorSearch : System.Web.UI.Page
     {
+        static string userId = "";
+
         public string CommandText { get; private set; }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -65,6 +67,15 @@ namespace WebApplication5
             System.Diagnostics.Trace.WriteLine("16 --");
             System.Diagnostics.Trace.WriteLine(details);
             */
+            HttpCookie userIdCookie = Request.Cookies.Get("userId");
+            if (userIdCookie == null)
+            {
+                Response.Redirect("/Default.aspx");
+            }
+            else
+            {
+                userId = userIdCookie.Value;
+            }
             changeButton();
         }
 
@@ -108,7 +119,8 @@ namespace WebApplication5
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand(cmdText: $"SELECT * FROM users JOIN tutorClasses ON users.userID = tutorClasses.tutorID WHERE tutorClasses.className = '{className}'", connection: con);
+                MySqlCommand cmd = new MySqlCommand(cmdText: $"SELECT * FROM users JOIN tutorClasses ON users.userID = tutorClasses.tutorID WHERE tutorClasses.className = '{className}' AND userID != @userId", connection: con);
+                cmd.Parameters.AddWithValue("@userId", userId);
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
