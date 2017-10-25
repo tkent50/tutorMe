@@ -363,11 +363,12 @@ namespace WebApplication5
         }
 
         [WebMethod]
-        public static string getTutorSchedule()
+        public static string getTutorSchedule(int tutorID)
         {
 
             List<tutorSchedInfo> tutorSched;
-            int tutorID = 23;
+            Console.Write(tutorID);
+            tutorID = 23;
             if (tutorID == 23)
             {
                 tutorSched = new List<tutorSchedInfo>
