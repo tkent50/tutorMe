@@ -93,10 +93,22 @@
                                     <input type="text" id="search" class="form-control input-lg" placeholder="Add Class"></input>
                                 </div>
                             </button>
-                            <ul id="classList" class="dropdown-menu">
-                            </ul>
-                        </div>
+
+                            <ul id="classList" class="dropdown-menu" >
+                        </ul>
+                     </div>
+                    </div>                   
+            </div>
+            <div align="center" class="col">
+                <div class="form-group row">                   
+                    <div class="col-10">
+                        <div class="input-group">
+                         <span class="input-group-addon">$</span>
+                          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                          <span class="input-group-addon">.00</span>
+
                     </div>
+                   </div>
                 </div>
                 <div align="center" class="col">
                     <div class="form-group row">
