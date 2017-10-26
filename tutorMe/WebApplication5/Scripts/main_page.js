@@ -137,8 +137,14 @@ function showTutor(tutorId, className) {
             document.getElementById(rating).checked = true;
         }
     });
+    dp = new DayPilot.Calendar("calendar");
+    dp.startDate = "2013-03-25";
+    dp.viewType = "Week";
+    dp.timeRangeSelectedHandling = "Disabled";
+    dp.eventMoveHandling = "Disabled";
+    dp.eventResizeHandling = "Disabled";
     dp.init();
-    dp.deleteEvents();
+    dp.headerDateFormat = "dddd";
     getTutorSched(tutorId);
 }
 
