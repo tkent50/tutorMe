@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.ComponentModel.DataAnnotations;
 using MySql.Data.MySqlClient;
+using System.Web.Services;
+using System.Web.Script.Serialization;
 
 namespace WebApplication5
 {
@@ -15,6 +17,7 @@ namespace WebApplication5
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            addClass("CS348");
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (userIdCookie == null)
             {
@@ -198,6 +201,78 @@ namespace WebApplication5
                 hash = hash + ((i + 1) * password[i]);
             }
             return hash;
+        }
+
+        public class tutorSchedInfo
+        {
+            public int calID;
+            public int tutorID;
+            public string text;
+            public string startTime;
+            public string endTime;
+        }
+
+        [WebMethod]
+        public static int addClass(string className)
+        {
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO classes(className) VALUES(@className)", connection: con);
+                cmd.Parameters.AddWithValue("@className", className);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return 1;
+            }
+        }
+
+
+        [WebMethod]
+        public static int setTutorSchedule(int userId, string startTime, string endTime, int calId, string text)
+        {
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO tutorSchedules(tutorID,startTime,endTime,calID,text) VALUES(@tutorID, @startTime,@endTime,@calID,@text)", connection: con);
+                cmd.Parameters.AddWithValue("@tutorID", userId);
+                cmd.Parameters.AddWithValue("@startTime", startTime);
+                cmd.Parameters.AddWithValue("@endTime", endTime);
+                cmd.Parameters.AddWithValue("@calID", calId);
+                cmd.Parameters.AddWithValue("@text", text);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return 1;
+            }
+        }
+        [WebMethod]
+        public static string getTutorSchedule(int userId)
+        {
+            List<tutorSchedInfo> tutorSched = new List<tutorSchedInfo>();
+
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM tutorSchedules WHERE tutorID = @userId", connection: con);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                con.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                int calID = 0;
+                int tutorID = Convert.ToInt32(userId);
+                string startTime = "";
+                string endTime = "";
+                string text = "";
+                while (reader.Read())
+                {
+                    calID = Convert.ToInt32(reader["calID"].ToString());
+                    startTime = reader["startTime"].ToString();
+                    endTime = reader["endTime"].ToString();
+                    text = reader["text"].ToString();
+                    tutorSched.Add(new tutorSchedInfo { calID = calID, tutorID = tutorID, startTime = startTime, endTime = endTime, text = text });
+                }
+                con.Close();
+                var json = new JavaScriptSerializer().Serialize(tutorSched);
+                return json;
+
+            }
         }
     }
 }
