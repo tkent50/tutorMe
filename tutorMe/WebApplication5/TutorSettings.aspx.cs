@@ -259,7 +259,7 @@ namespace WebApplication5
             return 1;
         }
         [WebMethod]
-        public static int setTutorSchedule(int userId, string startTime, string endTime, int calId, string text)
+        public static int setTutorSchedule(string startTime, string endTime, int calId, string text)
         {
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
@@ -276,7 +276,7 @@ namespace WebApplication5
             }
         }
         [WebMethod]
-        public static string getTutorSchedule(int userId)
+        public static string getTutorSchedule()
         {
             List<tutorSchedInfo> tutorSched = new List<tutorSchedInfo>();
 
@@ -305,5 +305,6 @@ namespace WebApplication5
 
             }
         }
+
     }
 }
