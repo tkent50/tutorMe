@@ -17,6 +17,7 @@ namespace WebApplication5
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            addClass("CS348");
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (userIdCookie == null)
             {
@@ -223,39 +224,6 @@ namespace WebApplication5
                 con.Close();
                 return 1;
             }
-        }
-        [WebMethod]
-        public static int setTutorClass(int tutorId, string className, double rate)
-        {
-            int classId = 0;
-
-            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
-            {
-                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM classes WHERE className = @className", connection: con);
-                cmd.Parameters.AddWithValue("@className", className);
-                con.Open();
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    classId = Convert.ToInt32(reader["classID"].ToString());
-                }
-                con.Close();
-            }  
-
-            MySqlConnection con2 = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
-            {
-                double avgRate = 0.0;
-                MySqlCommand cmd2 = new MySqlCommand(cmdText: "INSERT INTO tutorClasses(tutorID,classID,price,avgRating,className) VALUES(@tutorID, @classID,@price,@avgRating,@className)", connection: con2);
-                cmd2.Parameters.AddWithValue("@tutorID", tutorId);
-                cmd2.Parameters.AddWithValue("@classID", classId);
-                cmd2.Parameters.AddWithValue("@price", rate);
-                cmd2.Parameters.AddWithValue("@avgRating", avgRate);
-                cmd2.Parameters.AddWithValue("@className", className);
-                con2.Open();
-                cmd2.ExecuteNonQuery();
-                con2.Close();
-            }
-            return 1;
         }
 
 
