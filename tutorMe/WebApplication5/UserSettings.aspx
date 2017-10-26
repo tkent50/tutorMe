@@ -108,18 +108,6 @@
                     dp.onTimeRangeSelected = function (args) {
                         var name = prompt("New event name:", "Event");
                         if (!name) return;
-                        var e = new DayPilot.Event({
-                            start: args.start,
-                            end: args.end,
-                            id: DayPilot.guid(),
-                            text: name
-                        });
-                        dp.events.add(e);
-                        dp.clearSelection();
-                    };
-                    dp.onTimeRangeSelected = function (args) {
-                        var name = prompt("New event name:", "Event");
-                        if (!name) return;
                         start = args.start;
                         end = args.end;
                         id = DayPilot.guid();
