@@ -4,6 +4,8 @@
 
 <html>
 
+
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +25,7 @@
   <form id="regform" runat="server"> <!-- .net FORM -->
         <!-- .net FORM -->
         <div id="mn-wrapper">
-            <div class="mn-sidebar">
+            <div class="mn-sidebar" style="z-index:3; min-width:130px">
                 <div class="mn-toggle">
                     <i class="fa fa-bars"></i>
                 </div>
@@ -64,10 +66,19 @@
                     </ul>
                 </div>
             </div>
+
+         
+
+            
+            
             <div class="container" id="mn-cont">
-                <div class="cnt-mcont">
-                    <div id="tutorInfo">
-                        <h1></h1>
+                <div class="container" id="landing" style="width:90%;height:90%; text-align:center; padding-top: 5%; position:absolute; z-index:2; visibility:visible ">
+                    <p style="font-size:50">Welcome to TutorMyClass!</p>
+                    <p style="font-size:25">From here, you can find a tutor for a class you need help in. To start, click a class on the left!</p>
+                </div>
+
+                <div class="cnt-mcont" style=" z-index:1; padding-top:3%" >
+                    <div id="tutorInfo" style="visibility:hidden; position: relative; top: 50%; left:50%; transform: translate(-55%, -55%);">
                         <div id="heading">
                             <p id="tutorName" style="float: left; font-size: 40px; font-weight: bold; padding-right: 100px;"></p>
                             <p id="tutorClass" style="float: left; font-size: 30px; font-weight: bold; top: 10px; left: 30px; margin-bottom: 5px; padding-top: 2px;"></p>
@@ -85,7 +96,7 @@
                         </div>
                         <br>
                         <br>
-                        <form style="position: absolute; float: left;  left: 250px; height: 10px; ">
+                        <form style="position: absolute; float: left;  left:0px; height: 10px; padding-top:10px">
                             <fieldset class="starability-basic">
                                 <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
                                 <input type="radio" id="rate1" name="rating" value="1" onclick="saveRating(this.value)"/>
@@ -122,7 +133,7 @@
                                 dp.timeRangeSelectedHandling = "Disabled";
                                 dp.eventMoveHandling = "Disabled";
                                 dp.eventResizeHandling = "Disabled";
-                                dp.init();
+                                //dp.init();
                                 dp.headerDateFormat = "dddd";
                             }
                             dp.onEventClick = function (args) {
@@ -137,7 +148,6 @@
 
                 </div>
             </div>
-
         </div>
 
 
