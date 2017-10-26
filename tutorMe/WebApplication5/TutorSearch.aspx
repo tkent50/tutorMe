@@ -136,6 +136,9 @@
                                 //dp.init();
                                 dp.headerDateFormat = "dddd";
                             }
+                            dp.onEventClick = function (args) {
+                                alert("Do you wanna request to book this time slot ?");
+                            };
                             initializeCal();
                            
 
