@@ -17,7 +17,6 @@ namespace WebApplication5
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            addClass("CS348");
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (userIdCookie == null)
             {
@@ -225,8 +224,40 @@ namespace WebApplication5
                 return 1;
             }
         }
+        [WebMethod]
+        public static string deleteTutorSchedule(int calId)
+        {
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "DELETE from tutorSchedules where tutorID = @userId AND calID = @calId", connection: con);
+                cmd.Parameters.AddWithValue("@userID", userId);
+                cmd.Parameters.AddWithValue("@calID", calId);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return null;
+            }
+        }
 
+        [WebMethod]
+        public static int setTutorClass(int tutorId, string className, double rate)
+        {
+            int classId = 0;
 
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM classes WHERE className = @className", connection: con);
+                cmd.Parameters.AddWithValue("@className", className);
+                con.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    classId = Convert.ToInt32(reader["classID"].ToString());
+                }
+                con.Close();
+            }
+            return 1;
+        }
         [WebMethod]
         public static int setTutorSchedule(int userId, string startTime, string endTime, int calId, string text)
         {
