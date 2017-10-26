@@ -1,6 +1,3 @@
-
-var calLoaded = false;
-
 function onPageLoad() {
     loadClasses();
 }
@@ -100,18 +97,7 @@ function handleClassTutors(tutorList, className) {
     document.getElementById(className).appendChild(tutorNameList);
 }
 
-function firstTutorInfoLoad() {
-    dp.init();
-    document.getElementById("tutorInfo").style.visibility = 'visible';
-    document.getElementById("landing").remove();
-    calLoaded = true;
-}
-
 function showTutor(tutorId, className) {
-
-    if (!calLoaded) {
-        firstTutorInfoLoad();
-    }
 
     //alert(className)
     $.ajax({
