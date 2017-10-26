@@ -225,6 +225,21 @@ namespace WebApplication5
             }
         }
         [WebMethod]
+        public static string deleteTutorSchedule(int calId)
+        {
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "DELETE from tutorSchedules where tutorID = @userId AND calID = @calId", connection: con);
+                cmd.Parameters.AddWithValue("@userID", userId);
+                cmd.Parameters.AddWithValue("@calID", calId);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return null;
+            }
+        }
+
+        [WebMethod]
         public static int setTutorClass(int tutorId, string className, double rate)
         {
             int classId = 0;
