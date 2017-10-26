@@ -194,33 +194,48 @@ namespace WebApplication5
             return tutorDetail;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        protected void RateTutor(int userID, int tutorID, int classID, int rating)
+        [WebMethod]
+        public static void RateTutor(int userID, int tutorID, int classID, int rating)
         {
-            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            bool alreadyRated = false;
+            MySqlConnection con1 = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
-                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO tutorRatings(userID, tutorID, classID, rating) VALUES('@userID', '@tutorID', '@classID', '@rating'", connection: con);
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM tutorRatings WHERE userID = @userID AND tutorID = @tutorID", connection: con1);
                 cmd.Parameters.AddWithValue("@userID", userID);
                 cmd.Parameters.AddWithValue("@tutorID", tutorID);
-                cmd.Parameters.AddWithValue("@classID", classID);
-                cmd.Parameters.AddWithValue("@rating", rating);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
+                con1.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    alreadyRated = true;
+                }
+                con1.Close();
+            }
+            if (alreadyRated)
+            {
+                MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+                {
+                    MySqlCommand cmd = new MySqlCommand(cmdText: "UPDATE tutorRatings SET rating = @rating WHERE tutorID = @tutorID AND userID = @userID", connection: con);
+                    cmd.Parameters.AddWithValue("@userID", userID);
+                    cmd.Parameters.AddWithValue("@tutorID", tutorID);
+                    cmd.Parameters.AddWithValue("@rating", rating);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            else
+            {
+                MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+                {
+                    MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO tutorRatings(userID, tutorID, rating) VALUES('@userID', '@tutorID', '@rating'", connection: con);
+                    cmd.Parameters.AddWithValue("@userID", userID);
+                    cmd.Parameters.AddWithValue("@tutorID", tutorID);
+                    cmd.Parameters.AddWithValue("@rating", rating);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
             }
         }
         protected void GetClassSchedule(int classID)
@@ -262,16 +277,12 @@ namespace WebApplication5
         }
         protected void changeButton()
         {
-            // Add a try catch there
-            /* 
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             string userId = userIdCookie.Value;
             if (UserIsTutor(userId))
             {
                 become_tutor.Text = "Tutor Settings";
             }
-            */
-
         }
 
 
