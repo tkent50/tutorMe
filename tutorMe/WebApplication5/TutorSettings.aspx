@@ -14,8 +14,7 @@
         crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="Scripts/tutor_setting.js"></script>
-    <script src="Scripts/daypilot-all.min.js?v=217" type="text/javascript"></script>
-    <!-- <script src="Scripts/main_page.js"></script> -->
+     <script src="Scripts/daypilot-all.min.js?v=217" type="text/javascript"></script>
     <link rel="stylesheet" href="css/tutor_setting.css">
 </head>
 
@@ -81,7 +80,8 @@
 
             </form>
         </div>
-
+        <br />
+        <br />
         <div style="padding-top: 20px;" class="container">
             <h3 style="text-align: center;">Add Class</h3>
             <div style="padding-top: 20px;" class="row">
@@ -93,27 +93,19 @@
                                     <input type="text" id="search" class="form-control input-lg" placeholder="Add Class"></input>
                                 </div>
                             </button>
-
-                            <ul id="classList" class="dropdown-menu" >
-                        </ul>
-                     </div>
-                    </div>                   
-            </div>
-            <div align="center" class="col">
-                <div class="form-group row">                   
-                    <div class="col-10">
-                        <div class="input-group">
-                         <span class="input-group-addon">$</span>
-                          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                          <span class="input-group-addon">.00</span>
-
+                            <ul id="classList" class="dropdown-menu">
+                            </ul>
+                        </div>
                     </div>
-                   </div>
                 </div>
                 <div align="center" class="col">
                     <div class="form-group row">
                         <div class="col-10">
-                            <asp:Button ID="Button2" runat="server" OnClick="SubmitChanges" class="btn btn-secondary btn-lg" Text="Add"></asp:Button>
+                            <div class="input-group">
+                                <span class="input-group-addon">$</span>
+                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <span class="input-group-addon">.00</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -126,6 +118,26 @@
                 </div>
             </div>
         </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Add non-existing class" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Add!</button>
+                        </span>
+                    </div>
+                    <!-- /input-group -->
+                </div>
+                <!-- /.col-lg-4 -->
+                <div class="col-lg-4"></div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <br />
+        <br />
 
         <div class="container">
             <table class="table">
@@ -144,6 +156,7 @@
             </table>
         </div>
 
+
         <div id="calendar" class="container" style="padding-left: 0px; border: 0px">
             <script>
 
@@ -157,7 +170,7 @@
                     dp.eventResizeHandling = "Disabled";
                     dp.init();
                     dp.headerDateFormat = "dddd";
-                    
+
                 }
                 getTutorSched();
                 initializeCal();
@@ -186,14 +199,12 @@
 
                     }
                 };
-                
+
 
 
 
             </script>
         </div>
-
-
 
 
         <!-- Optional JavaScript -->
