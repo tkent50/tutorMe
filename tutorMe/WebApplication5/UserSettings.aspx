@@ -115,7 +115,7 @@
                             id: DayPilot.guid(),
                             text: name
                         });
-                        setUserSched()
+                        setUserSched(start, end, id, text);
                         dp.events.add(e);
                         dp.clearSelection();
                     };

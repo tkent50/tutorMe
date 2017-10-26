@@ -46,7 +46,6 @@ function handleClasses(classList) {
             //tester(this.id);
         }
 
-
         newTab.appendChild(newClassName);
         //newTab.appendChild(testList);
         document.getElementById("classList").appendChild(newTab);
