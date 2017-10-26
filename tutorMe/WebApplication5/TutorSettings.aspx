@@ -79,7 +79,8 @@
             
         </form>
     </div>
-
+        <br />
+        <br />
     <div style="padding-top:20px;" class="container">
         <h3 style="text-align:center;">Add Class</h3>
         <div style="padding-top:20px;" class="row">
@@ -116,6 +117,23 @@
             </div>
       </div>
     </div>
+
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Add non-existing class" /> 
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Add!</button>
+                    </span>
+                </div><!-- /input-group -->
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4"></div>
+        </div><!-- /.row -->
+        </div>
+        <br />
+        <br />
 
     <div class="container"> 
         <table class="table">

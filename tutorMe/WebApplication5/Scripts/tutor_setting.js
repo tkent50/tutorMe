@@ -1,5 +1,5 @@
 ﻿function onTutorSettingPageLoad() {
-    alert();
+   // alert();
     tutorSettingLoadClasses();
 }
 
