@@ -214,10 +214,11 @@ namespace WebApplication5
         [WebMethod]
         public static int addClass(string className)
         {
+            string trimmed = className.Replace(" ", "");
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
                 MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO classes(className) VALUES(@className)", connection: con);
-                cmd.Parameters.AddWithValue("@className", className);
+                cmd.Parameters.AddWithValue("@className", trimmed);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
