@@ -537,9 +537,3 @@ C:\Users\CSUser\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\Microsoft.AI.
 C:\Users\CSUser\Documents\GitHub\CS408\tutorMe\WebApplication5\bin\Microsoft.AI.Web.xml
 C:\Users\CSUser\Documents\GitHub\CS408\tutorMe\WebApplication5\obj\Debug\WebApplication5.dll
 C:\Users\CSUser\Documents\GitHub\CS408\tutorMe\WebApplication5\obj\Debug\WebApplication5.pdb
-C:\Users\Ztken\Documents\CS408-1\tutorMe\WebApplication5\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Ztken\Documents\CS408-1\tutorMe\WebApplication5\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Ztken\Documents\CS408-1\tutorMe\WebApplication5\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\Ztken\Documents\CS408-1\tutorMe\WebApplication5\bin\roslyn\System.IO.Compression.dll
-C:\Users\Ztken\Documents\CS408-1\tutorMe\WebApplication5\bin\roslyn\VBCSCompiler.exe
-C:\Users\Ztken\Documents\CS408-1\tutorMe\WebApplication5\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll

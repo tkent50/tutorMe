@@ -240,7 +240,7 @@ namespace WebApplication5
         }
 
 	[WebMethod]
-        public static int setTutorClass(int tutorId, string className, double rate)
+        public static int setTutorClass(string className, double rate)
         {
             int classId = 0;
 
@@ -261,7 +261,7 @@ namespace WebApplication5
             {
                 double avgRate = 0.0;
                 MySqlCommand cmd2 = new MySqlCommand(cmdText: "INSERT INTO tutorClasses(tutorID,classID,price,avgRating,className) VALUES(@tutorID, @classID,@price,@avgRating,@className)", connection: con2);
-                cmd2.Parameters.AddWithValue("@tutorID", tutorId);
+                cmd2.Parameters.AddWithValue("@tutorID", userId);
                 cmd2.Parameters.AddWithValue("@classID", classId);
                 cmd2.Parameters.AddWithValue("@price", rate);
                 cmd2.Parameters.AddWithValue("@avgRating", avgRate);
