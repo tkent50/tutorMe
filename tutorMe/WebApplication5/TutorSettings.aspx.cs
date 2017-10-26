@@ -239,8 +239,8 @@ namespace WebApplication5
             }
         }
 
-        [WebMethod]
-        public static int setTutorClass(int tutorId, string className, double rate)
+	[WebMethod]
+        public static int setTutorClass(string className, double rate)
         {
             int classId = 0;
 
@@ -255,9 +255,24 @@ namespace WebApplication5
                     classId = Convert.ToInt32(reader["classID"].ToString());
                 }
                 con.Close();
+            }  
+
+            MySqlConnection con2 = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                double avgRate = 0.0;
+                MySqlCommand cmd2 = new MySqlCommand(cmdText: "INSERT INTO tutorClasses(tutorID,classID,price,avgRating,className) VALUES(@tutorID, @classID,@price,@avgRating,@className)", connection: con2);
+                cmd2.Parameters.AddWithValue("@tutorID", userId);
+                cmd2.Parameters.AddWithValue("@classID", classId);
+                cmd2.Parameters.AddWithValue("@price", rate);
+                cmd2.Parameters.AddWithValue("@avgRating", avgRate);
+                cmd2.Parameters.AddWithValue("@className", className);
+                con2.Open();
+                cmd2.ExecuteNonQuery();
+                con2.Close();
             }
             return 1;
         }
+	
         [WebMethod]
         public static string setTutorSchedule(string startTime, string endTime, int calId, string text)
         {
