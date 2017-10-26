@@ -75,6 +75,7 @@ function tutorSettingLoadClasses() {
 }
 
 function tutorSettingHandleClasses(classList) {
+    document.getElementById("classList").innerHTML = "";
     var numClasses = parseInt(classList.d[0]);
     for (var i = 1; i <= numClasses; i++) {
 
@@ -94,7 +95,7 @@ function tutorSettingHandleClasses(classList) {
 
 
 function AddClassChange() {
-    alert();
+    //alert();
 
     var amount = document.getElementById("amount").value;
     var className = document.getElementById("search").placeholder;
@@ -104,22 +105,58 @@ function AddClassChange() {
     } else if (amount === '') {
         alert("Please insert rate for class.")
     } else {
-        alert("Success");/*
+        //alert("Success");
         $.ajax({
-            url: "TutorSearch.aspx/getClassTutors",
+            url: "TutorSettings.aspx/setTutorClass",
             method: "POST",
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
-            data: '{"className":"' + className + '"}',
+            data: '{"className":"' + className + '","rate":"' + amount + '"}',
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+                //alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+                alert("Enter a class you're not already signed up for.")
             },
             success: function (result) {
                 // Uncomment these to compare differences. result.d is the actual json object. Becuase f javascript
                 // alert(result);
                 // alert(result.d);
                 alert("Class info added!");
+                document.getElementById("amount").value = '';
+                document.getElementById("search").placeholder = 'Add Class';
             }
-        });*/
+        });
+    }
+}
+
+
+function addNonExistingClass() {
+    //alert();
+    
+    var className = document.getElementById("newClassName").value;
+    alert(className);
+
+    if (className === '') {
+        alert("Please insert class name.")
+    } else {
+        //alert("Success");
+        $.ajax({
+            url: "TutorSettings.aspx/addClass",
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            data: '{"className":"' + className + '"}',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+                alert("Enter a class that doesn't already exist.")
+            },
+            success: function (result) {
+                // Uncomment these to compare differences. result.d is the actual json object. Becuase f javascript
+                // alert(result);
+                // alert(result.d);
+                alert("Class info added!");
+                document.getElementById("newClassName").value = '';
+                tutorSettingLoadClasses();
+            }
+        });
     }
 }
