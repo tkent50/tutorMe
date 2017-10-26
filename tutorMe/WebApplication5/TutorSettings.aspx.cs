@@ -225,7 +225,22 @@ namespace WebApplication5
             }
         }
         [WebMethod]
-        public static int setTutorClass(int tutorId, string className, double rate)
+        public static string deleteTutorSchedule(int calId)
+        {
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "DELETE from tutorSchedules where tutorID = @userId AND calID = @calId", connection: con);
+                cmd.Parameters.AddWithValue("@userID", userId);
+                cmd.Parameters.AddWithValue("@calID", calId);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return null;
+            }
+        }
+
+	[WebMethod]
+        public static int setTutorClass(string className, double rate)
         {
             int classId = 0;
 
@@ -246,7 +261,7 @@ namespace WebApplication5
             {
                 double avgRate = 0.0;
                 MySqlCommand cmd2 = new MySqlCommand(cmdText: "INSERT INTO tutorClasses(tutorID,classID,price,avgRating,className) VALUES(@tutorID, @classID,@price,@avgRating,@className)", connection: con2);
-                cmd2.Parameters.AddWithValue("@tutorID", tutorId);
+                cmd2.Parameters.AddWithValue("@tutorID", userId);
                 cmd2.Parameters.AddWithValue("@classID", classId);
                 cmd2.Parameters.AddWithValue("@price", rate);
                 cmd2.Parameters.AddWithValue("@avgRating", avgRate);
@@ -257,10 +272,9 @@ namespace WebApplication5
             }
             return 1;
         }
-
-
+	
         [WebMethod]
-        public static int setTutorSchedule(int userId, string startTime, string endTime, int calId, string text)
+        public static string setTutorSchedule(string startTime, string endTime, int calId, string text)
         {
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
@@ -273,11 +287,11 @@ namespace WebApplication5
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
-                return 1;
+                return "success";
             }
         }
         [WebMethod]
-        public static string getTutorSchedule(int userId)
+        public static string getTutorSchedule()
         {
             List<tutorSchedInfo> tutorSched = new List<tutorSchedInfo>();
 
@@ -306,5 +320,6 @@ namespace WebApplication5
 
             }
         }
+
     }
 }

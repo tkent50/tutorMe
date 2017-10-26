@@ -84,24 +84,27 @@
         
         <div style="padding-top: 20px;" class="container">
             <h3 style="text-align: center; padding-bottom:15px;">Add the Times you are free to get Tutored</h3>
-            <button type="submit" class="btn btn-primary" id="showCalendar" onclick="getUserSched()">Show Calendar</button>
             <br />
             <br />
             <br />
             <div id="calendar" class="container" style="padding-left: 0px; border: 0px">
                 <script>
 
-                    //console.log(parsedSched);
-                    // Initialize and Display Calendar
-                    var dp = new DayPilot.Calendar("calendar");
-                    dp.startDate = "2013-03-25";
-                    dp.viewType = "Week";
-                    //dp.timeRangeSelectedHandling = "Disabled";
-                    dp.eventMoveHandling = "Disabled";
-                    dp.eventResizeHandling = "Disabled";
-                    dp.init();
-                    dp.headerDateFormat = "dddd";
-
+                    var dp;
+                    function initializeCal() {
+                        dp = new DayPilot.Calendar("calendar");
+                        dp.startDate = "2013-03-25";
+                        dp.viewType = "Week";
+                        //dp.timeRangeSelectedHandling = "Disabled";
+                        dp.eventMoveHandling = "Disabled";
+                        dp.eventResizeHandling = "Disabled";
+                        dp.init();
+                        dp.headerDateFormat = "dddd";
+                    }
+                    
+                    initializeCal();
+                    getUserSched();
+                    
                     dp.onTimeRangeSelected = function (args) {
                         var name = prompt("New event name:", "Event");
                         if (!name) return;
@@ -115,25 +118,24 @@
                             id: DayPilot.guid(),
                             text: name
                         });
-                        setUserSched(start, end, id, text);
+                        setUserSched(start, end, id, text)
                         dp.events.add(e);
                         dp.clearSelection();
                     };
-
+                    
                     dp.onEventClick = function (args) {
                         if (confirm('Are you sure you want to delete this event?')) {
-
+                            deleteSched(DayPilot.guid());
                         } else {
 
                         }
                     };
+                    
 
                 </script>
             </div>
 
         </div>
-
-
 
 
        <!-- Optional JavaScript -->

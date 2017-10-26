@@ -13,15 +13,6 @@ namespace WebApplication5 {
     public partial class TutorSearch {
         
         /// <summary>
-        /// regform control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm regform;
-        
-        /// <summary>
         /// become_tutor control.
         /// </summary>
         /// <remarks>
@@ -29,14 +20,5 @@ namespace WebApplication5 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink become_tutor;
-        
-        /// <summary>
-        /// logout_button control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button logout_button;
     }
 }

@@ -1,6 +1,58 @@
 ﻿function onTutorSettingPageLoad() {
-   // alert();
+
     tutorSettingLoadClasses();
+}
+
+function getTutorSched() {
+    $.ajax({
+        url: "TutorSettings.aspx/getTutorSchedule",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            loadSchedule(result);
+        }
+    });
+}
+
+function setTutorSched(startTime, endTime, calId, text) {
+    // Need to fix this
+    var res = "Not Updated";
+    $.ajax({
+        url: "TutorSettings.aspx/setTutorSchedule",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        data: '{"startTime":"' + startTime + '","endTime":"' + endTime + '","calId":"' + calId + '","text":"' + text + '"}',
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("ThisRequest: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            //alert(result);
+        }
+    });
+    
+}
+
+function deleteSched(calId) {
+    // Need to fix this
+    // deleteTutorSchedule(int calId)
+    $.ajax({
+        url: "UserSettings.aspx/deleteTutorSchedule",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        data: '{"calId":"' + calId + '"}',
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            return;
+        }
+    });
 }
 
 
