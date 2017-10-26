@@ -97,10 +97,14 @@
                     </div>                   
             </div>
             <div align="center" class="col">
-                <div class="form-group row">
+                <div class="form-group row">                   
                     <div class="col-10">
-                        <asp:Button ID="Button2" runat="server"  OnClick="SubmitChanges" class="btn btn-secondary btn-lg" Text="Add"></asp:Button>
+                        <div class="input-group">
+                         <span class="input-group-addon">$</span>
+                          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                          <span class="input-group-addon">.00</span>
                     </div>
+                   </div>
                 </div>
             </div>
             <div align="center" class="col">
