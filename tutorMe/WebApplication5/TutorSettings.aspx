@@ -7,16 +7,18 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>User Settings</title>
+    <title>Tutor Settings</title>
     <link href="images/icon_settings.png" rel="icon" type="image/x-icon" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
         crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/user_settings.js"></script>
+    <script src="Scripts/tutor_setting.js"></script>
+    <script src="Scripts/main_page.js"></script>
+     <link rel="stylesheet" href="css/tutor_setting.css">
 </head>
 
-<body>
+<body onload="onTutorSettingPageLoad()">
     <form id="regform" runat="server"> <!-- .net FORM -->
     <div style="padding-top:30px;" class="container">
         <h3 style="text-align:center;">Change Login Settings</h3>
@@ -79,44 +81,36 @@
     </div>
 
     <div style="padding-top:20px;" class="container">
-        <h3 style="text-align:center;">Add Free Times</h3>
+        <h3 style="text-align:center;">Add Class</h3>
         <div style="padding-top:20px;" class="row">
             <div align="center" class="col">
                 <div class="form-group row">
-                    <label for="example-time-input" class="col-2 col-form-label">Start Time: </label>
-                    <div class="col-10">
-                        <input class="form-control" type="time" value="13:45:00" id="example-time-input">
-                    </div>
-                </div>
-
+                        <div class="dropdown">
+                          <button id="mydef" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                            <div class="col-10">
+                                <input type="text" id="search" class="form-control input-lg" placeholder="Add Class"></input>
+                            </div>
+                            </button>
+                            <ul id="classList" class="dropdown-menu" >
+                        </ul>
+                     </div>
+                    </div>                   
             </div>
             <div align="center" class="col">
                 <div class="form-group row">
-                    <label for="example-time-input" class="col-2 col-form-label">End Time: </label>
                     <div class="col-10">
-                        <input class="form-control" type="time" value="13:45:00" id="example-time-input">
+                        <asp:Button ID="Button2" runat="server"  OnClick="SubmitChanges" class="btn btn-secondary btn-lg" Text="Add"></asp:Button>
                     </div>
                 </div>
             </div>
-        </div>
-
-
-
-        <div align="center" class="form-group">
-            <label align="center" for="selectDay">Select Day</label>
-            <select align="center" id="day">
-                <option style="font-size:14px;" value="sunday">Sunday</option>
-                <option style="font-size:14px;" value="monday">Monday</option>
-                <option style="font-size:14px;" value="tuesday">Tuesday</option>
-                <option style="font-size:14px;" value="wednesday">Wednesday</option>
-                <option style="font-size:14px;" value="thursday">Thursday</option>
-                <option style="font-size:14px;" value="friday">Friday</option>
-                <option style="font-size:14px;" value="saturday">Saturday</option>
-            </select>
-        </div>
-
-        <div align="center" class="col"></div>
-
+            <div align="center" class="col">
+                <div class="form-group row">
+                    <div class="col-10">
+                        <asp:Button ID="Button1" runat="server"  OnClick="SubmitChanges" class="btn btn-secondary btn-lg" Text="Add"></asp:Button>
+                    </div>
+                </div>
+            </div>
+      </div>
     </div>
 
     <div class="container"> 
@@ -124,17 +118,13 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Day of the Week</th>
+                <th>Class</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">1</th>
                 <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
               </tr>
             </tbody>
           </table>
@@ -146,8 +136,7 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
