@@ -122,10 +122,11 @@
                                 dp.init();
                                 dp.headerDateFormat = "dddd";
                             }
+                            initializeCal();
                             dp.onEventClick = function (args) {
                                 alert("Do you wanna request to book this time slot ?");
                             };
-                            initializeCal();
+                            
                            
 
                         </script>
