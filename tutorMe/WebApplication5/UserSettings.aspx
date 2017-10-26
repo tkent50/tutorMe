@@ -137,6 +137,12 @@
 
         </div>
 
+        <div class="container-fluid" style="justify-content: space-between; flex-direction: display: flex; padding-bottom: 20px">
+                <div class="btn-holder" style="justify-content: flex-end; display: flex;">
+                    <a class="btn btn-info" href="/TutorSearch.aspx">Main Page</a>
+                    <a class="btn btn-info" href="/TutorSettings.aspx">Tutor Settings</a>
+                </div>
+            </div>
 
        <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
