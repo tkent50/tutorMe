@@ -19,3 +19,7 @@ tutorMe/.vs/tutorMe/v15/.suo
 *.config
 tutorMe/.vs/tutorMe/v15/.suo
 *.config
+
+tutorMe/WebApplication5/TutorMe\.csproj\.user
+
+tutorMe/WebApplication5/bin/roslyn/VBCSCompiler\.exe
