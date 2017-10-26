@@ -14,7 +14,8 @@
         crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="Scripts/tutor_setting.js"></script>
-    <script src="Scripts/main_page.js"></script>
+    <script src="Scripts/daypilot-all.min.js?v=217" type="text/javascript"></script>
+    <!-- <script src="Scripts/main_page.js"></script> -->
     <link rel="stylesheet" href="css/tutor_setting.css">
 </head>
 
@@ -142,13 +143,11 @@
                     dp.timeRangeSelectedHandling = "Disabled";
                     dp.eventMoveHandling = "Disabled";
                     dp.eventResizeHandling = "Disabled";
-                    //dp.init();
+                    dp.init();
                     dp.headerDateFormat = "dddd";
-                    dp.onEventClick = function (args) {
-                        //alert("Do you wanna request to book this time slot ?");
-                    };
+                    
                 }
-
+                getTutorSched();
                 initializeCal();
                 dp.onTimeRangeSelected = function (args) {
                     var name = prompt("New event name:", "Event");
@@ -163,7 +162,7 @@
                         id: DayPilot.guid(),
                         text: name
                     });
-                    setUserSched(start, end, id, text)
+                    setTutorSched(start, end, id, text)
                     dp.events.add(e);
                     dp.clearSelection();
                 };

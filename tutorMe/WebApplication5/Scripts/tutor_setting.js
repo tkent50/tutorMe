@@ -1,6 +1,39 @@
 ﻿function onTutorSettingPageLoad() {
-    alert();
+    //alert();
     tutorSettingLoadClasses();
+}
+
+function getTutorSched() {
+    $.ajax({
+        url: "TutorSettings.aspx/getTutorSchedule",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            loadSchedule(result);
+        }
+    });
+}
+
+function setTutorSched(startTime, endTime, calId, text) {
+    // Need to fix this
+    $.ajax({
+        url: "UserSettings.aspx/setUserSchedule",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        data: JSON.stringify({ startTime: startTime, endTime: endTime, calId: calId, text: text }),
+        //data: '{"startTime":"' + startTime + '","endTime":"' + endTime + '","calId":"' + calId + '","text":"' + text + '"}',
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("ThisRequest: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            return;
+        }
+    });
 }
 
 
@@ -37,5 +70,19 @@ function tutorSettingHandleClasses(classList) {
         //newTab.appendChild(testList);
         console.log(classList);
         document.getElementById("classList").appendChild(newTab);
+    }
+}
+
+function loadSchedule(userSched) {
+    var parsedSched = JSON.parse(userSched.d);
+    console.log(parsedSched);
+    for (i in parsedSched) {
+        var e = new DayPilot.Event({
+            start: parsedSched[i].startTime,
+            end: parsedSched[i].endTime,
+            id: parsedSched[i].calID,
+            text: parsedSched[i].text,
+        });
+        dp.events.add(e);
     }
 }
