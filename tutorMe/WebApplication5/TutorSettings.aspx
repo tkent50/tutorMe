@@ -89,7 +89,7 @@
                         <div class="dropdown">
                           <button id="mydef" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
                             <div class="col-10">
-                                <input type="text" id="search" class="form-control input-lg" placeholder="Add Class"></input>
+                                <input type="text" id="search" class="form-control input-lg" placeholder="Add Class">
                             </div>
                             </button>
                             <ul id="classList" class="dropdown-menu" >
@@ -102,7 +102,7 @@
                     <div class="col-10">
                         <div class="input-group">
                          <span class="input-group-addon">$</span>
-                          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                          <input id="amount" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                           <span class="input-group-addon">.00</span>
                     </div>
                    </div>
@@ -111,7 +111,7 @@
             <div align="center" class="col">
                 <div class="form-group row">
                     <div class="col-10">
-                        <asp:Button ID="Button1" runat="server"  OnClick="SubmitChanges" class="btn btn-secondary btn-lg" Text="Add"></asp:Button>
+                        <asp:Button ID="AddButton" runat="server"  OnClientClick="AddClassChange()" class="btn btn-secondary btn-lg" Text="Add"></asp:Button>
                     </div>
                 </div>
             </div>
