@@ -82,6 +82,14 @@ namespace WebApplication5
             changeButton();
         }
 
+        protected void DeleteCookie(Object sender, EventArgs e)
+        {
+            HttpCookie newCookie = new HttpCookie("userId");
+            newCookie.Expires = DateTime.Now.AddDays(-1d);
+            Response.Cookies.Add(newCookie);
+            Response.Redirect("/Default.aspx");
+        }
+
         [WebMethod] // DONE
         public static string[] GetClasses()
         {
