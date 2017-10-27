@@ -1,3 +1,17 @@
+function loadSchedule(userSched) {
+    var parsedSched = JSON.parse(userSched.d);
+    console.log(parsedSched);
+    for (i in parsedSched) {
+        var e = new DayPilot.Event({
+            start: parsedSched[i].startTime,
+            end: parsedSched[i].endTime,
+            id: parsedSched[i].calID,
+            text: parsedSched[i].text,
+        });
+        dp.events.add(e);
+    }
+}
+
 function deleteSched(calId) {
     // Need to fix this
     $.ajax({
