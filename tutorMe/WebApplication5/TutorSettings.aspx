@@ -84,6 +84,7 @@
             <br />
             <br />
             <div style="padding-top: 20px;" class="container">
+<<<<<<< HEAD
                 <h3 style="text-align: center;">Add Class</h3>
                 <div style="padding-top: 20px;" class="row">
                     <div align="center" class="col">
@@ -97,6 +98,20 @@
                                 <ul id="classList" class="dropdown-menu">
                                 </ul>
                             </div>
+=======
+            <h3 style="text-align: center;">Add Class</h3>
+            <div style="padding-top: 20px;" class="row">
+                <div align="center" class="col">
+                    <div class="form-group row">
+                        <div class="dropdown">
+                            <button id="mydef" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                <div class="col-10">
+                                    <input type="text" id="search" class="form-control input-lg" placeholder="Add Class"></input>
+                                </div>
+                            </button>
+                            <ul id="classList" class="dropdown-menu">
+                            </ul>
+>>>>>>> origin/Srish
                         </div>
                     </div>
                 </div>
@@ -131,11 +146,15 @@
                             <asp:Button runat="server" class="btn btn-default" OnClientClick="addNonExistingClass()" text="Add"></asp:Button>
                         </span>
                     </div>
-                    <!-- /.col-lg-4 -->
-                    <div class="col-lg-4"></div>
+                    <!-- /input-group -->
                 </div>
-                <!-- /.row -->
+                <!-- /.col-lg-4 -->
+                <div class="col-lg-4"></div>
             </div>
+            <!-- /.row -->
+        </div>
+        <br />
+        <br />
             <br />
             <br />
 
@@ -155,8 +174,11 @@
                     </tbody>
                 </table>
             </div>
-
-
+            <br />
+            
+             <div style="padding-top: 20px;" class="container">
+            <h3 style="text-align: center;">Add Class Schedule</h3>
+                 <br />
             <div id="calendar" class="container" style="padding-left: 0px; border: 0px">
                 <script>
 
@@ -206,14 +228,17 @@
                 </script>
 
             </div>
+            <br />
+            <br />
 
             <div class="container-fluid" style="justify-content: space-between; flex-direction: display: flex; padding-bottom: 20px">
                 <div class="btn-holder" style="justify-content: flex-end; display: flex;">
-                    <a class="btn btn-info" href="/TutorSearch.aspx">Main Page</a>
+                    <a class="btn btn-info" style="margin-right:15px;" href="/TutorSearch.aspx">Main Page</a>
+                    
                     <a class="btn btn-info" href="/UserSettings.aspx">User Settings</a>
                 </div>
             </div>
-
+           </div>
 
             <!-- Optional JavaScript -->
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->
