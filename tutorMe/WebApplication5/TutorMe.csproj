@@ -152,6 +152,7 @@
     <Content Include="Content\starRating\starability-rotate.css" />
     <Content Include="Content\starRating\starability-slot.css" />
     <Content Include="css\signin.css" />
+    <Content Include="css\tutor_setting.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -192,6 +193,7 @@
     <Content Include="Scripts\modernizr.custom.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\tutor_setting.js" />
     <Content Include="Scripts\user_settings.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />

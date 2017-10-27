@@ -1,3 +1,21 @@
+
+function deleteSched(calId) {
+    // Need to fix this
+    $.ajax({
+        url: "UserSettings.aspx/deleteUserSchedule",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        data: '{"calId":"' + calId + '"}',
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            return;
+        }
+    });
+}
+
 function getUserSched() {
 
     $.ajax({
@@ -15,25 +33,26 @@ function getUserSched() {
 }
 
 
-function setUserSched() {
-
+function setUserSched(startTime,endTime,calId,text) {
+ 
     $.ajax({
         url: "UserSettings.aspx/setUserSchedule",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: '{"startTime":"' + startTime + '","endTime":"' + endTime + '","calId":"' + calId + '","text":"' + text + '"}',
+        data: JSON.stringify({ startTime: startTime, endTime: endTime, calId: calId, text: text }),
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("ThisRequest: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
         success: function (result) {
-
+            return;
         }
     });
 }
 
 function loadSchedule(userSched) {
     var parsedSched = JSON.parse(userSched.d);
+    console.log(parsedSched);
     for (i in parsedSched) {
         var e = new DayPilot.Event({
             start: parsedSched[i].startTime,

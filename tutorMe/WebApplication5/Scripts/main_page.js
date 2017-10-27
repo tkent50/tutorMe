@@ -1,3 +1,6 @@
+
+var calLoaded = false;
+
 function onPageLoad() {
     loadClasses();
 }
@@ -42,6 +45,7 @@ function handleClasses(classList) {
             $(this).toggleClass('open');
             //tester(this.id);
         }
+
 
         newTab.appendChild(newClassName);
         //newTab.appendChild(testList);
@@ -97,7 +101,18 @@ function handleClassTutors(tutorList, className) {
     document.getElementById(className).appendChild(tutorNameList);
 }
 
+function firstTutorInfoLoad() {
+    dp.init();
+    document.getElementById("tutorInfo").style.visibility = 'visible';
+    document.getElementById("landing").remove();
+    calLoaded = true;
+}
+
 function showTutor(tutorId, className) {
+
+    if (!calLoaded) {
+        firstTutorInfoLoad();
+    }
 
     //alert(className)
     $.ajax({
@@ -122,8 +137,14 @@ function showTutor(tutorId, className) {
             document.getElementById(rating).checked = true;
         }
     });
+    dp = new DayPilot.Calendar("calendar");
+    dp.startDate = "2013-03-25";
+    dp.viewType = "Week";
+    dp.timeRangeSelectedHandling = "Disabled";
+    dp.eventMoveHandling = "Disabled";
+    dp.eventResizeHandling = "Disabled";
     dp.init();
-    dp.deleteEvents();
+    dp.headerDateFormat = "dddd";
     getTutorSched(tutorId);
 }
 

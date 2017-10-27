@@ -10,6 +10,8 @@ using System.Web.Services;
 using Newtonsoft.Json;
 using System.Web.Script.Serialization;
 using System.Diagnostics;
+using System.Net.Mail;
+using System.Net;
 
 public class ClassTutor // USED FOR TUTORINFO
 {
@@ -78,14 +80,6 @@ namespace WebApplication5
                 userId = userIdCookie.Value;
             }
             changeButton();
-        }
-
-        protected void DeleteCookie(Object sender, EventArgs e)
-        {
-            HttpCookie newCookie = new HttpCookie("userId");
-            newCookie.Expires = DateTime.Now.AddDays(-1d);
-            Response.Cookies.Add(newCookie);
-            Response.Redirect("/Default.aspx");
         }
 
         [WebMethod] // DONE
@@ -195,13 +189,13 @@ namespace WebApplication5
         }
 
         [WebMethod]
-        public static void RateTutor(int userID, int tutorID, int classID, int rating)
+        public static void RateTutor(int tutorID, int classID, int rating)
         {
             bool alreadyRated = false;
             MySqlConnection con1 = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
                 MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM tutorRatings WHERE userID = @userID AND tutorID = @tutorID", connection: con1);
-                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Parameters.AddWithValue("@userID", userId);
                 cmd.Parameters.AddWithValue("@tutorID", tutorID);
                 con1.Open();
                 MySqlDataReader reader = cmd.ExecuteReader();
@@ -216,7 +210,7 @@ namespace WebApplication5
                 MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
                 {
                     MySqlCommand cmd = new MySqlCommand(cmdText: "UPDATE tutorRatings SET rating = @rating WHERE tutorID = @tutorID AND userID = @userID", connection: con);
-                    cmd.Parameters.AddWithValue("@userID", userID);
+                    cmd.Parameters.AddWithValue("@userID", userId);
                     cmd.Parameters.AddWithValue("@tutorID", tutorID);
                     cmd.Parameters.AddWithValue("@rating", rating);
                     con.Open();
@@ -229,7 +223,7 @@ namespace WebApplication5
                 MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
                 {
                     MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO tutorRatings(userID, tutorID, rating) VALUES('@userID', '@tutorID', '@rating'", connection: con);
-                    cmd.Parameters.AddWithValue("@userID", userID);
+                    cmd.Parameters.AddWithValue("@userID", userId);
                     cmd.Parameters.AddWithValue("@tutorID", tutorID);
                     cmd.Parameters.AddWithValue("@rating", rating);
                     con.Open();
@@ -374,60 +368,230 @@ namespace WebApplication5
 
         public class tutorSchedInfo
         {
-            public int calID;
             public int tutorID;
             public string text;
             public string startTime;
             public string endTime;
         }
 
-
         [WebMethod]
-        public static int setTutorSchedule(int userId, string startTime, string endTime, int calId, string text)
-        {
-            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
-            {
-                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO tutorSchedules(tutorID,startTime,endTime,calID,text) VALUES(@tutorID, @startTime,@endTime,@calID,@text)", connection: con);
-                cmd.Parameters.AddWithValue("@tutorID", userId);
-                cmd.Parameters.AddWithValue("@startTime", startTime);
-                cmd.Parameters.AddWithValue("@endTime", endTime);
-                cmd.Parameters.AddWithValue("@calID", calId);
-                cmd.Parameters.AddWithValue("@text", text);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-                return 1;
-            }
-        }
-        [WebMethod]
-        public static string getTutorSchedule(int userId)
+        public static string getTutorSchedule(int tutorId)
         {
             List<tutorSchedInfo> tutorSched = new List<tutorSchedInfo>();
 
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
                 MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM tutorSchedules WHERE tutorID = @userId", connection: con);
-                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@userId", tutorId);
                 con.Open();
                 MySqlDataReader reader = cmd.ExecuteReader();
-                int calID = 0;
-                int tutorID = Convert.ToInt32(userId);
+                int tutorID = Convert.ToInt32(tutorId);
                 string startTime = "";
                 string endTime = "";
                 string text = "";
                 while (reader.Read())
                 {
-                    calID = Convert.ToInt32(reader["calID"].ToString());
                     startTime = reader["startTime"].ToString();
                     endTime = reader["endTime"].ToString();
                     text = reader["text"].ToString();
-                    tutorSched.Add(new tutorSchedInfo { calID = calID, tutorID = tutorID, startTime = startTime, endTime = endTime, text = text });
+                    tutorSched.Add(new tutorSchedInfo { tutorID = tutorID, startTime = startTime, endTime = endTime, text = text });
                 }
                 con.Close();
                 var json = new JavaScriptSerializer().Serialize(tutorSched);
                 return json;
 
             }
+        }
+
+        [WebMethod]
+        public static void SendReservationRequest(int tutorId, string startTime, string className)
+        {
+            //Get tutor's email and name
+            string tutorEmail = "";
+            string tutorFirst = "";
+            string tutorLast = "";
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM users WHERE userID = @tutorId", connection: con);
+                cmd.Parameters.AddWithValue("@tutorId", tutorId);
+                con.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    tutorEmail = reader["email"].ToString();
+                    tutorFirst = reader["firstName"].ToString();
+                    tutorLast = reader["lastName"].ToString();
+                }
+                con.Close();
+            }
+            string tutorFull = tutorFirst + " " + tutorLast;
+
+            //Get student's email and name
+            string studentEmail = "";
+            string studentFirst = "";
+            string studentLast = "";
+            MySqlConnection con1 = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM users WHERE userID = @userId", connection: con1);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                con1.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    studentEmail = reader["email"].ToString();
+                    studentFirst = reader["firstName"].ToString();
+                    studentLast = reader["lastName"].ToString();
+                }
+                con1.Close();
+            }
+            string studentFull = studentFirst + " " + studentLast;
+
+            //Parse time string
+            string[] startTimeSplit = startTime.Split(new Char['T']);
+            string[] startDateSplit = startTimeSplit[0].Split(new Char['-']);
+            string dayOfWeekNumber = startDateSplit[2];
+            string dayOfWeek = "";
+
+            switch(dayOfWeekNumber)
+            {
+                case "24":
+                    dayOfWeek = "Sunday";
+                    break;
+                case "25":
+                    dayOfWeek = "Monday";
+                    break;
+                case "26":
+                    dayOfWeek = "Tuesday";
+                    break;
+                case "27":
+                    dayOfWeek = "Wednesday";
+                    break;
+                case "28":
+                    dayOfWeek = "Thursday";
+                    break;
+                case "29":
+                    dayOfWeek = "Friday";
+                    break;
+                case "30":
+                    dayOfWeek = "Saturday";
+                    break;
+            }
+
+            string[] timeSplit = startTimeSplit[1].Split(new Char[':']);
+            string hour = timeSplit[0];
+            string minute = timeSplit[1];
+            string ampm = "AM";
+            string time = "";
+
+            switch (hour)
+            {
+                case "00":
+                    hour = "12";
+                    break;
+                case "01":
+                    hour = "1";
+                    break;
+                case "02":
+                    hour = "2";
+                    break;
+                case "03":
+                    hour = "3";
+                    break;
+                case "04":
+                    hour = "4";
+                    break;
+                case "05":
+                    hour = "5";
+                    break;
+                case "06":
+                    hour = "6";
+                    break;
+                case "07":
+                    hour = "7";
+                    break;
+                case "08":
+                    hour = "8";
+                    break;
+                case "09":
+                    hour = "9";
+                    break;
+                case "10":
+                    break;
+                case "11":
+                    break;
+                case "12":
+                    ampm = "PM";
+                    break;
+                case "13":
+                    hour = "1";
+                    ampm = "PM";
+                    break;
+                case "14":
+                    hour = "2";
+                    ampm = "PM";
+                    break;
+                case "15":
+                    hour = "3";
+                    ampm = "PM";
+                    break;
+                case "16":
+                    hour = "4";
+                    ampm = "PM";
+                    break;
+                case "17":
+                    hour = "5";
+                    ampm = "PM";
+                    break;
+                case "18":
+                    hour = "6";
+                    ampm = "PM";
+                    break;
+                case "19":
+                    hour = "7";
+                    ampm = "PM";
+                    break;
+                case "20":
+                    hour = "8";
+                    ampm = "PM";
+                    break;
+                case "21":
+                    hour = "9";
+                    ampm = "PM";
+                    break;
+                case "22":
+                    hour = "10";
+                    ampm = "PM";
+                    break;
+                case "23":
+                    hour = "11";
+                    ampm = "PM";
+                    break;
+            }
+
+            string bodyText = studentFull + " would like to be tutored in " + className + " on " + dayOfWeek + " at " + hour + ":" + minute + " " + ampm + ".";
+            string subjectText = studentFull + "wants to be tutored!";
+
+            MailAddress fromAddress = new MailAddress("tutorapp408@gmail.com", "TutorMe");
+            MailAddress toAddress = new MailAddress(tutorEmail, tutorFull);
+            MailAddress copy = new MailAddress(studentEmail, studentFull);
+            const string fromPassword = "5515hebt";
+            
+            SmtpClient smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            MailMessage message = new MailMessage(fromAddress, toAddress);
+            message.Subject = subjectText;
+            message.Body = bodyText;
+            message.CC.Add(copy);
+            smtp.Send(message);
         }
     }
 }
