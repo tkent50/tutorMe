@@ -10,6 +10,8 @@ using System.Web.Services;
 using Newtonsoft.Json;
 using System.Web.Script.Serialization;
 using System.Diagnostics;
+using System.Net.Mail;
+using System.Net;
 
 public class ClassTutor // USED FOR TUTORINFO
 {
@@ -372,24 +374,6 @@ namespace WebApplication5
             public string endTime;
         }
 
-
-        [WebMethod]
-        public static int setTutorSchedule(int userId, string startTime, string endTime, int calId, string text)
-        {
-            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
-            {
-                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO tutorSchedules(tutorID,startTime,endTime,calID,text) VALUES(@tutorID, @startTime,@endTime,@calID,@text)", connection: con);
-                cmd.Parameters.AddWithValue("@tutorID", userId);
-                cmd.Parameters.AddWithValue("@startTime", startTime);
-                cmd.Parameters.AddWithValue("@endTime", endTime);
-                cmd.Parameters.AddWithValue("@calID", calId);
-                cmd.Parameters.AddWithValue("@text", text);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-                return 1;
-            }
-        }
         [WebMethod]
         public static string getTutorSchedule(int tutorId)
         {
@@ -417,6 +401,197 @@ namespace WebApplication5
                 return json;
 
             }
+        }
+
+        [WebMethod]
+        public static void SendReservationRequest(int tutorId, string startTime, string className)
+        {
+            //Get tutor's email and name
+            string tutorEmail = "";
+            string tutorFirst = "";
+            string tutorLast = "";
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM users WHERE userID = @tutorId", connection: con);
+                cmd.Parameters.AddWithValue("@tutorId", tutorId);
+                con.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    tutorEmail = reader["email"].ToString();
+                    tutorFirst = reader["firstName"].ToString();
+                    tutorLast = reader["lastName"].ToString();
+                }
+                con.Close();
+            }
+            string tutorFull = tutorFirst + " " + tutorLast;
+
+            //Get student's email and name
+            string studentEmail = "";
+            string studentFirst = "";
+            string studentLast = "";
+            MySqlConnection con1 = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM users WHERE userID = @userId", connection: con1);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                con1.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    studentEmail = reader["email"].ToString();
+                    studentFirst = reader["firstName"].ToString();
+                    studentLast = reader["lastName"].ToString();
+                }
+                con1.Close();
+            }
+            string studentFull = studentFirst + " " + studentLast;
+
+            //Parse time string
+            string[] startTimeSplit = startTime.Split(new Char['T']);
+            string[] startDateSplit = startTimeSplit[0].Split(new Char['-']);
+            string dayOfWeekNumber = startDateSplit[2];
+            string dayOfWeek = "";
+
+            switch(dayOfWeekNumber)
+            {
+                case "24":
+                    dayOfWeek = "Sunday";
+                    break;
+                case "25":
+                    dayOfWeek = "Monday";
+                    break;
+                case "26":
+                    dayOfWeek = "Tuesday";
+                    break;
+                case "27":
+                    dayOfWeek = "Wednesday";
+                    break;
+                case "28":
+                    dayOfWeek = "Thursday";
+                    break;
+                case "29":
+                    dayOfWeek = "Friday";
+                    break;
+                case "30":
+                    dayOfWeek = "Saturday";
+                    break;
+            }
+
+            string[] timeSplit = startTimeSplit[1].Split(new Char[':']);
+            string hour = timeSplit[0];
+            string minute = timeSplit[1];
+            string ampm = "AM";
+            string time = "";
+
+            switch (hour)
+            {
+                case "00":
+                    hour = "12";
+                    break;
+                case "01":
+                    hour = "1";
+                    break;
+                case "02":
+                    hour = "2";
+                    break;
+                case "03":
+                    hour = "3";
+                    break;
+                case "04":
+                    hour = "4";
+                    break;
+                case "05":
+                    hour = "5";
+                    break;
+                case "06":
+                    hour = "6";
+                    break;
+                case "07":
+                    hour = "7";
+                    break;
+                case "08":
+                    hour = "8";
+                    break;
+                case "09":
+                    hour = "9";
+                    break;
+                case "10":
+                    break;
+                case "11":
+                    break;
+                case "12":
+                    ampm = "PM";
+                    break;
+                case "13":
+                    hour = "1";
+                    ampm = "PM";
+                    break;
+                case "14":
+                    hour = "2";
+                    ampm = "PM";
+                    break;
+                case "15":
+                    hour = "3";
+                    ampm = "PM";
+                    break;
+                case "16":
+                    hour = "4";
+                    ampm = "PM";
+                    break;
+                case "17":
+                    hour = "5";
+                    ampm = "PM";
+                    break;
+                case "18":
+                    hour = "6";
+                    ampm = "PM";
+                    break;
+                case "19":
+                    hour = "7";
+                    ampm = "PM";
+                    break;
+                case "20":
+                    hour = "8";
+                    ampm = "PM";
+                    break;
+                case "21":
+                    hour = "9";
+                    ampm = "PM";
+                    break;
+                case "22":
+                    hour = "10";
+                    ampm = "PM";
+                    break;
+                case "23":
+                    hour = "11";
+                    ampm = "PM";
+                    break;
+            }
+
+            string bodyText = studentFull + " would like to be tutored in " + className + " on " + dayOfWeek + " at " + hour + ":" + minute + " " + ampm + ".";
+            string subjectText = studentFull + "wants to be tutored!";
+
+            MailAddress fromAddress = new MailAddress("tutorapp408@gmail.com", "TutorMe");
+            MailAddress toAddress = new MailAddress(tutorEmail, tutorFull);
+            MailAddress copy = new MailAddress(studentEmail, studentFull);
+            const string fromPassword = "5515hebt";
+            
+            SmtpClient smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            MailMessage message = new MailMessage(fromAddress, toAddress);
+            message.Subject = subjectText;
+            message.Body = bodyText;
+            message.CC.Add(copy);
+            smtp.Send(message);
         }
     }
 }
