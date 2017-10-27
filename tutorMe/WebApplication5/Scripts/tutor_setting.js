@@ -18,21 +18,6 @@ function getTutorSched() {
     });
 }
 
-function loadSchedule(userSched) {
-    var parsedSched = JSON.parse(userSched.d);
-    console.log(parsedSched);
-    for (i in parsedSched) {
-        var e = new DayPilot.Event({
-            start: parsedSched[i].startTime,
-            end: parsedSched[i].endTime,
-            id: parsedSched[i].calID,
-            text: parsedSched[i].text,
-        });
-        dp.events.add(e);
-    }
-}
-
-
 function setTutorSched(startTime, endTime, calId, text) {
     $.ajax({
         url: "TutorSettings.aspx/setTutorSchedule",
