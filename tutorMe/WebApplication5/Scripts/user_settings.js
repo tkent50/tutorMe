@@ -11,7 +11,7 @@ function deleteSched(startTime, endTime) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
         success: function (result) {
-            return;
+            location.reload();
         }
     });
 }
