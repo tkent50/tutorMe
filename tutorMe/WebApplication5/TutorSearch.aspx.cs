@@ -374,8 +374,6 @@ namespace WebApplication5
             public string endTime;
         }
 
-<<<<<<< HEAD
-        /*
         [WebMethod]
         public static int setTutorSchedule(int userId, string startTime, string endTime, int calId, string text)
         {
@@ -393,9 +391,7 @@ namespace WebApplication5
                 return 1;
             }
         }
-        */
-=======
->>>>>>> master
+
         [WebMethod]
         public static string getTutorSchedule(int tutorId)
         {

@@ -197,3 +197,19 @@ function loadSchedule(tutorSched) {
     }
 
 }
+
+function sendEmail(startTime) {
+    $.ajax({
+        url: "TutorSearch.aspx/SendReservationRequest",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        data: JSON.stringify({ tutorId: tutorId, startTime: startTime, className: className }),
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            alert("Slot Requested Successfully! The Tutor should contact you soon!");
+        }
+    });
+}
