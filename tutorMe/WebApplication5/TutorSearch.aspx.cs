@@ -197,7 +197,7 @@ namespace WebApplication5
         }
 
         [WebMethod]
-        public static void RateTutor(int tutorID, int classID, int rating)
+        public static void RateTutor(int tutorID, int rating)
         {
             bool alreadyRated = false;
             MySqlConnection con1 = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
