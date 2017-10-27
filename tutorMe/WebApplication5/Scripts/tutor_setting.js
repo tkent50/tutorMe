@@ -10,7 +10,6 @@ function loadSchedule(userSched) {
         var e = new DayPilot.Event({
             start: parsedSched[i].startTime,
             end: parsedSched[i].endTime,
-            id: parsedSched[i].calID,
             text: parsedSched[i].text,
         });
         dp.events.add(e);
@@ -32,13 +31,13 @@ function getTutorSched() {
     });
 }
 
-function setTutorSched(startTime, endTime, calId, text) {
+function setTutorSched(startTime, endTime, text) {
     $.ajax({
         url: "TutorSettings.aspx/setTutorSchedule",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: JSON.stringify({ startTime: startTime, endTime: endTime, calId: calId, text: text }),
+        data: JSON.stringify({ startTime: startTime, endTime: endTime, text: text }),
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("ThisRequest: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },

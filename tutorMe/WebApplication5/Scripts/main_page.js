@@ -151,13 +151,13 @@ function showTutor(tutorId, className) {
 function saveRating(rating) {
     alert(rating);
 }
-function getTutorSched(userId) {
+function getTutorSched(tutorId) {
     $.ajax({
         url: "TutorSearch.aspx/getTutorSchedule",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: '{"userId":"' + userId + '"}',
+        data: '{"tutorId":"' + tutorId + '"}',
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
@@ -174,7 +174,6 @@ function loadSchedule(tutorSched) {
         var e = new DayPilot.Event({
             start: parsedSched[i].startTime,
             end: parsedSched[i].endTime,
-            id: parsedSched[i].calID,
             text: parsedSched[i].text,
         });
         dp.events.add(e);
