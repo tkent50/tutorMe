@@ -159,7 +159,7 @@
                 </table>
             </div>
             <br />
-            <br />
+            
              <div style="padding-top: 20px;" class="container">
             <h3 style="text-align: center;">Add Class Schedule</h3>
                  <br />
@@ -212,10 +212,13 @@
                 </script>
 
             </div>
+            <br />
+            <br />
 
             <div class="container-fluid" style="justify-content: space-between; flex-direction: display: flex; padding-bottom: 20px">
                 <div class="btn-holder" style="justify-content: flex-end; display: flex;">
-                    <a class="btn btn-info" href="/TutorSearch.aspx">Main Page</a>
+                    <a class="btn btn-info" style="margin-right:15px;" href="/TutorSearch.aspx">Main Page</a>
+                    
                     <a class="btn btn-info" href="/UserSettings.aspx">User Settings</a>
                 </div>
             </div>
