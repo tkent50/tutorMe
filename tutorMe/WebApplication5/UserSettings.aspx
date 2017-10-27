@@ -102,7 +102,14 @@
                         dp.headerDateFormat = "dddd";
                     }
                     
-                    initializeCal();
+                    dp = new DayPilot.Calendar("calendar");
+                    dp.startDate = "2013-03-25";
+                    dp.viewType = "Week";
+                    //dp.timeRangeSelectedHandling = "Disabled";
+                    dp.eventMoveHandling = "Disabled";
+                    dp.eventResizeHandling = "Disabled";
+                    dp.init();
+                    dp.headerDateFormat = "dddd";
                     getUserSched();
                     
                     dp.onTimeRangeSelected = function (args) {
@@ -110,15 +117,15 @@
                         if (!name) return;
                         start = args.start;
                         end = args.end;
-                        id = DayPilot.guid();
+                        id = 0
                         text = name;
+                        setUserSched(start, end, id, text)
                         var e = new DayPilot.Event({
                             start: args.start,
                             end: args.end,
                             id: DayPilot.guid(),
                             text: name
                         });
-                        setUserSched(start, end, id, text)
                         dp.events.add(e);
                         dp.clearSelection();
                     };

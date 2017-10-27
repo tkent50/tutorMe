@@ -33,7 +33,9 @@ function getUserSched() {
 
 
 function setUserSched(startTime,endTime,calId,text) {
-    // Need to fix this
+  
+    //alert(startTime + "\n" + endTime + "\n" + calId + "\n" + text)
+
     $.ajax({
         url: "UserSettings.aspx/setUserSchedule",
         method: "POST",

@@ -19,14 +19,12 @@ function getTutorSched() {
 }
 
 function setTutorSched(startTime, endTime, calId, text) {
-    // Need to fix this
-    var res = "Not Updated";
     $.ajax({
         url: "TutorSettings.aspx/setTutorSchedule",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: '{"startTime":"' + startTime + '","endTime":"' + endTime + '","calId":"' + calId + '","text":"' + text + '"}',
+        data: JSON.stringify({ startTime: startTime, endTime: endTime, calId: calId, text: text }),
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("ThisRequest: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
