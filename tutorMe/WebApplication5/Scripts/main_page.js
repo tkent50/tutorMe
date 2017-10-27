@@ -22,6 +22,7 @@ function loadClasses() {
     });
 }
 
+
 function handleClasses(classList) {
     var numClasses = parseInt(classList.d[0]);
     for (var i = 1; i <= numClasses; i++) {

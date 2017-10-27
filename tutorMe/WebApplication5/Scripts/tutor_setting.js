@@ -48,15 +48,13 @@ function setTutorSched(startTime, endTime, text) {
     
 }
 
-function deleteSched(calId) {
-    // Need to fix this
-    // deleteTutorSchedule(int calId)
+function deleteSched(startTime, endTime) {
     $.ajax({
-        url: "UserSettings.aspx/deleteTutorSchedule",
+        url: "TutorSettings.aspx/deleteTutorSchedule",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: '{"calId":"' + calId + '"}',
+        data: JSON.stringify({ startTime: startTime, endTime: endTime}),
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },

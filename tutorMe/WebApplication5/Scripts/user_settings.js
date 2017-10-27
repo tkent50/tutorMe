@@ -1,12 +1,12 @@
 
-function deleteSched(calId) {
+function deleteSched(startTime, endTime) {
     // Need to fix this
     $.ajax({
         url: "UserSettings.aspx/deleteUserSchedule",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: '{"calId":"' + calId + '"}',
+        data: JSON.stringify({ startTime: startTime, endTime: endTime }),
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
