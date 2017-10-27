@@ -23,3 +23,5 @@ tutorMe/.vs/tutorMe/v15/.suo
 tutorMe/WebApplication5/bin/roslyn/VBCSCompiler.exe
 tutorMe/.vs/config/applicationhost.config
 tutorMe/.vs/tutorMe/v15/.suo
+*.config
+tutorMe/.vs/tutorMe/v15/.suo
