@@ -21,8 +21,9 @@
 <body>
     <form id="regform" runat="server">
         <!-- .net FORM -->
-        <div style="padding-top: 30px;" class="container">
+        <div class="container-fluid" style="background-color:lightgrey; padding-top: 30px; width: 1000px; margin-top: 20px; margin-bottom: 20px;">
             <h3 style="text-align: center;">Change Login Settings</h3>
+            <br />
             <form style="padding-top: 20px;">
                 <div class="form-group row">
                     <label for="email" class="col-sm-2 col-form-label">Change Email Address</label>
@@ -36,9 +37,6 @@
                     <div class="col-sm-10">
                         <div class="input-group">
                             <asp:TextBox ID="password" placeholder="Enter current password" class="form-control" type="password" runat="server"></asp:TextBox>
-                            <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="button" id="showPassword1">Show Password</button>
-                            </span>
                         </div>
                         <small id="emailHelp" class="form-text text-muted">Password should be between 8 and 32 characters long</small>
                     </div>
@@ -50,9 +48,6 @@
                     <div class="col-sm-10">
                         <div class="input-group">
                             <asp:TextBox ID="newPassword" placeholder="Enter new password" class="form-control" type="password" runat="server"></asp:TextBox>
-                            <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="button" id="showPassword2">Show Password</button>
-                            </span>
                         </div>
 
                     </div>
@@ -64,9 +59,6 @@
                     <div class="col-sm-10">
                         <div class="input-group">
                             <asp:TextBox ID="confirmPassword" placeholder="Confirm new password" class="form-control" type="password" runat="server"></asp:TextBox>
-                            <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="button" id="showPassword3">Show Password</button>
-                            </span>
                         </div>
 
                     </div>
@@ -75,17 +67,15 @@
                 <div class="container text-center">
 
                     <asp:Button ID="submit" runat="server" OnClick="SubmitChanges" class="btn btn-secondary btn-lg active" Text="Submit"></asp:Button>
-
+                    
                 </div>
-
+                <br />
             </form>
         </div>
-
+        <br />
         
         <div style="padding-top: 20px;" class="container">
             <h3 style="text-align: center; padding-bottom:15px;">Add the Times you are free to get Tutored</h3>
-            <br />
-            <br />
             <br />
             <div id="calendar" class="container" style="padding-left: 0px; border: 0px">
                 <script>
@@ -137,9 +127,12 @@
 
         </div>
 
-        <div class="container-fluid" style="justify-content: space-between; flex-direction: display: flex; padding-bottom: 20px">
+        <br />
+        <br />
+
+        <div class="container" style="justify-content: space-between; flex-direction: display: flex; padding-bottom: 20px">
                 <div class="btn-holder" style="justify-content: flex-end; display: flex;">
-                    <a class="btn btn-info" href="/TutorSearch.aspx">Main Page</a>
+                    <a class="btn btn-info" style="margin-right:15px;" href="/TutorSearch.aspx">Main Page</a>
                     <a class="btn btn-info" href="/TutorSettings.aspx">Tutor Settings</a>
                 </div>
             </div>
