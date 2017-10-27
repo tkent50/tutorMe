@@ -319,5 +319,54 @@ namespace WebApplication5
             }
         }
 
+        public class tutorRate
+        {
+            public string className;
+            public double rate;
+        }
+
+
+
+
+        [WebMethod]
+        public static string classRate()
+        {
+            List<tutorRate> tutorRate = new List<tutorRate>();
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM tutorClasses WHERE tutorID = @userId", connection: con);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                con.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string className = reader["className"].ToString();
+                    double rate = Convert.ToDouble(reader["price"].ToString());
+                    tutorRate.Add(item: new tutorRate { className = className, rate = rate });
+                }
+                con.Close();
+                var json = new JavaScriptSerializer().Serialize(tutorRate);
+                return json;
+
+            }
+        }
+
+
+        [WebMethod]
+        public static int deleteTutorClass(string className)
+        {
+            List<tutorRate> tutorRate = new List<tutorRate>();
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "DELETE from tutorClasses where tutorId = @userId AND className = @className", connection: con);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@className", className);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return 1;
+            }
+        }
+
     }
 }

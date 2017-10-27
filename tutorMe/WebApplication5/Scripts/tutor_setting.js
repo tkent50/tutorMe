@@ -1,7 +1,71 @@
 ﻿function onTutorSettingPageLoad() {
 
     tutorSettingLoadClasses();
+    populateTutoringClasses();
 }
+
+
+function populateTutoringClasses() {
+    // Find a <table> element with id="myTable":
+    var table = document.getElementById("tutoringClassess").getElementsByTagName('tbody')[0];
+    table.innerHTML = "";
+    table.style.textAlign = "center";
+    $.ajax({
+        url: "TutorSettings.aspx/classRate",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            //alert(result.d);
+            var parsed = JSON.parse(result.d);
+            for (var i in parsed) {
+                // Create an empty <tr> element and add it to the 1st position of the table:
+                var row = table.insertRow(table.rows.length);
+                if (i % 2 != 0) {
+                    row.style.backgroundColor = 'lightgrey';
+                } else {
+                    row.style.backgroundColor = 'white';
+                }
+                row.style.borderRight = '1px solid lightgrey';
+                row.style.borderLeft = '1px solid lightgrey';
+                // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+
+                // Add some text to the new cells:
+                cell1.innerHTML = parsed[i].className;
+                cell2.innerHTML = parsed[i].rate;
+                cell3.innerHTML = '&#10006';
+                cell3.onMouseOver = "this.style.cursor='pointer'";
+                cell3.onclick = function (event) {
+                    deleteClass(parsed[i].className);
+                }
+            }
+        }
+    });
+}
+
+function deleteClass(classN) {
+    //alert(className);
+    $.ajax({
+        url: "TutorSettings.aspx/deleteTutorClass",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        data: JSON.stringify({ className: classN}),
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            populateTutoringClasses();
+        }
+    });
+}
+
 
 function loadSchedule(userSched) {
     var parsedSched = JSON.parse(userSched.d);
@@ -126,7 +190,7 @@ function AddClassChange() {
             data: '{"className":"' + className + '","rate":"' + amount + '"}',
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 //alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
-                alert("Enter a class you're not already signed up for.")
+                alert("Enter a class you're not already signed up for, with an integer as a rate.\n\nIf you wish to edit a current rate, first delete the class below.")
             },
             success: function (result) {
                 // Uncomment these to compare differences. result.d is the actual json object. Becuase f javascript
@@ -135,6 +199,7 @@ function AddClassChange() {
                 alert("Class info added!");
                 document.getElementById("amount").value = '';
                 document.getElementById("search").placeholder = 'Add Class';
+                populateTutoringClasses();
             }
         });
     }

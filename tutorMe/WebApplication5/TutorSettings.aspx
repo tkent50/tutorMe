@@ -136,19 +136,16 @@
             <br />
             <br />
 
-            <div class="container">
-                <table class="table">
+            <div class="container" >
+                <table id="tutoringClassess" class="table">
                     <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Class</th>
+                        <tr style="background-color:grey;">
+                            <th style="text-align:center">Class</th>
+                            <th style="text-align:center">Rate</th>
+                            <th style="text-align:center">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
