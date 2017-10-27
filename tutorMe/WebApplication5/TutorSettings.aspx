@@ -22,8 +22,9 @@
     
         <form id="regform" runat="server">
             <!-- .net FORM -->
-            <div style="padding-top: 30px;" class="container">
+            <div class="container-fluid" style="background-color:lightgrey; padding-top: 30px; width: 1000px; margin-top: 20px; margin-bottom: 20px;">
                 <h3 style="text-align: center;">Change Login Settings</h3>
+                <br />
                 <form style="padding-top: 20px;">
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Change Email Address</label>
@@ -36,10 +37,7 @@
                         <label for="password" class="col-sm-2 col-form-label">Current Password</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <asp:TextBox ID="password" placeholder="Enter current password" class="form-control" type="password" runat="server"></asp:TextBox>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-secondary" type="button" id="showPassword1">Show Password</button>
-                                </span>
+                                <asp:TextBox ID="password" placeholder="Enter current password" class="form-control" type="password" runat="server"></asp:TextBox>                               
                             </div>
                             <small id="emailHelp" class="form-text text-muted">Password should be more than 8 characters and less than 32 character</small>
                         </div>
@@ -51,9 +49,6 @@
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <asp:TextBox ID="newPassword" placeholder="Enter new password" class="form-control" type="password" runat="server"></asp:TextBox>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-secondary" type="button" id="showPassword2">Show Password</button>
-                                </span>
                             </div>
 
                         </div>
@@ -65,9 +60,6 @@
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <asp:TextBox ID="confirmPassword" placeholder="Confirm new password" class="form-control" type="password" runat="server"></asp:TextBox>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-secondary" type="button" id="showPassword3">Show Password</button>
-                                </span>
                             </div>
 
                         </div>
@@ -78,15 +70,15 @@
                         <asp:Button ID="submit" runat="server" OnClick="SubmitChanges" class="btn btn-secondary btn-lg active" Text="Submit"></asp:Button>
 
                     </div>
-
+                    <br />
                 </form>
             </div>
             <br />
             <br />
-            <div style="padding-top: 20px;" class="container">
+            <div class="container-fluid" style="background-color:lightgrey; padding-top: 30px; width: 1000px; margin-top: 20px; margin-bottom: 20px;">
 
             <h3 style="text-align: center;">Add Class</h3>
-            <div style="padding-top: 20px;" class="row">
+            <div style="padding-top: 20px; margin-left: 40px;" class="row">
                 <div align="center" class="col">
                     <div class="form-group row">
                         <div class="dropdown">
@@ -115,7 +107,7 @@
                 <div align="center" class="col">
                     <div class="form-group row">
                         <div class="col-10">
-                            <asp:Button ID="addButton" runat="server" OnClientClick="AddClassChange()" class="btn btn-secondary btn-lg" Text="Add"></asp:Button>
+                            <asp:Button ID="addButton" runat="server" OnClientClick="AddClassChange()" class="btn btn-secondary btn-lg active" Text="Add"></asp:Button>
                         </div>
                     </div>
                 </div>
@@ -129,7 +121,7 @@
                     <div class="input-group">
                         <input id="newClassName" type="text" class="form-control" placeholder="Add non-existing class" />
                         <span class="input-group-btn">
-                            <asp:Button runat="server" class="btn btn-default" OnClientClick="addNonExistingClass()" text="Add"></asp:Button>
+                            <asp:Button runat="server" class="btn btn-secondary btn-lg active" OnClientClick="addNonExistingClass()" text="Add"></asp:Button>
                         </span>
                     </div>
                     <!-- /input-group -->
@@ -144,19 +136,16 @@
             <br />
             <br />
 
-            <div class="container">
-                <table class="table">
+            <div class="container" >
+                <table id="tutoringClassess" class="table">
                     <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Class</th>
+                        <tr style="background-color:grey;">
+                            <th style="text-align:center">Class</th>
+                            <th style="text-align:center">Rate</th>
+                            <th style="text-align:center">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -226,8 +215,7 @@
 
             <div class="container-fluid" style="justify-content: space-between; flex-direction: display: flex; padding-bottom: 20px">
                 <div class="btn-holder" style="justify-content: flex-end; display: flex;">
-                    <a class="btn btn-info" style="margin-right:15px;" href="/TutorSearch.aspx">Main Page</a>
-                    
+                    <a class="btn btn-info" style="margin-right:15px;" href="/TutorSearch.aspx">Main Page</a>                   
                     <a class="btn btn-info" href="/UserSettings.aspx">User Settings</a>
                 </div>
             </div>
