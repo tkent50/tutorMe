@@ -107,7 +107,7 @@
                 <div align="center" class="col">
                     <div class="form-group row">
                         <div class="col-10">
-                            <asp:Button ID="addButton" runat="server" OnClientClick="AddClassChange()" class="btn btn-secondary btn-lg" Text="Add"></asp:Button>
+                            <asp:Button ID="addButton" runat="server" OnClientClick="AddClassChange()" class="btn btn-secondary btn-lg active" Text="Add"></asp:Button>
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
                     <div class="input-group">
                         <input id="newClassName" type="text" class="form-control" placeholder="Add non-existing class" />
                         <span class="input-group-btn">
-                            <asp:Button runat="server" class="btn btn-default" OnClientClick="addNonExistingClass()" text="Add"></asp:Button>
+                            <asp:Button runat="server" class="btn btn-secondary btn-lg active" OnClientClick="addNonExistingClass()" text="Add"></asp:Button>
                         </span>
                     </div>
                     <!-- /input-group -->
