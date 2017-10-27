@@ -138,9 +138,10 @@
                             dp.headerDateFormat = "dddd";
 
                             dp.onEventClick = function (args) {
-                                alert("Do you wanna request to book this time slot ?");
+                                if (confirm('Do you wanna request this time slot ?')) {
+                                    sendEmail(args.e.data.start.value);
+                                }
                             };
-
 
 
                         </script>

@@ -383,6 +383,24 @@ namespace WebApplication5
         }
 
         [WebMethod]
+        public static int setTutorSchedule(int userId, string startTime, string endTime, int calId, string text)
+        {
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO tutorSchedules(tutorID,startTime,endTime,calID,text) VALUES(@tutorID, @startTime,@endTime,@calID,@text)", connection: con);
+                cmd.Parameters.AddWithValue("@tutorID", userId);
+                cmd.Parameters.AddWithValue("@startTime", startTime);
+                cmd.Parameters.AddWithValue("@endTime", endTime);
+                cmd.Parameters.AddWithValue("@calID", calId);
+                cmd.Parameters.AddWithValue("@text", text);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return 1;
+            }
+        }
+
+        [WebMethod]
         public static string getTutorSchedule(int tutorId)
         {
             List<tutorSchedInfo> tutorSched = new List<tutorSchedInfo>();

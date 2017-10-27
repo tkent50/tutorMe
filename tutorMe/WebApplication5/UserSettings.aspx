@@ -107,13 +107,12 @@
                         if (!name) return;
                         start = args.start;
                         end = args.end;
-                        id = 0
+                        //id = 0
                         text = name;
-                        setUserSched(start, end, id, text)
+                        setUserSched(start, end, text)
                         var e = new DayPilot.Event({
                             start: args.start,
                             end: args.end,
-                            id: DayPilot.guid(),
                             text: name
                         });
                         dp.events.add(e);
@@ -121,11 +120,11 @@
                     };
                     
                     dp.onEventClick = function (args) {
+                        console.log(args.e.data.end.value)
                         if (confirm('Are you sure you want to delete this event?')) {
-                            deleteSched(DayPilot.guid());
-                        } else {
-
-                        }
+                            deleteSched(args.e.data.start.value, args.e.data.end.value);
+                            
+                        } 
                     };
                     
 
