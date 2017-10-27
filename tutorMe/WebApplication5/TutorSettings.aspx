@@ -84,21 +84,7 @@
             <br />
             <br />
             <div style="padding-top: 20px;" class="container">
-<<<<<<< HEAD
-                <h3 style="text-align: center;">Add Class</h3>
-                <div style="padding-top: 20px;" class="row">
-                    <div align="center" class="col">
-                        <div class="form-group row">
-                            <div class="dropdown">
-                                <button id="mydef" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                                    <div class="col-10">
-                                        <input type="text" id="search" class="form-control input-lg" placeholder="Add Class"></input>
-                                    </div>
-                                </button>
-                                <ul id="classList" class="dropdown-menu">
-                                </ul>
-                            </div>
-=======
+
             <h3 style="text-align: center;">Add Class</h3>
             <div style="padding-top: 20px;" class="row">
                 <div align="center" class="col">
@@ -111,7 +97,7 @@
                             </button>
                             <ul id="classList" class="dropdown-menu">
                             </ul>
->>>>>>> origin/Srish
+
                         </div>
                     </div>
                 </div>
