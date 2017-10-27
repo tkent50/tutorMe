@@ -3,6 +3,20 @@
     tutorSettingLoadClasses();
 }
 
+function loadSchedule(userSched) {
+    var parsedSched = JSON.parse(userSched.d);
+    console.log(parsedSched);
+    for (i in parsedSched) {
+        var e = new DayPilot.Event({
+            start: parsedSched[i].startTime,
+            end: parsedSched[i].endTime,
+            id: parsedSched[i].calID,
+            text: parsedSched[i].text,
+        });
+        dp.events.add(e);
+    }
+}
+
 function getTutorSched() {
     $.ajax({
         url: "TutorSettings.aspx/getTutorSchedule",
@@ -29,7 +43,7 @@ function setTutorSched(startTime, endTime, calId, text) {
             alert("ThisRequest: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
         success: function (result) {
-            //alert(result);
+            return;
         }
     });
     

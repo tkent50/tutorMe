@@ -180,22 +180,30 @@
                         dp.headerDateFormat = "dddd";
 
                     }
+                    dp = new DayPilot.Calendar("calendar");
+                    dp.startDate = "2013-03-25";
+                    dp.viewType = "Week";
+                    //dp.timeRangeSelectedHandling = "Disabled";
+                    dp.eventMoveHandling = "Disabled";
+                    dp.eventResizeHandling = "Disabled";
+                    dp.init();
+                    dp.headerDateFormat = "dddd";
+
                     getTutorSched();
-                    initializeCal();
                     dp.onTimeRangeSelected = function (args) {
                         var name = prompt("New event name:", "Event");
                         if (!name) return;
                         start = args.start;
                         end = args.end;
-                        id = DayPilot.guid();
+                        id = 0;
                         text = name;
+                        setTutorSched(start, end, id, text);
                         var e = new DayPilot.Event({
                             start: args.start,
                             end: args.end,
                             id: DayPilot.guid(),
                             text: name
                         });
-                        setTutorSched(start, end, id, text)
                         dp.events.add(e);
                         dp.clearSelection();
                     };

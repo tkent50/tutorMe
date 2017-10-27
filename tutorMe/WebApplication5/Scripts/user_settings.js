@@ -1,16 +1,3 @@
-function loadSchedule(userSched) {
-    var parsedSched = JSON.parse(userSched.d);
-    console.log(parsedSched);
-    for (i in parsedSched) {
-        var e = new DayPilot.Event({
-            start: parsedSched[i].startTime,
-            end: parsedSched[i].endTime,
-            id: parsedSched[i].calID,
-            text: parsedSched[i].text,
-        });
-        dp.events.add(e);
-    }
-}
 
 function deleteSched(calId) {
     // Need to fix this
@@ -47,16 +34,13 @@ function getUserSched() {
 
 
 function setUserSched(startTime,endTime,calId,text) {
-  
-    //alert(startTime + "\n" + endTime + "\n" + calId + "\n" + text)
-
+ 
     $.ajax({
         url: "UserSettings.aspx/setUserSchedule",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
         data: JSON.stringify({ startTime: startTime, endTime: endTime, calId: calId, text: text }),
-        //data: '{"startTime":"' + startTime + '","endTime":"' + endTime + '","calId":"' + calId + '","text":"' + text + '"}',
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("ThisRequest: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
