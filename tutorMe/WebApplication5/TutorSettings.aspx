@@ -84,22 +84,20 @@
             <br />
             <br />
             <div style="padding-top: 20px;" class="container">
-                <h3 style="text-align: center;">Add Class</h3>
-                <div style="padding-top: 20px;" class="row">
-                    <div align="center" class="col">
-                        <div class="form-group row">
-                            <div class="dropdown">
-                                <button id="mydef" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                                    <div class="col-10">
-                                        <input type="text" id="search" class="form-control input-lg" placeholder="Add Class"></input>
-                                    </div>
-                                </button>
-                                <ul id="classList" class="dropdown-menu">
-                                </ul>
-                            </div>
+            <h3 style="text-align: center;">Add Class</h3>
+            <div style="padding-top: 20px;" class="row">
+                <div align="center" class="col">
+                    <div class="form-group row">
+                        <div class="dropdown">
+                            <button id="mydef" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                <div class="col-10">
+                                    <input type="text" id="search" class="form-control input-lg" placeholder="Add Class"></input>
+                                </div>
+                            </button>
+                            <ul id="classList" class="dropdown-menu">
+                            </ul>
                         </div>
                     </div>
-<<<<<<< HEAD
                 </div>
                 <div align="center" class="col">
                     <div class="form-group row">
@@ -116,29 +114,10 @@
                     <div class="form-group row">
                         <div class="col-10">
                             <asp:Button ID="addButton" runat="server" OnClientClick="AddClassChange()" class="btn btn-secondary btn-lg" Text="Add"></asp:Button>
-=======
-                    <div align="center" class="col">
-                        <div class="form-group row">
-                            <div class="col-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">$</span>
-                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                    <span class="input-group-addon">.00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div align="center" class="col">
-                        <div class="form-group row">
-                            <div class="col-10">
-                                <asp:Button ID="Button1" runat="server" OnClick="SubmitChanges" class="btn btn-secondary btn-lg" Text="Add"></asp:Button>
-                            </div>
->>>>>>> master
                         </div>
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
         </div>
 
         <div class="container">
@@ -150,26 +129,16 @@
                         <span class="input-group-btn">
                             <asp:Button runat="server" class="btn btn-default" OnClientClick="addNonExistingClass()" text="Add"></asp:Button>
                         </span>
-=======
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Add non-existing class" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Add!</button>
-                            </span>
-                        </div>
-                        <!-- /input-group -->
->>>>>>> master
                     </div>
-                    <!-- /.col-lg-4 -->
-                    <div class="col-lg-4"></div>
+                    <!-- /input-group -->
                 </div>
-                <!-- /.row -->
+                <!-- /.col-lg-4 -->
+                <div class="col-lg-4"></div>
             </div>
+            <!-- /.row -->
+        </div>
+        <br />
+        <br />
             <br />
             <br />
 
@@ -189,8 +158,11 @@
                     </tbody>
                 </table>
             </div>
-
-
+            <br />
+            <br />
+             <div style="padding-top: 20px;" class="container">
+            <h3 style="text-align: center;">Add Class Schedule</h3>
+                 <br />
             <div id="calendar" class="container" style="padding-left: 0px; border: 0px">
                 <script>
 
@@ -247,7 +219,7 @@
                     <a class="btn btn-info" href="/UserSettings.aspx">User Settings</a>
                 </div>
             </div>
-
+           </div>
 
             <!-- Optional JavaScript -->
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->
