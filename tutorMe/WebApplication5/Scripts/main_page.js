@@ -1,5 +1,7 @@
 
 var calLoaded = false;
+var loadedTutor = '';
+var loadedClassName = '';
 
 function onPageLoad() {
     loadClasses();
@@ -148,6 +150,11 @@ function showTutor(tutorId, className) {
             document.getElementById("tutorEmail").innerHTML = parsedInfo[0].email;
             document.getElementById("tutorPhone").innerHTML = parsedInfo[0].phone;
             document.getElementById("tutorClass").innerHTML = className;
+
+            // global, for use 
+            loadedTutor = tutorID;
+            loadedClassName = className;
+
             var rating = "rate" + parsedInfo[0].rating;
             document.getElementById("no-rate").checked = true;
             document.getElementById(rating).checked = true;
@@ -164,8 +171,20 @@ function showTutor(tutorId, className) {
     getTutorSched(tutorId);
 }
 
-function saveRating(rating) {
-    alert(rating);
+function saveRating(rate) {
+    $.ajax({
+        url: "TutorSearch.aspx/RateTutor",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        data: JSON.stringify({ tutorID: loadedTutor, rating: rate}),
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            alert("rated!");
+        }
+    });
 }
 function getTutorSched(userId) {
     $.ajax({
