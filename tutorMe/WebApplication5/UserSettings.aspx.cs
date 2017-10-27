@@ -207,7 +207,6 @@ namespace WebApplication5
 
         public class studentSchedInfo
         {
-            public int calID;
             public int studentID;
             public string text;
             public string startTime;
@@ -215,13 +214,14 @@ namespace WebApplication5
         }
 
         [WebMethod]
-        public static string deleteUserSchedule(int calId)
+        public static string deleteUserSchedule(string startTime, string endTime)
         {
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
-                MySqlCommand cmd = new MySqlCommand(cmdText: "DELETE from studentSchedules where userID = @userId AND calID = @calId", connection: con);
+                MySqlCommand cmd = new MySqlCommand(cmdText: "DELETE from studentSchedules where userID = @userId AND startTime = @startTime AND endTime = @endTime", connection: con);
                 cmd.Parameters.AddWithValue("@userID", userId);
-                cmd.Parameters.AddWithValue("@calID", calId);
+                cmd.Parameters.AddWithValue("@startTime", startTime);
+                cmd.Parameters.AddWithValue("@endTime", endTime);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -230,15 +230,14 @@ namespace WebApplication5
         }
 
         [WebMethod]
-        public static string setUserSchedule(string startTime, string endTime, int calId, string text)
+        public static string setUserSchedule(string startTime, string endTime, string text)
         {
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
-                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO studentSchedules(userID,startTime,endTime,calID,text) VALUES(@userID, @startTime,@endTime,@calID,@text)", connection: con);
+                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO studentSchedules(userID, startTime, endTime, text) VALUES(@userID, @startTime, @endTime, @text)", connection: con);
                 cmd.Parameters.AddWithValue("@userID", userId);
                 cmd.Parameters.AddWithValue("@startTime", startTime);
                 cmd.Parameters.AddWithValue("@endTime", endTime);
-                cmd.Parameters.AddWithValue("@calID", calId);
                 cmd.Parameters.AddWithValue("@text", text);
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -257,18 +256,16 @@ namespace WebApplication5
                 cmd.Parameters.AddWithValue("@userId", userId);
                 con.Open();
                 MySqlDataReader reader = cmd.ExecuteReader();
-                int calID = 0;
                 int studID = Convert.ToInt32(userId);
                 string startTime = "";
                 string endTime = "";
                 string text = "";
                 while (reader.Read())
                 {
-                    calID = Convert.ToInt32(reader["calID"].ToString());
                     startTime = reader["startTime"].ToString();
                     endTime = reader["endTime"].ToString();
                     text = reader["text"].ToString();
-                    tutorSched.Add(new studentSchedInfo { calID = calID, studentID = studID, startTime = startTime, endTime = endTime, text = text });
+                    tutorSched.Add(new studentSchedInfo { studentID = studID, startTime = startTime, endTime = endTime, text = text });
                 }
 
             }

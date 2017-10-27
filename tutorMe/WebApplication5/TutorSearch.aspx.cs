@@ -366,7 +366,6 @@ namespace WebApplication5
 
         public class tutorSchedInfo
         {
-            public int calID;
             public int tutorID;
             public string text;
             public string startTime;
@@ -392,28 +391,26 @@ namespace WebApplication5
             }
         }
         [WebMethod]
-        public static string getTutorSchedule(int userId)
+        public static string getTutorSchedule(int tutorId)
         {
             List<tutorSchedInfo> tutorSched = new List<tutorSchedInfo>();
 
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
                 MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM tutorSchedules WHERE tutorID = @userId", connection: con);
-                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@userId", tutorId);
                 con.Open();
                 MySqlDataReader reader = cmd.ExecuteReader();
-                int calID = 0;
-                int tutorID = Convert.ToInt32(userId);
+                int tutorID = Convert.ToInt32(tutorId);
                 string startTime = "";
                 string endTime = "";
                 string text = "";
                 while (reader.Read())
                 {
-                    calID = Convert.ToInt32(reader["calID"].ToString());
                     startTime = reader["startTime"].ToString();
                     endTime = reader["endTime"].ToString();
                     text = reader["text"].ToString();
-                    tutorSched.Add(new tutorSchedInfo { calID = calID, tutorID = tutorID, startTime = startTime, endTime = endTime, text = text });
+                    tutorSched.Add(new tutorSchedInfo { tutorID = tutorID, startTime = startTime, endTime = endTime, text = text });
                 }
                 con.Close();
                 var json = new JavaScriptSerializer().Serialize(tutorSched);
