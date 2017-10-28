@@ -450,10 +450,7 @@ C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\bin\Microsoft.AI.Dependen
 C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\bin\Microsoft.AI.Web.xml
+C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\obj\Debug\TutorMe.csprojResolveAssemblyReference.cache
 C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\obj\Debug\TutorMe.csproj.CoreCompileInputs.cache
 C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\obj\Debug\WebApplication5.dll
 C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\obj\Debug\WebApplication5.pdb
-C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\bin\WebApplication5.dll.config
-C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\bin\WebApplication5.dll
-C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\bin\WebApplication5.pdb
-C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\obj\Debug\TutorMe.csprojResolveAssemblyReference.cache

@@ -125,9 +125,9 @@
                         </div>
                        <div id="calendar" class="container" style="padding-left:0px; border:0px">
                         <script>
-
+                            
                             var dp;
-
+                            
                             dp = new DayPilot.Calendar("calendar");
                             dp.startDate = "2013-03-25";
                             dp.viewType = "Week";
@@ -138,10 +138,13 @@
                             dp.headerDateFormat = "dddd";
 
                             dp.onEventClick = function (args) {
+                                alert()
+                                /*
                                 if (confirm('Do you wanna request this time slot ?')) {
-                                    sendEmail(args.e.data.start.value);
-                                }
+                                    //sendEmail(args.e.data.start.value);
+                                }*/
                             };
+                            
 
 
                         </script>

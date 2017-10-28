@@ -1,27 +1,11 @@
-
 var calLoaded = false;
 var loadedTutor = '';
 var loadedClassName = '';
+var e;
+//dp = '';
 
 function onPageLoad() {
     loadClasses();
-    populateTutoringClasses();
-}
-
-function populateTutoringClasses() {
-    // Find a <table> element with id="myTable":
-    var table = document.getElementById("tutoringClassess");
-
-    // Create an empty <tr> element and add it to the 1st position of the table:
-    var row = table.insertRow(0);
-
-    // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-
-    // Add some text to the new cells:
-    cell1.innerHTML = "NEW CELL1";
-    cell2.innerHTML = "NEW CELL2";
 }
 
 function loadClasses() {
@@ -121,7 +105,7 @@ function handleClassTutors(tutorList, className) {
 }
 
 function firstTutorInfoLoad() {
-    dp.init();
+    //dp.init();
     document.getElementById("tutorInfo").style.visibility = 'visible';
     document.getElementById("landing").remove();
     calLoaded = true;
@@ -161,19 +145,11 @@ function showTutor(tutorId, className) {
             document.getElementById(rating).checked = true;
         }
     });
-    dp = new DayPilot.Calendar("calendar");
-    dp.startDate = "2013-03-25";
-    dp.viewType = "Week";
-    dp.timeRangeSelectedHandling = "Disabled";
-    dp.eventMoveHandling = "Disabled";
-    dp.eventResizeHandling = "Disabled";
-    dp.headerDateFormat = "dddd";
-    dp.init();
     getTutorSched(tutorId);
 }
 
 function saveRating(rate) {
-    alert(loadedTutor + ', ' + rate);
+    //alert(loadedTutor + ', ' + rate);
     $.ajax({
         url: "TutorSearch.aspx/RateTutor",
         method: "POST",
@@ -184,7 +160,7 @@ function saveRating(rate) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
         success: function (result) {
-            alert("rated!");
+            //alert("rated!");
         }
     });
 }
@@ -206,15 +182,28 @@ function getTutorSched(tutorId) {
 
 function loadSchedule(tutorSched) {
     var parsedSched = JSON.parse(tutorSched.d);
-    
+    /*dp = new DayPilot.Calendar("calendar");
+    console.log(dp);
+    dp.startDate = "2013-03-25";
+    dp.viewType = "Week";
+    dp.timeRangeSelectedHandling = "Disabled";
+    dp.eventMoveHandling = "Disabled";
+    dp.eventResizeHandling = "Disabled";
+    dp.headerDateFormat = "dddd";
+    */
+    //console.log(dp);
+    //dp.events.remove(e);
+    dp.init();
     for (i in parsedSched) {
-        var e = new DayPilot.Event({
+        e = new DayPilot.Event({
             start: parsedSched[i].startTime,
             end: parsedSched[i].endTime,
-            text: parsedSched[i].text,
+            text: parsedSched[i].text
+
         });
-        dp.events.add(e);
+        dp.events.add(e);       
     }
+    
 
 }
 
@@ -224,7 +213,7 @@ function sendEmail(startTime) {
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: JSON.stringify({ tutorId: tutorId, startTime: startTime, className: className }),
+        data: JSON.stringify({ tutorId: loadedTutor, startTime: startTime, className: loadedClassName }),
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },

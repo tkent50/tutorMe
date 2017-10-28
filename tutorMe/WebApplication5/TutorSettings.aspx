@@ -180,8 +180,9 @@
 
                     getTutorSched();
                     dp.onTimeRangeSelected = function (args) {
-                        var name = prompt("New event name:", "Event");
-                        if (!name) return;
+                        //var name = prompt("New event name:", "Event");
+                        var name = "";
+                        //if (!name) return;
                         start = args.start;
                         end = args.end;
                         //id = 0;
