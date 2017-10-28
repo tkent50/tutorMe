@@ -80,7 +80,7 @@
 
                 <div class="cnt-mcont" style=" z-index:1; padding-top:3%" >
                     <div id="tutorInfo" style="visibility:hidden; position: relative; top: 50%; left:50%; transform: translate(-55%, -55%);">
-                        <div id="heading">
+                        <div id="heading" style="padding-top: 6%;">
                             <p id="tutorName" style="float: left; font-size: 40px; font-weight: bold; padding-right: 100px;"></p>
                             <p id="tutorClass" style="float: left; font-size: 30px; font-weight: bold; top: 10px; left: 30px; margin-bottom: 5px; padding-top: 2px;"></p>
                         </div>
@@ -118,11 +118,6 @@
                         </form>
                         <br>
                         <br>
-                        <br>
-                        <br>
-                        <div class="container" style="padding-left: 0px; padding-bottom: 5px">
-                            <p id="tutorDescription"></p>
-                        </div>
                        <div id="calendar" class="container" style="padding-left:0px; border:0px">
                         <script>
 
