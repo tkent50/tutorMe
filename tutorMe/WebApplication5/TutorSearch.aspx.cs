@@ -230,7 +230,7 @@ namespace WebApplication5
             {
                 MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
                 {
-                    MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO tutorRatings(userID, tutorID, rating) VALUES('@userID', '@tutorID', '@rating'", connection: con);
+                    MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO tutorRatings(userID, tutorID, rating) VALUES(@userID, @tutorID, @rating)", connection: con);
                     cmd.Parameters.AddWithValue("@userID", userId);
                     cmd.Parameters.AddWithValue("@tutorID", tutorID);
                     cmd.Parameters.AddWithValue("@rating", rating);

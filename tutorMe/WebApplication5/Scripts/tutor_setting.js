@@ -193,7 +193,7 @@ function AddClassChange() {
                 // Uncomment these to compare differences. result.d is the actual json object. Becuase f javascript
                 // alert(result);
                 // alert(result.d);
-                alert("Class info added!");
+                //alert("Class info added!");
                 document.getElementById("amount").value = '';
                 document.getElementById("search").placeholder = 'Add Class';
                 populateTutoringClasses();

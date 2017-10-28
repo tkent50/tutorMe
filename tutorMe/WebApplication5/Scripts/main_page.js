@@ -144,6 +144,8 @@ function showTutor(tutorId, className) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
         success: function (result) {
+            // global, for use 
+            loadedTutor = tutorId;
             var parsedInfo = JSON.parse(result.d);
 
             document.getElementById("tutorName").innerHTML = parsedInfo[0].firstname + ' ' + parsedInfo[0].lastname;
@@ -152,8 +154,6 @@ function showTutor(tutorId, className) {
             document.getElementById("tutorPhone").innerHTML = parsedInfo[0].phone;
             document.getElementById("tutorClass").innerHTML = className;
 
-            // global, for use 
-            loadedTutor = tutorID;
             loadedClassName = className;
 
             var rating = "rate" + parsedInfo[0].rating;
@@ -173,12 +173,13 @@ function showTutor(tutorId, className) {
 }
 
 function saveRating(rate) {
+    alert(loadedTutor + ', ' + rate);
     $.ajax({
         url: "TutorSearch.aspx/RateTutor",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: JSON.stringify({ tutorID: loadedTutor, rating: rate}),
+        data: JSON.stringify({ tutorID: loadedTutor, rating: rate }),
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
