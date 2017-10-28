@@ -57,8 +57,6 @@ function handleClasses(classList) {
 }
 
 function loadClassTutors(className) {
-    //alert("Loading " + className + " tutors...");
-
     $.ajax({
         url: "TutorSearch.aspx/getClassTutors",
         method: "POST",
@@ -112,12 +110,11 @@ function firstTutorInfoLoad() {
 }
 
 function showTutor(tutorId, className) {
-
     if (!calLoaded) {
         firstTutorInfoLoad();
     }
 
-    //alert(className)
+   // alert(className)
     $.ajax({
         url: "TutorSearch.aspx/getTutorDetails",
         method: "POST",
@@ -137,7 +134,6 @@ function showTutor(tutorId, className) {
             document.getElementById("tutorEmail").innerHTML = parsedInfo[0].email;
             document.getElementById("tutorPhone").innerHTML = parsedInfo[0].phone;
             document.getElementById("tutorClass").innerHTML = className;
-
             loadedClassName = className;
 
             var rating = "rate" + parsedInfo[0].rating;
@@ -149,7 +145,6 @@ function showTutor(tutorId, className) {
 }
 
 function saveRating(rate) {
-    //alert(loadedTutor + ', ' + rate);
     $.ajax({
         url: "TutorSearch.aspx/RateTutor",
         method: "POST",
@@ -218,7 +213,7 @@ function sendEmail(startTime) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
         success: function (result) {
-            alert("Slot Requested Successfully! The Tutor should contact you soon!");
+            alert("Slot Requested Successfully. The Tutor should contact you soon!");
         }
     });
 }

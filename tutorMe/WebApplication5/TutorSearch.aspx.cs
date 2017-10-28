@@ -98,13 +98,14 @@ namespace WebApplication5
             {
                 con.Open();
                 //get total number of classes
-                MySqlCommand countCom = new MySqlCommand("SELECT COUNT(*) FROM classes", con);
+                // Only get classes that have tutors!
+                MySqlCommand countCom = new MySqlCommand("SELECT COUNT(*) FROM classes WHERE className IN (SELECT DISTINCT className FROM tutorClasses)", con);
                 Int32 count = Convert.ToInt32(countCom.ExecuteScalar());
                 classList = new string[count + 1];
                 string countString = count.ToString();
                 classList[0] = countString;
 
-                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM classes", connection: con);
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM classes WHERE className IN (SELECT DISTINCT className FROM tutorClasses)", connection: con);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 int classCount = 1;
@@ -475,8 +476,8 @@ namespace WebApplication5
             string studentFull = studentFirst + " " + studentLast;
 
             //Parse time string
-            string[] startTimeSplit = startTime.Split(new Char['T']);
-            string[] startDateSplit = startTimeSplit[0].Split(new Char['-']);
+            string[] startTimeSplit = startTime.Split('T');
+            string[] startDateSplit = startTimeSplit[0].Split('-');
             string dayOfWeekNumber = startDateSplit[2];
             string dayOfWeek = "";
 
@@ -505,7 +506,7 @@ namespace WebApplication5
                     break;
             }
 
-            string[] timeSplit = startTimeSplit[1].Split(new Char[':']);
+            string[] timeSplit = startTimeSplit[1].Split(':');
             string hour = timeSplit[0];
             string minute = timeSplit[1];
             string ampm = "AM";
@@ -597,6 +598,7 @@ namespace WebApplication5
             }
 
             string bodyText = studentFull + " would like to be tutored in " + className + " on " + dayOfWeek + " at " + hour + ":" + minute + " " + ampm + ".";
+            bodyText += " Please respond with replay all and accept or deny their request!";
             string subjectText = studentFull + "wants to be tutored!";
 
             MailAddress fromAddress = new MailAddress("tutorapp408@gmail.com", "TutorMe");

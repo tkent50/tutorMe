@@ -118,6 +118,12 @@
                         </form>
                         <br>
                         <br>
+                        <br />
+                        <br />
+                        <div class="container" style="padding-left:0px; padding-bottom:5px;">
+                            <p id="tutorDescription"></p>
+                        </div>
+
                        <div id="calendar" class="container" style="padding-left:0px; border:0px">
                         <script>
                             
