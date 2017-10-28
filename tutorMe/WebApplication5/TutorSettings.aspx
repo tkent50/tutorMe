@@ -26,45 +26,6 @@
                 <h3 style="text-align: center;">Change Login Settings</h3>
                 <br />
                 <form style="padding-top: 20px;">
-                    <div class="form-group row">
-                        <label for="email" class="col-sm-2 col-form-label">Change Email Address</label>
-                        <div class="col-sm-10">
-                            <asp:TextBox ID="email" placeholder="Email Address" class="form-control" type="text" runat="server"></asp:TextBox>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password" class="col-sm-2 col-form-label">Current Password</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <asp:TextBox ID="password" placeholder="Enter current password" class="form-control" type="password" runat="server"></asp:TextBox>                               
-                            </div>
-                            <small id="emailHelp" class="form-text text-muted">Password should be more than 8 characters and less than 32 character</small>
-                        </div>
-
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password" class="col-sm-2 col-form-label">Change Password</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <asp:TextBox ID="newPassword" placeholder="Enter new password" class="form-control" type="password" runat="server"></asp:TextBox>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password" class="col-sm-2 col-form-label">Confirm New Password</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <asp:TextBox ID="confirmPassword" placeholder="Confirm new password" class="form-control" type="password" runat="server"></asp:TextBox>
-                            </div>
-
-                        </div>
-
-                    </div>
 
                     <div class="form-group row">
                         <label for="bio" class="col-sm-2 col-form-label">Add Bio</label>
