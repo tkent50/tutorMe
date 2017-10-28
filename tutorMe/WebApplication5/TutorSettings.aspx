@@ -23,48 +23,24 @@
         <form id="regform" runat="server">
             <!-- .net FORM -->
             <div class="container-fluid" style="background-color:lightgrey; padding-top: 30px; width: 1000px; margin-top: 20px; margin-bottom: 20px;">
-                <h3 style="text-align: center;">Change Login Settings</h3>
+                <h3 style="text-align: center;">Change Tutor Settings</h3>
                 <br />
                 <form style="padding-top: 20px;">
+
                     <div class="form-group row">
-                        <label for="email" class="col-sm-2 col-form-label">Change Email Address</label>
+                        <label for="bio" class="col-sm-2 col-form-label">Add Bio</label>
                         <div class="col-sm-10">
-                            <asp:TextBox ID="email" placeholder="Email Address" class="form-control" type="text" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="addBio" placeholder="Bio" class="form-control" type="text" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <label for="phone" class="col-sm-2 col-form-label">Phone Number</label>
+                        <div class="col-sm-10">
+                            <asp:TextBox ID="addPhone" placeholder="Phone Number" class="form-control" type="text" runat="server"></asp:TextBox>
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="password" class="col-sm-2 col-form-label">Current Password</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <asp:TextBox ID="password" placeholder="Enter current password" class="form-control" type="password" runat="server"></asp:TextBox>                               
-                            </div>
-                            <small id="emailHelp" class="form-text text-muted">Password should be more than 8 characters and less than 32 character</small>
-                        </div>
-
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password" class="col-sm-2 col-form-label">Change Password</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <asp:TextBox ID="newPassword" placeholder="Enter new password" class="form-control" type="password" runat="server"></asp:TextBox>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password" class="col-sm-2 col-form-label">Confirm New Password</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <asp:TextBox ID="confirmPassword" placeholder="Confirm new password" class="form-control" type="password" runat="server"></asp:TextBox>
-                            </div>
-
-                        </div>
-
-                    </div>
                     <div class="container text-center">
 
                         <asp:Button ID="submit" runat="server" OnClick="SubmitChanges" class="btn btn-secondary btn-lg active" Text="Submit"></asp:Button>

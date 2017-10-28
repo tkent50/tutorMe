@@ -128,7 +128,6 @@ function deleteSched(startTime, endTime) {
     });
 }
 
-
 function tutorSettingLoadClasses() {
     //alert("loading");
     $.ajax({
