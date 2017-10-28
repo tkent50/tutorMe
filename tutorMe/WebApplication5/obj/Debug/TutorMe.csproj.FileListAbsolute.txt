@@ -454,3 +454,6 @@ C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\obj\Debug\TutorMe.csprojR
 C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\obj\Debug\TutorMe.csproj.CoreCompileInputs.cache
 C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\obj\Debug\WebApplication5.dll
 C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\obj\Debug\WebApplication5.pdb
+C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\bin\WebApplication5.dll.config
+C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\bin\WebApplication5.dll
+C:\Users\rajat\Documents\CS408\tutorMe\WebApplication5\bin\WebApplication5.pdb

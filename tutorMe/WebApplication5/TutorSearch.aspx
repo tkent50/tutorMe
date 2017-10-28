@@ -133,11 +133,9 @@
                             dp.headerDateFormat = "dddd";
 
                             dp.onEventClick = function (args) {
-                                alert()
-                                /*
                                 if (confirm('Do you wanna request this time slot ?')) {
-                                    //sendEmail(args.e.data.start.value);
-                                }*/
+                                    sendEmail(args.e.data.start.value);
+                                }
                             };
                             
 
