@@ -23,6 +23,7 @@
 
 <body onload="onPageLoad()">
   
+    <form id="regform" runat="server"> <!-- .net FORM -->
         <!-- .net FORM -->
         <div id="mn-wrapper">
             <div class="mn-sidebar" style="z-index:3; min-width:130px">
@@ -59,6 +60,9 @@
                         </li>
                         <li>
                             <asp:HyperLink ID="become_tutor" runat="server" href="/TutorSettings.aspx">Become a Tutor</asp:HyperLink>
+                        </li>
+                        <li>
+                            <asp:Button ID="logout_button" runat="server" OnClick="DeleteCookie" class="btn btn-link btn-md active" Text="Log Out" style="width: 100%"></asp:Button>
                         </li>
                     </ul>
                 </div>
@@ -134,9 +138,10 @@
                             dp.headerDateFormat = "dddd";
 
                             dp.onEventClick = function (args) {
-                                alert("Do you wanna request to book this time slot ?");
+                                if (confirm('Do you wanna request this time slot ?')) {
+                                    sendEmail(args.e.data.start.value);
+                                }
                             };
-
 
 
                         </script>
@@ -153,7 +158,7 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
 
-    
+    </form>
 </body>
 </html>
 

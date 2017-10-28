@@ -40,6 +40,7 @@ function loadClasses() {
     });
 }
 
+
 function handleClasses(classList) {
     var numClasses = parseInt(classList.d[0]);
     for (var i = 1; i <= numClasses; i++) {
@@ -186,13 +187,13 @@ function saveRating(rate) {
         }
     });
 }
-function getTutorSched(userId) {
+function getTutorSched(tutorId) {
     $.ajax({
         url: "TutorSearch.aspx/getTutorSchedule",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: '{"userId":"' + userId + '"}',
+        data: '{"tutorId":"' + tutorId + '"}',
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
@@ -209,10 +210,25 @@ function loadSchedule(tutorSched) {
         var e = new DayPilot.Event({
             start: parsedSched[i].startTime,
             end: parsedSched[i].endTime,
-            id: parsedSched[i].calID,
             text: parsedSched[i].text,
         });
         dp.events.add(e);
     }
 
+}
+
+function sendEmail(startTime) {
+    $.ajax({
+        url: "TutorSearch.aspx/SendReservationRequest",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        data: JSON.stringify({ tutorId: tutorId, startTime: startTime, className: className }),
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            alert("Slot Requested Successfully! The Tutor should contact you soon!");
+        }
+    });
 }

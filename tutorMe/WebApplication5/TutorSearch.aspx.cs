@@ -82,6 +82,14 @@ namespace WebApplication5
             changeButton();
         }
 
+        protected void DeleteCookie(Object sender, EventArgs e)
+        {
+            HttpCookie newCookie = new HttpCookie("userId");
+            newCookie.Expires = DateTime.Now.AddDays(-1d);
+            Response.Cookies.Add(newCookie);
+            Response.Redirect("/Default.aspx");
+        }
+
         [WebMethod] // DONE
         public static string[] GetClasses()
         {
@@ -189,7 +197,7 @@ namespace WebApplication5
         }
 
         [WebMethod]
-        public static void RateTutor(int tutorID, int classID, int rating)
+        public static void RateTutor(int tutorID, int rating)
         {
             bool alreadyRated = false;
             MySqlConnection con1 = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
@@ -372,6 +380,24 @@ namespace WebApplication5
             public string text;
             public string startTime;
             public string endTime;
+        }
+
+        [WebMethod]
+        public static int setTutorSchedule(int userId, string startTime, string endTime, int calId, string text)
+        {
+            MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO tutorSchedules(tutorID,startTime,endTime,calID,text) VALUES(@tutorID, @startTime,@endTime,@calID,@text)", connection: con);
+                cmd.Parameters.AddWithValue("@tutorID", userId);
+                cmd.Parameters.AddWithValue("@startTime", startTime);
+                cmd.Parameters.AddWithValue("@endTime", endTime);
+                cmd.Parameters.AddWithValue("@calID", calId);
+                cmd.Parameters.AddWithValue("@text", text);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return 1;
+            }
         }
 
         [WebMethod]
