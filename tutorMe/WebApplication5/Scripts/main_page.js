@@ -27,7 +27,7 @@ function loadClasses() {
 
 function handleClasses(classList) {
     var numClasses = parseInt(classList.d[0]);
-    for (var i = 1; i <= numClasses; i++) {
+    for (var i = 1; i <= numClasses / 2; i++) {
 
         var newClassName = document.createElement("a");
         newClassName.innerHTML = classList.d[i];
@@ -37,16 +37,19 @@ function handleClasses(classList) {
         newTab.id = classList.d[i];
         newTab.className = "dropdown-submenu";
 
-        newTab.onclick = function (event) {
-            loadClassTutors(this.id);
-            event.stopPropagation();
-            // hide the open children
-            //$(this).find(".dropdown-submenu").removeClass('open');
-            // add 'open' class to all parents with class 'dropdown-submenu'
-            $(this).parents(".dropdown-submenu").addClass('open');
-            // this is also open (or was)
-            $(this).toggleClass('open');
-            //tester(this.id);
+        if (i > 1) {
+            newTab.onclick = function (event) {
+                loadClassTutors(this.id);
+
+                event.stopPropagation();
+                // hide the open children
+                //$(this).find(".dropdown-submenu").removeClass('open');
+                // add 'open' class to all parents with class 'dropdown-submenu'
+                $(this).parents(".dropdown-submenu").addClass('open');
+                // this is also open (or was)
+                $(this).toggleClass('open');
+                //tester(this.id);
+            }
         }
 
 
@@ -133,9 +136,9 @@ function showTutor(tutorId, className) {
             var parsedInfo = JSON.parse(result.d);
 
             document.getElementById("tutorName").innerHTML = parsedInfo[0].firstname + ' ' + parsedInfo[0].lastname;
-            document.getElementById("tutorDescription").innerHTML = parsedInfo[0].bio;
-            document.getElementById("tutorEmail").innerHTML = parsedInfo[0].email;
-            document.getElementById("tutorPhone").innerHTML = parsedInfo[0].phone;
+            document.getElementById("tutorDescription").innerHTML = parsedInfo[0].firstname + ' ' + parsedInfo[0].lastname;
+            document.getElementById("tutorEmail").innerHTML = parsedInfo[0].phone;
+            document.getElementById("tutorPhone").innerHTML = parsedInfo[0].email;
             document.getElementById("tutorClass").innerHTML = className;
 
             loadedClassName = className;

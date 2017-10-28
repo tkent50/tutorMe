@@ -37,7 +37,6 @@ namespace WebApplication5
                 }
                 con.Close();
                 pass_input.Text = "";
-                this.Show("Incorrect email or password");
             }
         }
         protected void SignUp_Click(object sender, EventArgs e)

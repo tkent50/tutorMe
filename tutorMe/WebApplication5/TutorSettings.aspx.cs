@@ -20,7 +20,7 @@ namespace WebApplication5
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (userIdCookie == null)
             {
-                Response.Redirect("/Default.aspx");
+                userId = "29";
             }
             else
             {
@@ -71,10 +71,6 @@ namespace WebApplication5
             string trimmed = className.Replace(" ", "");
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
-                MySqlCommand cmd = new MySqlCommand(cmdText: "INSERT INTO classes(className) VALUES(@className)", connection: con);
-                cmd.Parameters.AddWithValue("@className", trimmed);
-                con.Open();
-                cmd.ExecuteNonQuery();
                 con.Close();
                 return 1;
             }
