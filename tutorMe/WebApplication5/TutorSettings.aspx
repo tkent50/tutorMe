@@ -129,6 +129,7 @@
             
              <div style="padding-top: 20px;" class="container">
             <h3 style="text-align: center;">Add Class Schedule</h3>
+                 <h6 style="text-align: center;">Drag to add & click to cancel</h6>
                  <br />
             <div id="calendar" class="container" style="padding-left: 0px; border: 0px">
                 <script>
