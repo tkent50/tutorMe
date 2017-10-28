@@ -23,7 +23,7 @@
         <form id="regform" runat="server">
             <!-- .net FORM -->
             <div class="container-fluid" style="background-color:lightgrey; padding-top: 30px; width: 1000px; margin-top: 20px; margin-bottom: 20px;">
-                <h3 style="text-align: center;">Change Login Settings</h3>
+                <h3 style="text-align: center;">Change Tutor Settings</h3>
                 <br />
                 <form style="padding-top: 20px;">
 
