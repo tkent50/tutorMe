@@ -160,8 +160,8 @@ function showTutor(tutorId, className) {
     dp.timeRangeSelectedHandling = "Disabled";
     dp.eventMoveHandling = "Disabled";
     dp.eventResizeHandling = "Disabled";
-    dp.init();
     dp.headerDateFormat = "dddd";
+    dp.init();
     getTutorSched(tutorId);
 }
 
