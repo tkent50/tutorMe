@@ -215,8 +215,8 @@
 
             <div class="container-fluid" style="justify-content: space-between; flex-direction: display: flex; padding-bottom: 20px">
                 <div class="btn-holder" style="justify-content: flex-end; display: flex;">
-                    <a class="btn btn-info" style="margin-right:15px;" href="/TutorSearch.aspx">Main Page</a>                   
-                    <a class="btn btn-info" href="/UserSettings.aspx">User Settings</a>
+                    <a class="btn btn-secondary btn-lg active" style="margin-right:15px;" href="/TutorSearch.aspx">Main Page</a>                   
+                    <a class="btn btn-secondary btn-lg active" href="/UserSettings.aspx">User Settings</a>
                 </div>
             </div>
            </div>
