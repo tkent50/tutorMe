@@ -65,6 +65,21 @@
                         </div>
 
                     </div>
+
+                    <div class="form-group row">
+                        <label for="bio" class="col-sm-2 col-form-label">Add Bio</label>
+                        <div class="col-sm-10">
+                            <asp:TextBox ID="addBio" placeholder="Bio" class="form-control" type="text" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <label for="phone" class="col-sm-2 col-form-label">Phone Number</label>
+                        <div class="col-sm-10">
+                            <asp:TextBox ID="addPhone" placeholder="Phone Number" class="form-control" type="text" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+
                     <div class="container text-center">
 
                         <asp:Button ID="submit" runat="server" OnClick="SubmitChanges" class="btn btn-secondary btn-lg active" Text="Submit"></asp:Button>

@@ -58,6 +58,24 @@ namespace WebApplication5 {
         protected global::System.Web.UI.WebControls.TextBox confirmPassword;
         
         /// <summary>
+        /// addBio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox addBio;
+        
+        /// <summary>
+        /// addPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox addPhone;
+        
+        /// <summary>
         /// submit control.
         /// </summary>
         /// <remarks>
