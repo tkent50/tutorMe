@@ -73,7 +73,7 @@ namespace WebApplication5
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (userIdCookie == null)
             {
-                Response.Redirect("/Default.aspx");
+                userId = "29";
             }
             else
             {
@@ -84,9 +84,7 @@ namespace WebApplication5
 
         protected void DeleteCookie(Object sender, EventArgs e)
         {
-            HttpCookie newCookie = new HttpCookie("userId");
-            newCookie.Expires = DateTime.Now.AddDays(-1d);
-            Response.Cookies.Add(newCookie);
+            Response.Cookies.Remove("userId");
             Response.Redirect("/Default.aspx");
         }
 
@@ -98,14 +96,13 @@ namespace WebApplication5
             {
                 con.Open();
                 //get total number of classes
-                // Only get classes that have tutors!
-                MySqlCommand countCom = new MySqlCommand("SELECT COUNT(*) FROM classes WHERE className IN (SELECT DISTINCT className FROM tutorClasses)", con);
+                MySqlCommand countCom = new MySqlCommand("SELECT COUNT(*) FROM classes WHERE className in (SELECT DISTINCT className FROM tutorClasses)", con);
                 Int32 count = Convert.ToInt32(countCom.ExecuteScalar());
                 classList = new string[count + 1];
                 string countString = count.ToString();
                 classList[0] = countString;
 
-                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM classes WHERE className IN (SELECT DISTINCT className FROM tutorClasses)", connection: con);
+                MySqlCommand cmd = new MySqlCommand(cmdText: "SELECT * FROM classes  WHERE className in (SELECT DISTINCT className FROM tutorClasses)", connection: con);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 int classCount = 1;
@@ -281,11 +278,7 @@ namespace WebApplication5
         protected void changeButton()
         {
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
-            string userId = userIdCookie.Value;
-            if (UserIsTutor(userId))
-            {
-                become_tutor.Text = "Tutor Settings";
-            }
+            userId = "29";// userIdCookie.Value;
         }
 
 
@@ -481,7 +474,7 @@ namespace WebApplication5
             string dayOfWeekNumber = startDateSplit[2];
             string dayOfWeek = "";
 
-            switch(dayOfWeekNumber)
+            switch (dayOfWeekNumber)
             {
                 case "24":
                     dayOfWeek = "Sunday";
@@ -605,7 +598,7 @@ namespace WebApplication5
             MailAddress toAddress = new MailAddress(tutorEmail, tutorFull);
             MailAddress copy = new MailAddress(studentEmail, studentFull);
             const string fromPassword = "5515hebt";
-            
+
             SmtpClient smtp = new SmtpClient
             {
                 Host = "smtp.gmail.com",
@@ -621,5 +614,6 @@ namespace WebApplication5
             message.CC.Add(copy);
             smtp.Send(message);
         }
+
     }
 }

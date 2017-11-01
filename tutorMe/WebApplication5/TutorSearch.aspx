@@ -26,7 +26,7 @@
     <form id="regform" runat="server"> <!-- .net FORM -->
         <!-- .net FORM -->
         <div id="mn-wrapper">
-            <div class="mn-sidebar" style="z-index:3; min-width:130px">
+            <div class="mn-sidebar" style="z-index:3; min-width:130px; left:5">
                 <div class="mn-toggle">
                     <i class="fa fa-bars"></i>
                 </div>
@@ -120,10 +120,9 @@
                         <br>
                         <br />
                         <br />
-                        <div class="container" style="padding-left:0px; padding-bottom:5px;">
+                        <div class="container" style="padding-left:0px; padding-bottom: 5px;height=50px">
                             <p id="tutorDescription"></p>
                         </div>
-
                        <div id="calendar" class="container" style="padding-left:0px; border:0px">
                         <script>
                             

@@ -113,19 +113,7 @@ function setTutorSched(startTime, endTime, text) {
 }
 
 function deleteSched(startTime, endTime) {
-    $.ajax({
-        url: "TutorSettings.aspx/deleteTutorSchedule",
-        method: "POST",
-        contentType: "application/json; charset=utf-8",
-        dataType: 'json',
-        data: JSON.stringify({ startTime: startTime, endTime: endTime}),
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
-        },
-        success: function (result) {
-            location.reload();
-        }
-    });
+  
 }
 
 function tutorSettingLoadClasses() {
@@ -206,7 +194,7 @@ function addNonExistingClass() {
     //alert();
     
     var className = document.getElementById("newClassName").value;
-    alert(className);
+    //alert(className);
 
     if (className === '') {
         alert("Please insert class name.")

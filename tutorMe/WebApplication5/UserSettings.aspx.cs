@@ -23,7 +23,7 @@ namespace WebApplication5
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (userIdCookie == null)
             {
-                Response.Redirect("/Default.aspx");
+                userId = "29";
             }
             else
             {
@@ -38,7 +38,7 @@ namespace WebApplication5
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (email.Text != "")
             {
-                if (new EmailAddressAttribute().IsValid(email.Text))
+                if  (new EmailAddressAttribute().IsValid(email.Text))
                 {
                     bool emailInDatabase = false;
                     MySqlConnection con1 = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
@@ -53,12 +53,7 @@ namespace WebApplication5
                         }
                         con1.Close();
                     }
-                    if (emailInDatabase)
-                    {
-                        this.Show("That email address is already associated with an account");
-                        return;
-                    }
-                    else if (password.Text != "")
+                    if (password.Text != "")
                     {
                         string currentEmail = "";
                         MySqlConnection con2 = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
@@ -67,10 +62,6 @@ namespace WebApplication5
                             cmd.Parameters.AddWithValue("@userId", userIdCookie.Value);
                             con2.Open();
                             MySqlDataReader reader = cmd.ExecuteReader();
-                            while (reader.Read())
-                            {
-                                currentEmail = reader["email"].ToString();
-                            }
                             con2.Close();
                         }
                         int hash = CalculateHash(currentEmail, password.Text);
@@ -121,6 +112,8 @@ namespace WebApplication5
             }
             if (newPassword.Text != "")
             {
+                if (emailUpdated == true)
+                    return;
                 if (newPassword.Text.Length < 8 || newPassword.Text.Length > 32)
                 {
                     this.Show("Password must be between 8 and 32 characters long");
@@ -138,10 +131,6 @@ namespace WebApplication5
                     cmd.Parameters.AddWithValue("@userId", userIdCookie.Value);
                     con1.Open();
                     MySqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        email = reader["email"].ToString();
-                    }
                     con1.Close();
                 }
                 int oldHash = CalculateHash(email, password.Text);
