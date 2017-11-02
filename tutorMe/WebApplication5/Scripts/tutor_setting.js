@@ -161,7 +161,7 @@ function AddClassChange() {
     var className = document.getElementById("search").placeholder;
 
     if (className === 'Add Class') {
-        alert("Please insert class name.")
+        alert("Please add a class from the dropdown, and a rating for the class.")
     } else if (amount === '') {
         alert("Please insert rate for class.")
     } else {
@@ -174,7 +174,7 @@ function AddClassChange() {
             data: '{"className":"' + className + '","rate":"' + amount + '"}',
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 //alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
-                alert("Enter a class you're not already signed up for, with an integer as a rate.\n\nIf you wish to edit a current rate, first delete the class below.")
+                //alert("Enter a class you're not already signed up for, with an integer as a rate.\n\nIf you wish to edit a current rate, first delete the class below.")
             },
             success: function (result) {
                 // Uncomment these to compare differences. result.d is the actual json object. Becuase f javascript

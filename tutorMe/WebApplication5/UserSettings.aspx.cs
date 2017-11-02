@@ -23,7 +23,7 @@ namespace WebApplication5
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (userIdCookie == null)
             {
-                userId = "29";
+                Response.Redirect("Default.aspx");
             }
             else
             {
@@ -62,6 +62,10 @@ namespace WebApplication5
                             cmd.Parameters.AddWithValue("@userId", userIdCookie.Value);
                             con2.Open();
                             MySqlDataReader reader = cmd.ExecuteReader();
+                            while (reader.Read())
+                            {
+                                currentEmail = reader["email"].ToString();
+                            }
                             con2.Close();
                         }
                         int hash = CalculateHash(currentEmail, password.Text);
@@ -75,7 +79,7 @@ namespace WebApplication5
                             {
                                 if (Convert.ToInt32(reader["passHash"]) == hash)
                                 {
-                                    int newHash = CalculateHash(email.Text, password.Text);
+                                    int newHash = CalculateHash(currentEmail, password.Text);
                                     MySqlConnection con4 = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
                                     {
                                         MySqlCommand cmd1 = new MySqlCommand(cmdText: "UPDATE users SET email = @newEmail, passHash = @newHash WHERE userID = @userId", connection: con4);
@@ -112,8 +116,6 @@ namespace WebApplication5
             }
             if (newPassword.Text != "")
             {
-                if (emailUpdated == true)
-                    return;
                 if (newPassword.Text.Length < 8 || newPassword.Text.Length > 32)
                 {
                     this.Show("Password must be between 8 and 32 characters long");

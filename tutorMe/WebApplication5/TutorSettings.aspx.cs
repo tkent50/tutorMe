@@ -20,7 +20,7 @@ namespace WebApplication5
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (userIdCookie == null)
             {
-                userId = "29";
+                Response.Redirect("Default.aspx");
             }
             else
             {

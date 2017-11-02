@@ -26,7 +26,7 @@
     <form id="regform" runat="server"> <!-- .net FORM -->
         <!-- .net FORM -->
         <div id="mn-wrapper">
-            <div class="mn-sidebar" style="z-index:3; min-width:130px; left:5">
+            <div class="mn-sidebar" style="z-index:3; min-width:130px; left:10%">
                 <div class="mn-toggle">
                     <i class="fa fa-bars"></i>
                 </div>

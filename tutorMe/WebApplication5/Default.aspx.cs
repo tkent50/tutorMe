@@ -15,7 +15,11 @@ namespace WebApplication5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            HttpCookie userIdCookie = Request.Cookies.Get("userId");
+            if (userIdCookie != null)
+            {
+                Response.Redirect("TutorSearch.aspx");
+            }
         }
         protected void Login_Click(object sender, EventArgs e)
         {

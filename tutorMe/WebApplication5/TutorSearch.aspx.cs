@@ -73,18 +73,18 @@ namespace WebApplication5
             HttpCookie userIdCookie = Request.Cookies.Get("userId");
             if (userIdCookie == null)
             {
-                userId = "29";
             }
             else
             {
                 userId = userIdCookie.Value;
             }
-            changeButton();
         }
 
         protected void DeleteCookie(Object sender, EventArgs e)
         {
-            Response.Cookies.Remove("userId");
+            HttpCookie newCookie = new HttpCookie("userId");
+            newCookie.Expires = DateTime.Now.AddDays(-1d);
+            Response.Cookies.Add(newCookie);
             Response.Redirect("/Default.aspx");
         }
 
@@ -128,8 +128,7 @@ namespace WebApplication5
             MySqlConnection con = new MySqlConnection("server=tutormedatabase.c9h5bv0oz1hd.us-east-2.rds.amazonaws.com;user id=tutormaster;port=3306;database=tutormedb1;persistsecurityinfo=True;password=5515hebt");
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand(cmdText: $"SELECT * FROM users JOIN tutorClasses ON users.userID = tutorClasses.tutorID WHERE tutorClasses.className = '{className}' AND userID != @userId", connection: con);
-                cmd.Parameters.AddWithValue("@userId", userId);
+                MySqlCommand cmd = new MySqlCommand(cmdText: $"SELECT * FROM users JOIN tutorClasses ON users.userID = tutorClasses.tutorID WHERE tutorClasses.className = '{className}'", connection: con);
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -167,9 +166,9 @@ namespace WebApplication5
                 string phone = reader["phoneNumber"].ToString();
                 con.Close();
 
-
-                MySqlCommand cmd2 = new MySqlCommand(cmdText: "SELECT * FROM tutorRatings WHERE tutorID = @tutorID", connection: con);
+                MySqlCommand cmd2 = new MySqlCommand(cmdText: "SELECT * FROM tutorRatings WHERE tutorID = @tutorID AND userID = @userID", connection: con);
                 cmd2.Parameters.AddWithValue("@tutorID", tutorID);
+                cmd2.Parameters.AddWithValue("@userID", userId);
                 con.Open();
                 MySqlDataReader reader2 = cmd2.ExecuteReader();
 
@@ -591,7 +590,7 @@ namespace WebApplication5
             }
 
             string bodyText = studentFull + " would like to be tutored in " + className + " on " + dayOfWeek + " at " + hour + ":" + minute + " " + ampm + ".";
-            bodyText += " Please respond with replay all and accept or deny their request!";
+            bodyText += " Please respond with reply all and accept or deny their request!";
             string subjectText = studentFull + "wants to be tutored!";
 
             MailAddress fromAddress = new MailAddress("tutorapp408@gmail.com", "TutorMe");
@@ -608,10 +607,9 @@ namespace WebApplication5
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
             };
-            MailMessage message = new MailMessage(fromAddress, toAddress);
+            MailMessage message = new MailMessage(fromAddress, copy);
             message.Subject = subjectText;
             message.Body = bodyText;
-            message.CC.Add(copy);
             smtp.Send(message);
         }
 
